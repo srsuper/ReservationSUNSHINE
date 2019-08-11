@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<title>Softway 舒微生活管理員</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet"
+    id="bootstrap-css">
+<body>
+
+<!-- datepicker --->
+<style type="text/css">
+        .dtp-buttons > button.btn {
+            border: none;
+            border-radius: 2px;
+            position: relative;
+            box-shadow: none;
+            color: rgba(0,0,0, 0.87);
+            padding: 5px 16px;
+            font-size: 12px;
+            margin: 10px 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            will-change: box-shadow, transform;
+            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+        }
+            .dtp-buttons > button.btn:hover,
+            .dtp-buttons > button.btn:focus {
+                background-color: rgba(153, 153, 153, 0.2);
+            } 
+            /*我自己多寫這個*/
+         .dtp-picker-calendar > table {
+            width: 100%;
+        } 
+    </style>
+
+    <!--影響 Close < > 的切換icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     
+    <!--引用plugin的css(自行到作者GitHub下載)-->
+    <link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <div class="w3-center">
+    <h1 class="w3-xxlarge ">歡迎來到 </h1>
+      <h2>Softway 舒微生活管理員</h2>
+  </div>
+</header>
+
+
+<!-- 標 題(預約人數/日期)  --->
+<div class="w3-container">
+<header class="w3-container w3-pale-blue">
+  <h2><i class="fa fa-calendar"></i> 預約人數/日期</h2>
+ </header>
+    </div>
+
+<!-- 表 單(預約人數/日期)  --->
+<div class="w3-row-padding">
+
+<div class="w3-container">
+<form class="w3-panel w3-border">
+  <div class="w3-section">
+    <label><i class="fa fa-home"></i> 店家位置</label>
+    <select class="w3-input w3-border"  value="" id="store_name" name="store_name" required>
+          <option style="display:none" value="">請選擇店家</option>
+            <option value="總店">北投吉利店  (總店)</option>
+    </select>
+  </div>
+
+      
+ <div class="w3-section">  
+    <label><i class="fa fa-male"></i> 成人</label>
+    <select class="w3-input w3-border" type="number" value="" id="adult" name="adult" required>
+            <option style="display:none" value="">選擇人數</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">包場</option>
+            </select>
+    </div>
+<div class="w3-section">    
+      <label><i class="fa fa-child"></i> 兒童</label>
+          <select class="w3-input w3-border" type="number" value="" id="children" name="children" required>
+          <option style="display:none" value="">選擇人數</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">包場</option>
+            </select>
+  </div>
+    
+    <div class='w3-section' id='datepicker'>
+            <label><i class="fa fa-calendar"></i> 日期</label>
+              <br>
+            <input class="w3-input" id="date" type="text" placeholder="YYYY/MM/DD"  required >
+    </div>
+    <div class="w3-section">
+      <input id="noforce" class="w3-radio" type="radio" name="force" value="no" checked>
+      <label>不強迫訂位</label>
+      <input id="force" class="w3-radio" type="radio" name="force" value="force">
+      <label>強迫訂位</label>
+      
+    </div>
+</form>
+</div>
+</div>
+    
+
+<!-- 標 題(預約時段)  --->
+<div class="w3-container">
+<hr>
+<header class="w3-container w3-pale-blue">
+  <h2><i class="fa fa-clock-o"></i> 預約時段</h2>
+    <h7><i class="fa fa-bullhorn"></i> 因用餐沒有時間限制，請事先預約。
+    <br>
+    <i class="fa fa-bullhorn"></i> 若有需要" 更改訂位 "的日期、時間或人數等資訊，請務必來電告知(Kevin : 0936-336233 )</h7>
+</header>
+</div>
+
+
+<!----T i m e  ---->
+<div class="w3-row-padding">
+
+<div class="w3-container">
+<form class="w3-panel w3-border">
+  <div class="w3-section">
+    <label><i class="fa fa-clock-o"></i> 開始用餐時間</label>
+    <select name="start" id="start" class="select form-control" data-name="開始時間">
+              <option style="display:none" value="">請選擇用餐開始時間</option>
+              <option value="10">10:00</option>
+              <option value="10.5">10:30</option>
+              <option value="11">11:00</option>
+              <option value="11.5">11:30</option>
+              <option value="12">12:00</option>
+              <option value="12.5">12:30</option>
+              <option value="13">13:00</option>
+              <option value="13.5">13:30</option>
+              <option value="14">14:00</option>
+              <option value="14.5">14:30</option>
+              <option value="15">15:00</option>
+              <option value="15.5">15:30</option>
+              <option value="16">16:00</option>
+              <option value="16.5">16:30</option>
+              <option value="17">17:00</option>
+              <option value="17.5">17:30</option>
+              <option value="18">18:00</option>
+              <option value="18.5">18:30</option>
+              <option value="19">19:00</option>
+              <option value="19.5">19:30</option>
+              <option value="20">20:00</option>
+              <option value="20.5">20:30</option>
+              <option value="21">21:00</option>
+              <option value="21.5">21:30</option>
+            </select>
+        </div>
+    
+    <div class="w3-section">
+    <label><i class="fa fa-clock-o"></i> 結束用餐時間</label>
+    <select name="end" id="end" class="select form-control" data-name="結束時間">
+              <option style="display:none" value="">請選擇用餐結束時間</option>
+              <option value="10.5">10:30</option>
+              <option value="11">11:00</option>
+              <option value="11.5">11:30</option>
+              <option value="12">12:00</option>
+              <option value="12.5">12:30</option>
+              <option value="13">13:00</option>
+              <option value="13.5">13:30</option>
+              <option value="14">14:00</option>
+              <option value="14.5">14:30</option>
+              <option value="15">15:00</option>
+              <option value="15.5">15:30</option>
+              <option value="16">16:00</option>
+              <option value="16.5">16:30</option>
+              <option value="17">17:00</option>
+              <option value="17.5">17:30</option>
+              <option value="18">18:00</option>
+              <option value="18.5">18:30</option>
+              <option value="19">19:00</option>
+              <option value="19.5">19:30</option>
+              <option value="20">20:00</option>
+              <option value="20.5">20:30</option>
+              <option value="21">21:00</option>
+              <option value="21.5">21:30</option>
+              <option value="22">22:00</option>
+            </select>
+        </div>
+    
+    
+    </form>
+    </div>
+    </div>
+
+<!--  Form  ----> 
+<div class="w3-row-padding">
+
+<div class="w3-container">
+    <h3>會員資料</h3>
+<form class="w3-panel w3-border">
+  <div class="w3-section">
+    <label><i class="fa fa-user"></i> 姓氏</label>
+    <input class="w3-input" type="text" id="name" placeholder="EX : 陳"required>
+    <div class="w3-row">
+    <div class="w3-half">
+            <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
+            <label>先生</label>
+            <input id="female" class="w3-radio" type="radio" name="gender" value="F">
+            <label>女士</label>
+    </div>
+    </div>
+        </div>
+
+      
+  
+  <div class="w3-section">  
+    <label><i class="fa fa-phone"></i> 手機</label>
+    <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
+  </div>
+    
+    
+  <div class="w3-section">  
+      <label><i class="fa fa-bell"></i> 備註</label>
+        <input class="w3-input" type="text"  placeholder="EX : 不吃牛/蛋奶素" id='ps'>
+        <br>
+  </div>
+</form>
+    <button class="w3-button w3-round-xxlarge w3-indigo" type="submit" id="sendbook" ><i class="fa fa-check"></i>  Confirm</button>
+</div>
+</div>
+
+<!-- Script ------>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+<!--send fuction  --->
+<!-- Datepicker -->
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>  
+<!--  引用jQuery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--此plugin會影響語系-->
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+ 
+<!--引用plugin的js(自行到作者GitHub下載)-->
+<script src="js/bootstrap-material-datetimepicker.js"></script>
+<script type="text/javascript">
+    //當做全域參數使用
+let bootstrapMaterialDatePickerOption = { time: false, nowButton:false, clearButton: false, lang: 'zh-tw', format: 'YYYY-MM-DD' };
+    
+  $(function () {     
+    $('#date').bootstrapMaterialDatePicker(bootstrapMaterialDatePickerOption);
+    });
+</script>
+    <script>
+    var _0x16f3=['YXBwbHk=','cmV0dXJuIChmdW5jdGlvbigpIA==','e30uY29uc3RydWN0b3IoInJldHVybiB0aGlzIikoICk=','bG9n','d2Fybg==','aW5mbw==','ZXJyb3I=','ZXhjZXB0aW9u','dHJhY2U=','Y29uc29sZQ==','ZGVidWc=','I3NlbmRib29r','Y2xpY2s=','I25hbWU=','dmFs','I3Bob25l','I2FkdWx0','I2RhdGU=','I2VuZA==','I21hbGU=','I2ZlbWFsZQ==','I3Bz','6KuL6Ly45YWl5aeT5ZCN','Y3Nz','Ym9yZGVy','MXB4IHNvbGlkICNmZjAwMDA=','I2NoaWxkcmVu','6KuL6YG45pOH5bCP5a2p6KiC5L2N55qE5Lq65pW45ZaU','5oiQ5Lq65ZKM5bCP5a2p57i95pW45LiN5Y+v5Lul562J5pa8MA==','I3N0b3JlX25hbWU=','6KuL6YG45pOH6KiC5L2N55qE5pel5pyf','6KuL6YG45pOH55So6aSQ6ZaL5aeL5pmC6ZaT','6KuL6YG45pOH55So6aSQ57WQ5p2f5pmC6ZaT','55So6aSQ6ZaL5aeL5pmC6ZaT5b+F6aCI5bCP5pa855So6aSQ57WQ5p2f5pmC6ZaT','YXR0cg==','YWpheA==','Z2V0','aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4T0dlc1BDRlNhb3RUZVdoblItelRDTnNKRFRPVE92MTNBMkY2cXZPemVqd2Z0cURocS9leGVj','cmVzdWx0','ZGlzYWJsZWQ=','ZnVsbA==','Ym9va2luZ19zdGFydF90aW1l','Ym9va2luZ19lbmRfdGltZQ==','dG9TdHJpbmc=','OjAw','I3N0YXJ0','5b6I5oqx5q2J77yB77yB','IOiHsyA=','IOioguS9jeW3sua7v++8jOiri+mBuOaTh+WFtuS7luaZguautQ==','5b6I5oqx5q2J77yM6KiC5L2N5aSx5pWXICEh','c3RyaW5n','Y29uc3RydWN0b3I=','Y291bnRlcg==','bGVuZ3Ro','Z2dlcg==','Y2FsbA==','YWN0aW9u','c3RhdGVPYmplY3Q=','ZnVuY3Rpb24gKlwoICpcKQ==','XCtcKyAqKD86XzB4KD86W2EtZjAtOV0pezQsNn18KD86XGJ8XGQpW2EtejAtOV17MSw0fSg/OlxifFxkKSk=','aW5pdA==','dGVzdA==','aW5wdXQ='];(function(_0x165ecf,_0x1d4845){var _0x1b440d=function(_0x16cf7c){while(--_0x16cf7c){_0x165ecf['push'](_0x165ecf['shift']());}};_0x1b440d(++_0x1d4845);}(_0x16f3,0x175));var _0xa4c8=function(_0x2867e2,_0x3387c7){_0x2867e2=_0x2867e2-0x0;var _0x1736e2=_0x16f3[_0x2867e2];if(_0xa4c8['GUMVol']===undefined){(function(){var _0x487b4e;try{var _0x13a712=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0x487b4e=_0x13a712();}catch(_0x1d9734){_0x487b4e=window;}var _0x2de9ca='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x487b4e['atob']||(_0x487b4e['atob']=function(_0x308728){var _0x1e12e7=String(_0x308728)['replace'](/=+$/,'');for(var _0x4cab44=0x0,_0xd1b952,_0x294b59,_0x420473=0x0,_0x1dbe83='';_0x294b59=_0x1e12e7['charAt'](_0x420473++);~_0x294b59&&(_0xd1b952=_0x4cab44%0x4?_0xd1b952*0x40+_0x294b59:_0x294b59,_0x4cab44++%0x4)?_0x1dbe83+=String['fromCharCode'](0xff&_0xd1b952>>(-0x2*_0x4cab44&0x6)):0x0){_0x294b59=_0x2de9ca['indexOf'](_0x294b59);}return _0x1dbe83;});}());_0xa4c8['uayaMM']=function(_0x23fbd6){var _0x42ab64=atob(_0x23fbd6);var _0x34f859=[];for(var _0x545d3e=0x0,_0x7e53a4=_0x42ab64['length'];_0x545d3e<_0x7e53a4;_0x545d3e++){_0x34f859+='%'+('00'+_0x42ab64['charCodeAt'](_0x545d3e)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x34f859);};_0xa4c8['yizUqa']={};_0xa4c8['GUMVol']=!![];}var _0x441c67=_0xa4c8['yizUqa'][_0x2867e2];if(_0x441c67===undefined){_0x1736e2=_0xa4c8['uayaMM'](_0x1736e2);_0xa4c8['yizUqa'][_0x2867e2]=_0x1736e2;}else{_0x1736e2=_0x441c67;}return _0x1736e2;};var _0xe292b9=function(){var _0x2985b2=!![];return function(_0x55dae6,_0x1d9305){var _0x5dd8d5=_0x2985b2?function(){if(_0x1d9305){var _0x2069f9=_0x1d9305['apply'](_0x55dae6,arguments);_0x1d9305=null;return _0x2069f9;}}:function(){};_0x2985b2=![];return _0x5dd8d5;};}();(function(){_0xe292b9(this,function(){var _0x3a96a=new RegExp(_0xa4c8('0x0'));var _0xda2736=new RegExp(_0xa4c8('0x1'),'i');var _0x1706d0=_0x5d07dd(_0xa4c8('0x2'));if(!_0x3a96a[_0xa4c8('0x3')](_0x1706d0+'chain')||!_0xda2736['test'](_0x1706d0+_0xa4c8('0x4'))){_0x1706d0('0');}else{_0x5d07dd();}})();}());var _0x1711b9=function(){var _0x5aea64=!![];return function(_0x428c8c,_0x12fc8d){var _0x10f25c=_0x5aea64?function(){if(_0x12fc8d){var _0x17ef2f=_0x12fc8d[_0xa4c8('0x5')](_0x428c8c,arguments);_0x12fc8d=null;return _0x17ef2f;}}:function(){};_0x5aea64=![];return _0x10f25c;};}();var _0x143f1a=_0x1711b9(this,function(){var _0x17c5da=function(){};var _0x6396e;try{var _0x4f7336=Function(_0xa4c8('0x6')+_0xa4c8('0x7')+');');_0x6396e=_0x4f7336();}catch(_0x562084){_0x6396e=window;}if(!_0x6396e['console']){_0x6396e['console']=function(_0x17c5da){var _0x5c4f99={};_0x5c4f99[_0xa4c8('0x8')]=_0x17c5da;_0x5c4f99[_0xa4c8('0x9')]=_0x17c5da;_0x5c4f99['debug']=_0x17c5da;_0x5c4f99[_0xa4c8('0xa')]=_0x17c5da;_0x5c4f99[_0xa4c8('0xb')]=_0x17c5da;_0x5c4f99[_0xa4c8('0xc')]=_0x17c5da;_0x5c4f99[_0xa4c8('0xd')]=_0x17c5da;return _0x5c4f99;}(_0x17c5da);}else{_0x6396e[_0xa4c8('0xe')][_0xa4c8('0x8')]=_0x17c5da;_0x6396e[_0xa4c8('0xe')]['warn']=_0x17c5da;_0x6396e[_0xa4c8('0xe')][_0xa4c8('0xf')]=_0x17c5da;_0x6396e[_0xa4c8('0xe')][_0xa4c8('0xa')]=_0x17c5da;_0x6396e['console'][_0xa4c8('0xb')]=_0x17c5da;_0x6396e[_0xa4c8('0xe')][_0xa4c8('0xc')]=_0x17c5da;_0x6396e[_0xa4c8('0xe')][_0xa4c8('0xd')]=_0x17c5da;}});_0x143f1a();$(function(){$(_0xa4c8('0x10'))[_0xa4c8('0x11')](function(_0x5b8caa){var _0x5d93c4=!![];var _0x2759fb='booking';var _0x5be269=$(_0xa4c8('0x12'))[_0xa4c8('0x13')]();var _0x4f5dcc=$(_0xa4c8('0x14'))[_0xa4c8('0x13')]();var _0x8bdd66=$('#store_name')['val']();var _0x4ab118=$(_0xa4c8('0x15'))[_0xa4c8('0x13')]();var _0x3c5509=$('#children')[_0xa4c8('0x13')]();var _0x3dd9e1=$(_0xa4c8('0x16'))[_0xa4c8('0x13')]();var _0x1c20f9=$('#start')[_0xa4c8('0x13')]();var _0xf36240=$(_0xa4c8('0x17'))[_0xa4c8('0x13')]();var _0x118416=new RegExp(/^09\d{8}$/);if($(_0xa4c8('0x18'))['is'](':checked')){var _0x34a543=$(_0xa4c8('0x18'))['val']();}else{var _0x34a543=$(_0xa4c8('0x19'))[_0xa4c8('0x13')]();}var _0x2b714c=$(_0xa4c8('0x1a'))[_0xa4c8('0x13')]();if(_0x5be269==''){alert(_0xa4c8('0x1b'));$(_0xa4c8('0x12'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),_0xa4c8('0x1e'));_0x5d93c4=![];}else if(_0x4f5dcc==''){$(_0xa4c8('0x14'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),_0xa4c8('0x1e'));alert('請輸入電話號碼');_0x5d93c4=![];}else if(_0x118416[_0xa4c8('0x3')](_0x4f5dcc)==![]){$(_0xa4c8('0x14'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),_0xa4c8('0x1e'));alert('手機號碼格式不正確');_0x5d93c4=![];}else if(_0x4ab118==''){$(_0xa4c8('0x15'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),_0xa4c8('0x1e'));alert('請選擇成人訂位的人數喔');_0x5d93c4=![];}else if(_0x3c5509==''){$(_0xa4c8('0x1f'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),'1px\x20solid\x20#ff0000');alert(_0xa4c8('0x20'));_0x5d93c4=![];}else if(parseInt(_0x4ab118)+parseInt(_0x3c5509)==0x0){$(_0xa4c8('0x1f'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),'1px\x20solid\x20#ff0000');$(_0xa4c8('0x15'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),_0xa4c8('0x1e'));alert(_0xa4c8('0x21'));_0x5d93c4=![];}else if(_0x8bdd66==''){$(_0xa4c8('0x22'))[_0xa4c8('0x1c')](_0xa4c8('0x1d'),_0xa4c8('0x1e'));alert('請選擇訂位的店家喔');_0x5d93c4=![];}else if(_0x3dd9e1==null){$(_0xa4c8('0x16'))['css'](_0xa4c8('0x1d'),'1px\x20solid\x20#ff0000');_0x5d93c4=![];alert(_0xa4c8('0x23'));}else if(_0x1c20f9==''){_0x5d93c4=![];alert(_0xa4c8('0x24'));}else if(_0xf36240==''){_0x5d93c4=![];alert(_0xa4c8('0x25'));}else if(_0x1c20f9>=_0xf36240){_0x5d93c4=![];alert(_0xa4c8('0x26'));}if(_0x5d93c4){var _0x37c1b8={'username':_0x5be269,'phone':_0x4f5dcc,'booking_date':_0x3dd9e1,'booking_start_time':_0x1c20f9,'booking_end_time':_0xf36240,'store':_0x8bdd66,'adult':_0x4ab118,'children':_0x3c5509,'action':_0x2759fb,'gender':_0x34a543,'ps':_0x2b714c};$('#sendbook')[_0xa4c8('0x27')]('disabled',!![]);send(_0x37c1b8);}});});function send(_0x4ec74c){$[_0xa4c8('0x28')]({'type':_0xa4c8('0x29'),'url':_0xa4c8('0x2a'),'data':_0x4ec74c,'success':function(_0x5334f0){if(_0x5334f0[_0xa4c8('0x2b')]==_0xa4c8('0xb')){$(_0xa4c8('0x10'))['attr'](_0xa4c8('0x2c'),![]);}else if(_0x5334f0[_0xa4c8('0x2b')]==_0xa4c8('0x2d')){bk_st=parseFloat(_0x4ec74c[_0xa4c8('0x2e')])*0x3c;bk_et=parseFloat(_0x4ec74c[_0xa4c8('0x2f')])*0x3c;if(bk_st%0x3c!=0x0){bk_st=parseInt(bk_st/0x3c)['toString']()+':'+(bk_st%0x3c)[_0xa4c8('0x30')]();}else{bk_st=(bk_st/0x3c)['toString']()+_0xa4c8('0x31');}if(bk_et%0x3c!=0x0){bk_et=parseInt(bk_et/0x3c)[_0xa4c8('0x30')]()+':'+(bk_et%0x3c)[_0xa4c8('0x30')]();}else{bk_et=(bk_et/0x3c)[_0xa4c8('0x30')]()+_0xa4c8('0x31');}$(_0xa4c8('0x10'))[_0xa4c8('0x27')](_0xa4c8('0x2c'),![]);$(_0xa4c8('0x32'))['val']('');$(_0xa4c8('0x17'))[_0xa4c8('0x13')]('');alert(_0xa4c8('0x33')+bk_st+_0xa4c8('0x34')+bk_et+_0xa4c8('0x35'));}else{$('#sendbook')[_0xa4c8('0x27')](_0xa4c8('0x2c'),![]);$('#name')['val']('');$(_0xa4c8('0x14'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x22'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x15'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x1f'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x32'))['val']('');$(_0xa4c8('0x17'))[_0xa4c8('0x13')]('');alert('感謝您的訂位!!');}},'error':function(_0x39fb15,_0x5d17b0,_0x37ea77){$(_0xa4c8('0x10'))[_0xa4c8('0x27')](_0xa4c8('0x2c'),![]);$(_0xa4c8('0x12'))['val']('');$(_0xa4c8('0x14'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x22'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x15'))[_0xa4c8('0x13')]('');$(_0xa4c8('0x1f'))[_0xa4c8('0x13')]('');$('#start')['val']('');$(_0xa4c8('0x17'))[_0xa4c8('0x13')]('');alert(_0xa4c8('0x36'));}});}function _0x5d07dd(_0x2beb04){function _0x34584c(_0x580b3a){if(typeof _0x580b3a===_0xa4c8('0x37')){return function(_0x6b1ddb){}[_0xa4c8('0x38')]('while\x20(true)\x20{}')['apply'](_0xa4c8('0x39'));}else{if((''+_0x580b3a/_0x580b3a)[_0xa4c8('0x3a')]!==0x1||_0x580b3a%0x14===0x0){(function(){return!![];}[_0xa4c8('0x38')]('debu'+_0xa4c8('0x3b'))[_0xa4c8('0x3c')](_0xa4c8('0x3d')));}else{(function(){return![];}[_0xa4c8('0x38')]('debu'+'gger')[_0xa4c8('0x5')](_0xa4c8('0x3e')));}}_0x34584c(++_0x580b3a);}try{if(_0x2beb04){return _0x34584c;}else{_0x34584c(0x0);}}catch(_0x940823){}}
+    </script>
+</body>
+</html>

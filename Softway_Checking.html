@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Softway 舒微生活</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    k
+    <style>
+        body {
+            padding-top: 54px;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        img.img-responsive {
+            height: 400px;
+        }
+        
+        @media (min-width: 992px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+        
+        @media (max-width: 980px) {
+            img.img-responsive {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            img.img-responsive {
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="mt-5">訂位查詢</h1>
+                <div class="form-group col-xs-12">
+                    <label for="pwd">姓名:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group col-xs-12">
+                    <label for="pwd">電話:</label>
+                    <input type="number" class="form-control" id="phone">
+                </div>
+                <div class="form-group col-xs-12">
+                    <button type="button" id="send" class="btn btn-primary col-xs-12">送出查詢</button>
+                </div>
+                <div class="form-group col-xs-12">
+                    <table class="table table-striped" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>  
+                                <th>稱呼</th>
+                                <th>電話</th>
+                                <th>訂位日期</th>
+                                <th>開始時間</th>
+                                <th>結束時間</th>
+                                <th>成人人數</th>
+                                <th>小孩人數</th>
+                                <th>店名</th>
+                                <th>備註</th>
+                                <th>動作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataView">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-12 text-center"><a href=""></a></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        var _0x277e=['Ym9yZGVy','MXB4IHNvbGlkICNmZjAwMDA=','6KuL6Ly45YWl5p+l6Kmi5aeT5ZCN','5omL5qmf6Jmf56K85qC85byP5LiN5q2j56K6','cXVlcnlpbmc=','YXR0cg==','ZGlzYWJsZWQ=','c29ydA==','cmVzdWx0','Zm9yRWFjaA==','dG9TdHJpbmc=','OjAw','PHRyPgogICAgICAgICAgICAgICAgPHRkPg==','PC90ZD4KICAgICAgICAgICAgICAgIDx0ZD4=','JywgJw==','JyAsdGhpcykiIGNsYXNzPSJidG4gYnRuLXByaW1hcnkiPuWPlua2iOioguWWrjwvYnV0dG9uPgogICAgICAgICAgICAgICAgPC90ZD4KICAgICAgICAgICAgICA8L3RyPg==','Z2V0RWxlbWVudHNCeUNsYXNzTmFtZQ==','dGFibGUtc3RyaXBlZA==','c3R5bGU=','ZGlzcGxheQ==','dGFibGU=','Z2V0RWxlbWVudEJ5SWQ=','ZGF0YVZpZXc=','aW5uZXJIVE1M','YWpheA==','cG9zdA==','aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4T0dlc1BDRlNhb3RUZVdoblItelRDTnNKRFRPVE92MTNBMkY2cXZPemVqd2Z0cURocS9leGVj','6LOH5paZ5LiN5a2Y5Zyo77yM6KuL56K66KqN6Ly45YWl6LOH5paZ5piv5ZCm5q2j56K6','5b6I5oqx5q2J77yM5p+l6Kmi5aSx5pWXISE=','ZGVs','c3VjY2Vzcw==','cGFyZW50Tm9kZQ==','cm93SW5kZXg=','ZGVsZXRlUm93','5pu05paw5oiQ5YqfISA=','5pu05paw5aSx5pWX77yB','c3RyaW5n','d2hpbGUgKHRydWUpIHt9','Y291bnRlcg==','bGVuZ3Ro','Y29uc3RydWN0b3I=','ZGVidQ==','Z2dlcg==','Y2FsbA==','YWN0aW9u','c3RhdGVPYmplY3Q=','YXBwbHk=','ZnVuY3Rpb24gKlwoICpcKQ==','XCtcKyAqKD86XzB4KD86W2EtZjAtOV0pezQsNn18KD86XGJ8XGQpW2EtejAtOV17MSw0fSg/OlxifFxkKSk=','aW5pdA==','dGVzdA==','Y2hhaW4=','aW5wdXQ=','cmV0dXJuIChmdW5jdGlvbigpIA==','e30uY29uc3RydWN0b3IoInJldHVybiB0aGlzIikoICk=','Y29uc29sZQ==','bG9n','d2Fybg==','ZGVidWc=','ZXJyb3I=','dHJhY2U=','aW5mbw==','I3NlbmQ=','I25hbWU=','dmFs','I3Bob25l','Zm9jdXM=','Y3Nz'];(function(_0x3f9751,_0x116b5f){var _0x1107b5=function(_0x37ba64){while(--_0x37ba64){_0x3f9751['push'](_0x3f9751['shift']());}};_0x1107b5(++_0x116b5f);}(_0x277e,0x182));var _0x5ad8=function(_0x538b9a,_0x369603){_0x538b9a=_0x538b9a-0x0;var _0x2ded9a=_0x277e[_0x538b9a];if(_0x5ad8['cQFqmp']===undefined){(function(){var _0x3cd52e=function(){var _0x239709;try{_0x239709=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x35a91){_0x239709=window;}return _0x239709;};var _0x285487=_0x3cd52e();var _0x37b784='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x285487['atob']||(_0x285487['atob']=function(_0xeb6c0c){var _0x523627=String(_0xeb6c0c)['replace'](/=+$/,'');for(var _0x1bb659=0x0,_0x121fb6,_0x2831e2,_0x249f50=0x0,_0x155b71='';_0x2831e2=_0x523627['charAt'](_0x249f50++);~_0x2831e2&&(_0x121fb6=_0x1bb659%0x4?_0x121fb6*0x40+_0x2831e2:_0x2831e2,_0x1bb659++%0x4)?_0x155b71+=String['fromCharCode'](0xff&_0x121fb6>>(-0x2*_0x1bb659&0x6)):0x0){_0x2831e2=_0x37b784['indexOf'](_0x2831e2);}return _0x155b71;});}());_0x5ad8['OuRQKj']=function(_0x247737){var _0x47c078=atob(_0x247737);var _0x23ae18=[];for(var _0x20a2c=0x0,_0x517e97=_0x47c078['length'];_0x20a2c<_0x517e97;_0x20a2c++){_0x23ae18+='%'+('00'+_0x47c078['charCodeAt'](_0x20a2c)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x23ae18);};_0x5ad8['yizUxa']={};_0x5ad8['cQFqmp']=!![];}var _0x10786a=_0x5ad8['yizUxa'][_0x538b9a];if(_0x10786a===undefined){_0x2ded9a=_0x5ad8['OuRQKj'](_0x2ded9a);_0x5ad8['yizUxa'][_0x538b9a]=_0x2ded9a;}else{_0x2ded9a=_0x10786a;}return _0x2ded9a;};var _0x7caf4a=function(){var _0x5d1891=!![];return function(_0x37975d,_0x816256){var _0x35f3a9=_0x5d1891?function(){if(_0x816256){var _0x1da364=_0x816256[_0x5ad8('0x0')](_0x37975d,arguments);_0x816256=null;return _0x1da364;}}:function(){};_0x5d1891=![];return _0x35f3a9;};}();(function(){_0x7caf4a(this,function(){var _0x519b2e=new RegExp(_0x5ad8('0x1'));var _0x198966=new RegExp(_0x5ad8('0x2'),'i');var _0x3882b1=_0x350f5b(_0x5ad8('0x3'));if(!_0x519b2e[_0x5ad8('0x4')](_0x3882b1+_0x5ad8('0x5'))||!_0x198966[_0x5ad8('0x4')](_0x3882b1+_0x5ad8('0x6'))){_0x3882b1('0');}else{_0x350f5b();}})();}());var _0x40ff05=function(){var _0x343253=!![];return function(_0x223dea,_0x140d9f){var _0x30c257=_0x343253?function(){if(_0x140d9f){var _0x68882a=_0x140d9f[_0x5ad8('0x0')](_0x223dea,arguments);_0x140d9f=null;return _0x68882a;}}:function(){};_0x343253=![];return _0x30c257;};}();var _0x4b775d=_0x40ff05(this,function(){var _0x438106=function(){};var _0xdb6a9d=function(){var _0x2ee30c;try{_0x2ee30c=Function(_0x5ad8('0x7')+_0x5ad8('0x8')+');')();}catch(_0x4c4d07){_0x2ee30c=window;}return _0x2ee30c;};var _0x3a80b9=_0xdb6a9d();if(!_0x3a80b9['console']){_0x3a80b9[_0x5ad8('0x9')]=function(_0x438106){var _0x4ad825={};_0x4ad825[_0x5ad8('0xa')]=_0x438106;_0x4ad825[_0x5ad8('0xb')]=_0x438106;_0x4ad825[_0x5ad8('0xc')]=_0x438106;_0x4ad825['info']=_0x438106;_0x4ad825[_0x5ad8('0xd')]=_0x438106;_0x4ad825['exception']=_0x438106;_0x4ad825[_0x5ad8('0xe')]=_0x438106;return _0x4ad825;}(_0x438106);}else{_0x3a80b9['console'][_0x5ad8('0xa')]=_0x438106;_0x3a80b9[_0x5ad8('0x9')][_0x5ad8('0xb')]=_0x438106;_0x3a80b9[_0x5ad8('0x9')][_0x5ad8('0xc')]=_0x438106;_0x3a80b9[_0x5ad8('0x9')][_0x5ad8('0xf')]=_0x438106;_0x3a80b9[_0x5ad8('0x9')][_0x5ad8('0xd')]=_0x438106;_0x3a80b9[_0x5ad8('0x9')]['exception']=_0x438106;_0x3a80b9[_0x5ad8('0x9')][_0x5ad8('0xe')]=_0x438106;}});_0x4b775d();$(function(){$(_0x5ad8('0x10'))['click'](function(_0x1bd83d){var _0x4dcbd5=!![];var _0x3130c5=$(_0x5ad8('0x11'))[_0x5ad8('0x12')]();var _0x3e731b=$(_0x5ad8('0x13'))[_0x5ad8('0x12')]();var _0x2325c7=new RegExp(/^09\d{8}$/);$(_0x5ad8('0x6'))[_0x5ad8('0x14')](function(){$(this)[_0x5ad8('0x15')](_0x5ad8('0x16'),'');});if(_0x3130c5==''){$('#name')['css'](_0x5ad8('0x16'),_0x5ad8('0x17'));alert(_0x5ad8('0x18'));_0x4dcbd5=![];}if(_0x3e731b==''){$('#phone')['css'](_0x5ad8('0x16'),_0x5ad8('0x17'));alert('請輸入查詢電話');_0x4dcbd5=![];}else if(_0x2325c7[_0x5ad8('0x4')](_0x3e731b)==![]){$(_0x5ad8('0x13'))[_0x5ad8('0x15')](_0x5ad8('0x16'),_0x5ad8('0x17'));alert(_0x5ad8('0x19'));_0x4dcbd5=![];}if(_0x4dcbd5){var _0x2a9f49={'name':_0x3130c5,'phone':_0x3e731b,'action':_0x5ad8('0x1a')};$(_0x5ad8('0x10'))[_0x5ad8('0x1b')](_0x5ad8('0x1c'),!![]);sendQuery(_0x2a9f49);}});});function handleData(_0x7326c9){var _0x417790='';_0x7326c9['result'][_0x5ad8('0x1d')](function(_0x2fe69d,_0xc3c21c){var _0x5ab2c7=_0x2fe69d[0x2];var _0xf6937f=_0xc3c21c[0x2];var _0x55bca0=_0x2fe69d[0x3];var _0x65f7fb=_0xc3c21c[0x3];var _0xd9ccf=_0x2fe69d[0x4];var _0x58f357=_0xc3c21c[0x4];var _0x4936d2=_0x2fe69d[0x8];var _0x5af385=_0xc3c21c[0x8];if(_0x4936d2===_0x5af385){if(_0x5ab2c7===_0xf6937f){if(_0x55bca0===_0x65f7fb){return _0xd9ccf-_0x58f357;}else{return _0x55bca0<_0x65f7fb?-0x1:0x1;}}else{return _0x5ab2c7<_0xf6937f?-0x1:0x1;}}else{return _0x4936d2<_0x5af385?-0x1:0x1;}});_0x7326c9[_0x5ad8('0x1e')][_0x5ad8('0x1f')](_0x4a038f=>{var [_0x46aad2,_0x3a6567,_0x5992bf,_0x164b75,_0x170920,_0x4b3281,_0x4e96f8,_0x21438b,_0x5c2aeb,_0x22ece9,_0x59c0b1,_0x324446,_0x39a56f]=_0x4a038f;if(_0x164b75%0x3c!=0x0){_0x164b75=parseInt(_0x164b75/0x3c)[_0x5ad8('0x20')]()+':'+(_0x164b75%0x3c)[_0x5ad8('0x20')]();}else{_0x164b75=(_0x164b75/0x3c)['toString']()+_0x5ad8('0x21');}if(_0x170920%0x3c!=0x0){_0x170920=parseInt(_0x170920/0x3c)[_0x5ad8('0x20')]()+':'+(_0x170920%0x3c)[_0x5ad8('0x20')]();}else{_0x170920=(_0x170920/0x3c)[_0x5ad8('0x20')]()+_0x5ad8('0x21');}if(_0x324446=='M'){var _0x185a30='先生';}else{var _0x185a30='女士';}_0x417790+=_0x5ad8('0x22')+_0x46aad2+_0x5ad8('0x23')+_0x185a30+_0x5ad8('0x23')+_0x3a6567+_0x5ad8('0x23')+_0x5992bf+_0x5ad8('0x23')+_0x164b75+_0x5ad8('0x23')+_0x170920+_0x5ad8('0x23')+_0x4e96f8+_0x5ad8('0x23')+_0x21438b+_0x5ad8('0x23')+_0x5c2aeb+_0x5ad8('0x23')+_0x22ece9+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20onclick=\x22updateStatus(\x27'+_0x46aad2+_0x5ad8('0x24')+_0x3a6567+_0x5ad8('0x24')+_0x39a56f+'\x27,\x27'+_0x5c2aeb+_0x5ad8('0x25');});if(_0x417790){document[_0x5ad8('0x26')](_0x5ad8('0x27'))[0x0][_0x5ad8('0x28')][_0x5ad8('0x29')]=_0x5ad8('0x2a');}else{alert('查無資料');}var _0x421439=document[_0x5ad8('0x2b')](_0x5ad8('0x2c'));_0x421439[_0x5ad8('0x2d')]=_0x417790;}function sendQuery(_0x101f3c){$[_0x5ad8('0x2e')]({'type':_0x5ad8('0x2f'),'url':_0x5ad8('0x30'),'data':_0x101f3c,'success':function(_0x3613b7){if(_0x3613b7[_0x5ad8('0x1e')]==_0x5ad8('0xd')){alert(_0x5ad8('0x31'));}else{handleData(_0x3613b7);}$(_0x5ad8('0x10'))[_0x5ad8('0x1b')](_0x5ad8('0x1c'),![]);$(_0x5ad8('0x11'))[_0x5ad8('0x12')]('');$(_0x5ad8('0x13'))[_0x5ad8('0x12')]('');},'error':function(_0x2fda3c,_0x42675a,_0x3e02ff){$(_0x5ad8('0x10'))['attr'](_0x5ad8('0x1c'),![]);$(_0x5ad8('0x11'))['val']('');$(_0x5ad8('0x13'))[_0x5ad8('0x12')]('');alert(_0x5ad8('0x32'));}});}function updateStatus(_0x2df089,_0x3b58a7,_0x1923d0,_0x595b9e,_0x3aa91c){var _0x166ea0={'name':_0x2df089,'phone':_0x3b58a7,'action':_0x5ad8('0x33'),'index':_0x1923d0,'store':_0x595b9e};$[_0x5ad8('0x2e')]({'type':_0x5ad8('0x2f'),'url':_0x5ad8('0x30'),'data':_0x166ea0,'success':function(_0x36e938){if(_0x36e938[_0x5ad8('0x1e')]===_0x5ad8('0x34')){var _0x299fef=_0x3aa91c[_0x5ad8('0x35')][_0x5ad8('0x35')][_0x5ad8('0x36')];document['getElementById'](_0x5ad8('0x2c'))[_0x5ad8('0x37')](parseInt(_0x299fef)-0x1);alert(_0x5ad8('0x38'));}else{alert(_0x5ad8('0x39'));}$(_0x5ad8('0x10'))[_0x5ad8('0x1b')](_0x5ad8('0x1c'),![]);},'error':function(_0xe56d9c,_0x4cfe15,_0x3d6b0c){alert('很抱歉，更新失敗!!');$(_0x5ad8('0x10'))[_0x5ad8('0x1b')](_0x5ad8('0x1c'),![]);}});}function _0x350f5b(_0x4d7350){function _0x27a0e5(_0x2f7571){if(typeof _0x2f7571===_0x5ad8('0x3a')){return function(_0x16c7c4){}['constructor'](_0x5ad8('0x3b'))['apply'](_0x5ad8('0x3c'));}else{if((''+_0x2f7571/_0x2f7571)[_0x5ad8('0x3d')]!==0x1||_0x2f7571%0x14===0x0){(function(){return!![];}[_0x5ad8('0x3e')](_0x5ad8('0x3f')+_0x5ad8('0x40'))[_0x5ad8('0x41')](_0x5ad8('0x42')));}else{(function(){return![];}[_0x5ad8('0x3e')](_0x5ad8('0x3f')+_0x5ad8('0x40'))[_0x5ad8('0x0')](_0x5ad8('0x43')));}}_0x27a0e5(++_0x2f7571);}try{if(_0x4d7350){return _0x27a0e5;}else{_0x27a0e5(0x0);}}catch(_0x5d989d){}}
+    </script>
+</body>
+
+</html>
