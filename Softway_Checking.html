@@ -53,11 +53,11 @@
                 <h1 class="mt-5">訂位查詢</h1>
                 <div class="form-group col-xs-12">
                     <label for="pwd">姓名:</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" id="name" required>
                 </div>
                 <div class="form-group col-xs-12">
                     <label for="pwd">電話:</label>
-                    <input type="number" class="form-control" id="phone">
+                    <input type="tel" class="form-control" id="phone" pattern="[0]{1}[9]{1}[0-9]{8}" required>
                 </div>
                 <div class="form-group col-xs-12">
                     <button type="button" id="send" class="btn btn-primary col-xs-12">送出查詢</button>
