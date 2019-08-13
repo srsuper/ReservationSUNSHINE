@@ -215,7 +215,7 @@
 <form class="w3-panel w3-border">
   <div class="w3-section">
     <label><i class="fa fa-user"></i> 姓氏</label>
-    <input class="w3-input" type="text" id="name" placeholder="EX : 陳" required>
+    <input class="w3-input" type="text" id="name" placeholder="EX : 陳小明" required>
     <div class="w3-row">
     <div class="w3-half">
     <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
@@ -262,11 +262,12 @@
 <!--引用plugin的js(自行到作者GitHub下載)-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.js"></script>
 <script type="text/javascript">
-    //當做全域參數使用
-let bootstrapMaterialDatePickerOption = { time: false, nowButton:false, clearButton: false, lang: 'zh-tw', format: 'YYYY-MM-DD' };
     
   $(function () {     
-    $('#date').bootstrapMaterialDatePicker(bootstrapMaterialDatePickerOption);
+    $('#date').bootstrapMaterialDatePicker(
+            {
+            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', year: false, minDate: moment() , maxDate: moment().add(5,'day'), format: 'YYYY/MM/DD' 
+            });
     });
 </script>
     
