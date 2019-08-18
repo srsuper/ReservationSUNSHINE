@@ -5,4 +5,4 @@
 ## Booking Website admin : https://softwayliving.github.io/Booking-System/Softway_booking_admin.html
 ## Checking Website admin : https://softwayliving.github.io/Booking-System/Softway_check_admin.html
 
-## jamestest
+## Make by James and Cheyu
