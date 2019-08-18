@@ -6,26 +6,25 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet"
-    id="bootstrap-css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet"id="bootstrap-css">
+
 <body>
 
 <!-- datepicker --->
 <style type="text/css">
         .dtp-buttons > button.btn {
             border: none;
-            border-radius: 2px;
+            border-radius: 15px;
             position: relative;
             box-shadow: none;
             color: rgba(0,0,0, 0.87);
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px 5px;
-            font-weight: 500;
+            padding: 5px 40px;
+            font-size: 20px;
+            margin: 5px 5px;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 10;
+            letter-spacing: 0;
             will-change: box-shadow, transform;
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             outline: 0;
@@ -36,113 +35,168 @@
             .dtp-buttons > button.btn:hover,
             .dtp-buttons > button.btn:focus {
                 background-color: rgba(153, 153, 153, 0.2);
-            } 
+            }
+
             /*我自己多寫這個*/
          .dtp-picker-calendar > table {
             width: 100%;
-        } 
+        }
+    .w3-myfont {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+    }
     </style>
 
     <!--影響 Close < > 的切換icon-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     
     <!--引用plugin的css(自行到作者GitHub下載)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.css" />
 
 
 <!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <div class="w3-center">
-    <h1 class="w3-xxlarge ">歡迎來到 </h1>
-      <h2>Softway 舒微生活</h2>
+<header class="w3-container w3-pale-blue" id="myHeader">
+  <div class="w3-center w3-pale-blue">
+    <!--h1 class="w3-xxlarge ">歡迎來到 </h1-->
+      <h2 class="w3-myfont">Softway 線上訂位</h2>
   </div>
 </header>
 
 
-<!-- 標 題(預約人數/日期)  --->
+<!-- 標 題(預約人數/日期)  
 <div class="w3-container">
 <header class="w3-container w3-pale-blue">
-  <h2><i class="fa fa-calendar"></i> 預約人數/日期</h2>
+  <h2><i class="fa fa-calendar"></i> 線上訂位</h2>
  </header>
     </div>
-
-<!-- 表 單(預約人數/日期)  --->
-<div class="w3-row-padding">
+--->
+<!-- 表 單(預約人數/日期)  ----------------------------------------------------------->
 
 <div class="w3-container">
-<form class="w3-panel w3-border">
-  <div class="w3-section">
-    <label><i class="fa fa-home"></i> 店家位置</label>
-    <select class="w3-input w3-border"  value="" id="store_name" name="store_name" required>
-          <option style="display:none" value="">請選擇店家</option>
-            <option value="總店">北投吉利店  (總店)</option>
-          </select>
+    <div class="w3-center">
+    <font size='6'>
+        <label ><i class="fa fa-map-marker"></i> 北投吉利店</label>
+    </font>
         </div>
-
-      
- <div class="w3-section">  
-    <label><i class="fa fa-male"></i> 成人</label>
-    <select class="w3-input w3-border" type="number" value="" id="adult" name="adult" required>
-            <option style="display:none" value="">選擇人數</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            </select>
-    </div>
-<div class="w3-section">    
-      <label><i class="fa fa-child"></i> 兒童</label>
-          <select class="w3-input w3-border" type="number" value="" id="children" name="children" required>
-          <option style="display:none" value="">選擇人數</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            </select>
-  </div>
+<form class="w3-panel w3-border">
+    <input id="store_name" value="總店" style="display: none">
+    <!---
+    <font size="4">
+    <label ><i class="fa fa-home"></i> 店家位置</label>
+        <label></label>
     
-          <div class='w3-section' id='datepicker'>
-            <label><i class="fa fa-calendar"></i> 日期</label>
-              <br>
-            <input class="w3-input" id="date" type="text" placeholder="YYYY/MM/DD"  required >
-          </div>
+    <select class="select form-control"  value="" id="store_name" name="store_name" required>
+          <option value="" disabled selected>請選擇店家</option>
+          <option value="總店">北投吉利店  (總店)</option>
+          </select>
+    
+    </font>
+    --->
+
+ <br>
+        <font size="4">
+        <label><i class="fa fa-male"></i> 成人</label>
+            <select class="select form-control" type="number" value="" id="adult" name="adult" required>
+                <option value="" disabled selected>請選擇人數</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+            </font>
+<br>
+        <font size="4">
+        <label><i class="fa fa-child"></i> 兒童</label>
+          <select class="select form-control" type="number" value="" id="children" name="children" required>
+          <option value="" disabled selected>請選擇人數</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            </select>
+        </font>
+
+<br>
+        <font size="4">
+        <label><i class="fa fa-calendar"></i> 日期</label>
+            <input class="w3-input" id="date" type="text" value="" placeholder="YYYY/MM/DD"  required>
+        </font>
+<br>
 </form>
 </div>
-</div>
-    
 
-<!-- 標 題(預約時段)  --->
+
+
+<!-- 標 題(預約時段)  ----------------------------------------------------
 <div class="w3-container">
-<hr>
 <header class="w3-container w3-pale-blue">
-  <h2><i class="fa fa-clock-o"></i> 預約時段</h2>
-    <h7><i class="fa fa-bullhorn"></i> 因用餐沒有時間限制，請事先預約。
+    <h4><i class="fa fa-bullhorn"></i> 因用餐無時間限制，請事先預約。
     <br>
-    <i class="fa fa-bullhorn"></i> 若有需要" 更改訂位 "的日期、時間或人數等資訊，請務必來電告知(Kevin : 0936-336233 )</h7>
+    <i class="fa fa-bullhorn"></i> 若有需要" 更改訂位 "的日期、時間或人數等資訊，請務必來電告知<br>(Kevin : 0936-336233 )</h4>
 </header>
 </div>
+-------->
+
+<!----------------------------------Time Form ---------------------------------------------------->
 
 
-<!----T i m e  ---->
-<div class="w3-row-padding">
-
-<div class="w3-container">
+<div class="w3-container" >
 <form class="w3-panel w3-border">
-  <div class="w3-section">
-    <label><i class="fa fa-clock-o"></i> 開始用餐時間</label>
-    <select name="start" id="start" class="select form-control" data-name="開始時間">
+<br>
+
+    <div class="w3-center w3-bar">
+        <button type ="button" id="button_1" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="onClick_1('timeForm_1','timeForm_2', 'button_1', 'button_2')">中午時段</button>
+        <button type ="button" id="button_2" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="onClick_2('timeForm_1','timeForm_2', 'button_1', 'button_2')">晚上時段</button>
+    </div>
+
+
+
+<hr>
+    <!----早上時段----->
+    <div style="display:none" id="timeForm_1" >
+    <div id="start" class="w3-center w3-bar" >
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11">11:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11.5">11:30</button>
+        <br>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="12">12:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="12.5">12:30</button>
+        <br>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="13">13:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="13.5">13:30</button>
+    </div>
+    </div>
+
+    <!----晚上時段----->
+    <div style="display:none" id="timeForm_2" >
+    <div id="start" class="w3-center w3-bar">
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="17">17:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="17.5">17:30</button>
+        <br>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="18">18:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="18.5">18:30</button>
+        <br>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="19">19:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="19.5">19:30</button>
+    </div>
+    </div>
+    <input id="end" style="display: none" value="">
+
+
+
+
+<!----
+    <div class="w3-section">
+        <label><i class="fa fa-clock-o"></i> 開始用餐時間</label>
+        <select name="start" id="start" class="select form-control" data-name="開始時間">
               <option style="display:none" value="">請選擇用餐開始時間</option>
               <option value="10">10:00</option>
               <option value="10.5">10:30</option>
@@ -170,7 +224,7 @@
               <option value="21.5">21:30</option>
             </select>
         </div>
-    
+
     <div class="w3-section">
     <label><i class="fa fa-clock-o"></i> 結束用餐時間</label>
     <select name="end" id="end" class="select form-control" data-name="結束時間">
@@ -201,259 +255,181 @@
               <option value="22">22:00</option>
             </select>
         </div>
-    
-    
+---->
     </form>
     </div>
-    </div>
 
-<!--  Form  ----> 
-<div class="w3-row-padding">
 
+
+<!---Function of onClick_1(), onClick_2()------------------->
+<script>
+
+function onClick_1(id_1,id_2,id_3,id_4) {
+  var x = document.getElementById(id_1);
+  var y = document.getElementById(id_2);
+  var a = document.getElementById(id_3);
+  var b = document.getElementById(id_4);
+
+  if (x.classList.contains("w3-show") == false) {
+    x.classList.add("w3-show");
+    y.classList.remove("w3-show");
+    a.innerHTML = "✓中午時段"
+    b.innerHTML = "晚上時段"
+    a.classList.add("w3-red")
+    b.classList.remove("w3-red");
+
+  }
+}
+
+function onClick_2(id_1,id_2,id_3,id_4) {
+  var x = document.getElementById(id_1);
+  var y = document.getElementById(id_2);
+  var a = document.getElementById(id_3);
+  var b = document.getElementById(id_4);
+
+  if (y.classList.contains("w3-show") == false) {
+    y.classList.add("w3-show");
+    x.classList.remove("w3-show");
+    b.innerHTML = "✓晚上時段"
+    a.innerHTML = "中午時段"
+    b.classList.add("w3-red")
+    a.classList.remove("w3-red");
+
+  }
+}
+
+function timeClick(x){
+    //document.getElementsByName("st").className.removeAttribute("w3-red");
+
+    //for (i = 0; i < x.length; i++){
+    //        x[i]
+    //    }
+    var k = document.getElementsByName("st")
+        for (i = 0; i < k.length; i++){
+            k[i].classList.remove("w3-red")
+        }
+    if(x.classList.contains("w3-red") == false){
+        x.classList.add('w3-red');
+        document.getElementById('start').value = x.value;
+    }else{
+        x.classList.remove("w3-red");
+        document.getElementById('start').value = "";
+    }
+
+    document.getElementById('end').value = "20.5"; //是否需要結束用餐時間？？？
+}
+</script>
+
+
+<!-----------------------------Member Form------------------------------------------------------>
 <div class="w3-container">
     <h3>會員資料</h3>
 <form class="w3-panel w3-border">
-  <div class="w3-section">
-    <label><i class="fa fa-user"></i> 姓氏</label>
+
+<div class="w3-section">
+    <font size="4">
+        <label><i class="fa fa-user"></i> 姓名</label>
     <input class="w3-input" type="text" id="name" placeholder="EX : 陳小明" required>
-    <div class="w3-row">
-    <div class="w3-half">
+        <div class="w3-row">
+        <div class="w3-half">
     <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
     <label>先生</label>
     <input id="female" class="w3-radio" type="radio" name="gender" value="F">
     <label>女士</label>
-  </div>
-    </div>
         </div>
+        </div>
+    </font>
+  </div>
 
-      
-  
-  <div class="w3-section">  
+
+  <div class="w3-section">
+    <font size="4">
     <label><i class="fa fa-phone"></i> 手機</label>
     <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
+      </font>
   </div>
-    
-    
-  <div class="w3-section">  
-      <label><i class="fa fa-bell"></i> 備註</label>
-        <input class="w3-input" type="text"  placeholder="EX : 不吃牛/蛋奶素" id='ps'>
+
+  <div class="w3-section">
+      <font size="3.5">
+      <label><i class="fa fa-bell"></i> 飲食習慣</label>
         <br>
+          <input id="ps" style="display: none" value="">
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃牛" onclick="psClick(this)">不吃牛</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃海鮮" onclick="psClick(this)">不吃海鮮</button>
+        <br>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蛋奶素" onclick="psClick(this)">蛋奶素</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蔬食(無肉)" onclick="psClick(this)">蔬食(無肉)</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#全素(無辛料)" onclick="psClick(this)">全素</button>
+        <br><br>
+        其他<input id="otherps" type="text" class="w3-input" value="">
+      </font>
   </div>
+
+    <font size="4">
+    <button type="submit" id="sendbook" class="w3-btn w3-bar w3-round-large w3-indigo"><i class="fa fa-check"></i> 確定送出</button>
+    </font>
+
+
 </form>
-    <button class="w3-button w3-round-xxlarge w3-indigo" type="submit" id="sendbook" ><i class="fa fa-check"></i>  Confirm</button>
-</div>
 </div>
 
-<!-- Script ------>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        function psClick(x){
+            i = document.getElementById("ps")
+
+            if(x.classList.contains("w3-red") == false){
+                x.classList.add("w3-red")
+                i.value += x.value
+            }else{
+                x.classList.remove("w3-red")
+                i.value -= x.value
+            }
+
+        }
+
+    </script>
+
+<!------------------------------Script-------------------------------------------------------->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Line LIFF ------------------>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 <!-- Bootstrap core JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-
-<!--send fuction  --->
-<!-- Datepicker -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<!-- Datepicker ----------------->
 <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>  
-<!--  引用jQuery-->
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>
+<!--  引用jQuery------------------>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<!--此plugin會影響語系-->
+<!--此plugin會影響語系-------------->
 <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.js"></script>
- 
-<!--引用plugin的js(自行到作者GitHub下載)-->
+<!--引用plugin的js----------------->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.js"></script>
+<!--datetimepicker of parameter--->
 <script type="text/javascript">
-    
-  let bootstrapMaterialDatePickerOption = { time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(5,'day'), format: 'YYYY/MM/DD'  };
-    
-  $(function () {     
-    $('#date').bootstrapMaterialDatePicker(bootstrapMaterialDatePickerOption);
+  $(function () {
+    $('#date').bootstrapMaterialDatePicker(
+        {
+            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(5,'day'), format: 'YYYY/MM/DD dddd'
+        });
     });
 </script>
-    
 
+
+<!-------------------------------LINE LIFF of script------------------------------------------------>
 <script>
-        //init LIFF
-        function initializeApp(data) {
-
-            liff.getProfile().then(profile =>
-                {
-                    var disname = {'name' : profile.displayName};
-                    disname_json = JSON.parse(JSON.stringify(disname.name))
-                    //DisplayName = JSON.parse(disname_json)
-                    //var pictureurl = {'url' : profile.pictureUrl};
-                    //pictureurl_json = JSON.stringify(pictureurl.url)
-                    //PictureUrl = JSON.parse(pictureurl_json)
-                }
-            )
-        }
+        var _0x1a7a=['c3RyaW5naWZ5','bmFtZQ==','Y29uc3RydWN0b3I=','d2hpbGUgKHRydWUpIHt9','Y291bnRlcg==','bGVuZ3Ro','ZGVidQ==','Z2dlcg==','Y2FsbA==','YWN0aW9u','c3RhdGVPYmplY3Q=','YXBwbHk=','ZnVuY3Rpb24gKlwoICpcKQ==','XCtcKyAqKD86XzB4KD86W2EtZjAtOV0pezQsNn18KD86XGJ8XGQpW2EtejAtOV17MSw0fSg/OlxifFxkKSk=','aW5pdA==','dGVzdA==','aW5wdXQ=','cmV0dXJuIChmdW5jdGlvbigpIA==','e30uY29uc3RydWN0b3IoInJldHVybiB0aGlzIikoICk=','Y29uc29sZQ==','bG9n','d2Fybg==','ZGVidWc=','aW5mbw==','ZXJyb3I=','ZXhjZXB0aW9u','dHJhY2U=','Z2V0UHJvZmlsZQ=='];(function(_0x7e3d56,_0x15efa1){var _0x5eb872=function(_0x585dbd){while(--_0x585dbd){_0x7e3d56['push'](_0x7e3d56['shift']());}};_0x5eb872(++_0x15efa1);}(_0x1a7a,0x193));var _0x4b2a=function(_0x5c8a3d,_0x5b90b){_0x5c8a3d=_0x5c8a3d-0x0;var _0x5c5a3b=_0x1a7a[_0x5c8a3d];if(_0x4b2a['vQUPAQ']===undefined){(function(){var _0x52912a=function(){var _0x298c4c;try{_0x298c4c=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x2bed03){_0x298c4c=window;}return _0x298c4c;};var _0x30086c=_0x52912a();var _0xfee4e='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x30086c['atob']||(_0x30086c['atob']=function(_0x519873){var _0x4c0e65=String(_0x519873)['replace'](/=+$/,'');for(var _0x46b45f=0x0,_0x4fd6bb,_0x202d82,_0x3e8ded=0x0,_0x182d37='';_0x202d82=_0x4c0e65['charAt'](_0x3e8ded++);~_0x202d82&&(_0x4fd6bb=_0x46b45f%0x4?_0x4fd6bb*0x40+_0x202d82:_0x202d82,_0x46b45f++%0x4)?_0x182d37+=String['fromCharCode'](0xff&_0x4fd6bb>>(-0x2*_0x46b45f&0x6)):0x0){_0x202d82=_0xfee4e['indexOf'](_0x202d82);}return _0x182d37;});}());_0x4b2a['sZdftV']=function(_0x14c753){var _0x2f2d62=atob(_0x14c753);var _0x131115=[];for(var _0x1deb2d=0x0,_0x474442=_0x2f2d62['length'];_0x1deb2d<_0x474442;_0x1deb2d++){_0x131115+='%'+('00'+_0x2f2d62['charCodeAt'](_0x1deb2d)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x131115);};_0x4b2a['pRqJUu']={};_0x4b2a['vQUPAQ']=!![];}var _0x497541=_0x4b2a['pRqJUu'][_0x5c8a3d];if(_0x497541===undefined){_0x5c5a3b=_0x4b2a['sZdftV'](_0x5c5a3b);_0x4b2a['pRqJUu'][_0x5c8a3d]=_0x5c5a3b;}else{_0x5c5a3b=_0x497541;}return _0x5c5a3b;};var _0x297604=function(){var _0x94ad3c=!![];return function(_0x1c7bfc,_0x42d68a){var _0x5878b9=_0x94ad3c?function(){if(_0x42d68a){var _0x42375c=_0x42d68a[_0x4b2a('0x0')](_0x1c7bfc,arguments);_0x42d68a=null;return _0x42375c;}}:function(){};_0x94ad3c=![];return _0x5878b9;};}();(function(){_0x297604(this,function(){var _0x2f1ed7=new RegExp(_0x4b2a('0x1'));var _0x16bfd9=new RegExp(_0x4b2a('0x2'),'i');var _0x2db009=_0x3e6bb5(_0x4b2a('0x3'));if(!_0x2f1ed7[_0x4b2a('0x4')](_0x2db009+'chain')||!_0x16bfd9['test'](_0x2db009+_0x4b2a('0x5'))){_0x2db009('0');}else{_0x3e6bb5();}})();}());var _0x5ede0c=function(){var _0x4b5c62=!![];return function(_0x1bdac9,_0x7b2d0){var _0x4cefbf=_0x4b5c62?function(){if(_0x7b2d0){var _0x3c4f21=_0x7b2d0[_0x4b2a('0x0')](_0x1bdac9,arguments);_0x7b2d0=null;return _0x3c4f21;}}:function(){};_0x4b5c62=![];return _0x4cefbf;};}();var _0x5905de=_0x5ede0c(this,function(){var _0x53fa8c=function(){};var _0x1ab727;try{var _0x496e04=Function(_0x4b2a('0x6')+_0x4b2a('0x7')+');');_0x1ab727=_0x496e04();}catch(_0x5575a6){_0x1ab727=window;}if(!_0x1ab727[_0x4b2a('0x8')]){_0x1ab727['console']=function(_0x53fa8c){var _0x48423f={};_0x48423f[_0x4b2a('0x9')]=_0x53fa8c;_0x48423f[_0x4b2a('0xa')]=_0x53fa8c;_0x48423f[_0x4b2a('0xb')]=_0x53fa8c;_0x48423f[_0x4b2a('0xc')]=_0x53fa8c;_0x48423f[_0x4b2a('0xd')]=_0x53fa8c;_0x48423f[_0x4b2a('0xe')]=_0x53fa8c;_0x48423f[_0x4b2a('0xf')]=_0x53fa8c;return _0x48423f;}(_0x53fa8c);}else{_0x1ab727[_0x4b2a('0x8')][_0x4b2a('0x9')]=_0x53fa8c;_0x1ab727[_0x4b2a('0x8')][_0x4b2a('0xa')]=_0x53fa8c;_0x1ab727[_0x4b2a('0x8')][_0x4b2a('0xb')]=_0x53fa8c;_0x1ab727[_0x4b2a('0x8')][_0x4b2a('0xc')]=_0x53fa8c;_0x1ab727[_0x4b2a('0x8')][_0x4b2a('0xd')]=_0x53fa8c;_0x1ab727[_0x4b2a('0x8')][_0x4b2a('0xe')]=_0x53fa8c;_0x1ab727['console']['trace']=_0x53fa8c;}});_0x5905de();function initializeApp(_0x21d472){liff[_0x4b2a('0x10')]()['then'](_0x273ee9=>{var _0x55d351={'name':_0x273ee9['displayName']};disname_json=JSON['parse'](JSON[_0x4b2a('0x11')](_0x55d351[_0x4b2a('0x12')]));});}function _0x3e6bb5(_0x3bf0e4){function _0x2e7c5c(_0x4a515e){if(typeof _0x4a515e==='string'){return function(_0x655031){}[_0x4b2a('0x13')](_0x4b2a('0x14'))[_0x4b2a('0x0')](_0x4b2a('0x15'));}else{if((''+_0x4a515e/_0x4a515e)[_0x4b2a('0x16')]!==0x1||_0x4a515e%0x14===0x0){(function(){return!![];}[_0x4b2a('0x13')](_0x4b2a('0x17')+_0x4b2a('0x18'))[_0x4b2a('0x19')](_0x4b2a('0x1a')));}else{(function(){return![];}['constructor'](_0x4b2a('0x17')+'gger')[_0x4b2a('0x0')](_0x4b2a('0x1b')));}}_0x2e7c5c(++_0x4a515e);}try{if(_0x3bf0e4){return _0x2e7c5c;}else{_0x2e7c5c(0x0);}}catch(_0x4f0044){}}
         //ready
-        $(function () {
-            //init LIFF
-            liff.init(function(data) {
-
-                initializeApp(data);
-            });
-
-            //ButtonSendMsg
-            $('#sendbook').click(function () {
-                var start = parseFloat($("#start").val());
-                var end = parseFloat($("#end").val());
-
-                if (start-parseInt($("#start").val()) === 0){
-                     start =  $("#start").val() + ":00";
-                  }
-                else{
-                     start =  parseInt($("#start").val()).toString() +':'+ ((start-parseInt($("#start").val()))*60).toString();
-                  }
-                if (end-parseInt($('#end').val()) === 0){
-                     end =  $("#end").val() + ":00";
-                  }
-                else{
-                     end =  parseInt($("#end").val()).toString() +':'+ ((end-parseInt($("#end").val()))*60).toString();
-                  }
-
-                if($('#male').is(':checked')){
-                    var gender = '先生';
-                }
-                else{
-                    var gender = '小姐';
-                }
-
-                if($('#ps').val() == ""){
-                    var ps = "無";
-                }
-                else{
-                    var ps = $('#ps').val();
-                }
-                liff.sendMessages([
-                 {
-                  "type": "flex",
-                  "altText": "Flex Message",
-                  "contents": {
-                    "type": "bubble",
-                    "body": {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [
-                        {
-                          "type": "text",
-                          "text": "恭喜 "+ disname_json +" 預約成功",
-                          "size": "xl",
-                          "weight": "bold"
-                        },
-                        {
-                          "type": "box",
-                          "layout": "vertical",
-                          "spacing": "sm",
-                          "margin": "lg",
-                          "contents": [
-                            {
-                              "type": "box",
-                              "layout": "baseline",
-                              "spacing": "sm",
-                              "contents": [
-                                {
-                                  "type": "text",
-                                  "text": "預約",
-                                  "flex": 1,
-                                  "size": "sm",
-                                  "color": "#AAAAAA"
-                                },
-                                {
-                                  "type": "text",
-                                  "text": $('#name').val() + gender + " " +$('#adult').val() + "大"+ $('#children').val() + "小",
-                                  "flex": 5,
-                                  "size": "sm",
-                                  "color": "#666666",
-                                  "wrap": true
-                                }
-                              ]
-                            },
-                            {
-                              "type": "box",
-                              "layout": "baseline",
-                              "spacing": "sm",
-                              "contents": [
-                                {
-                                  "type": "text",
-                                  "text": "電話",
-                                  "flex": 1,
-                                  "size": "sm",
-                                  "color": "#AAAAAA"
-                                },
-                                {
-                                  "type": "text",
-                                  "text": $('#phone').val(),
-                                  "flex": 5,
-                                  "size": "sm",
-                                  "color": "#666666",
-                                  "wrap": true
-                                }
-                              ]
-                            },
-                            {
-                              "type": "box",
-                              "layout": "baseline",
-                              "spacing": "sm",
-                              "contents": [
-                                {
-                                  "type": "text",
-                                  "text": "時間",
-                                  "flex": 1,
-                                  "size": "sm",
-                                  "color": "#AAAAAA"
-                                },
-                                {
-                                  "type": "text",
-                                  "text": $("#date").val() +" "+ start + "~"+ end ,
-                                  "flex": 5,
-                                  "size": "sm",
-                                  "color": "#666666",
-                                  "wrap": true
-                                }
-                              ]
-                            },
-                            {
-                              "type": "box",
-                              "layout": "baseline",
-                              "spacing": "sm",
-                              "contents": [
-                                {
-                                  "type": "text",
-                                  "text": "備註",
-                                  "flex": 1,
-                                  "size": "sm",
-                                  "color": "#AAAAAA"
-                                },
-                                {
-                                  "type": "text",
-                                  "text": ps,
-                                  "flex": 5,
-                                  "size": "sm",
-                                  "color": "#666666",
-                                  "wrap": true
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-                ])
-               .then(() => {
-                   liff.closeWindow();
-               })
-               .catch((err) => {
-                    console.log('error', err);
-               });
-            });
-        });
-
+        var _0x5a5e=['aW5pdA==','dGVzdA==','Y2hhaW4=','aW5wdXQ=','cmV0dXJuIChmdW5jdGlvbigpIA==','Y29uc29sZQ==','bG9n','d2Fybg==','ZGVidWc=','aW5mbw==','ZXJyb3I=','ZXhjZXB0aW9u','dHJhY2U=','I3NlbmRib29r','Y2xpY2s=','Ym9va2luZw==','I25hbWU=','I3Bob25l','dmFs','I3N0b3JlX25hbWU=','I2FkdWx0','I2RhdGU=','I3N0YXJ0','I3Bz','I290aGVycHM=','I21hbGU=','OmNoZWNrZWQ=','I2ZlbWFsZQ==','Ym9yZGVy','MXB4IHNvbGlkICNmZjAwMDA=','6KuL6YG45pOH6KiC5L2N55qE5bqX5a625ZaU','I2NoaWxkcmVu','6KuL6YG45pOH5bCP5a2p6KiC5L2N55qE5Lq65pW45ZaU','Y3Nz','6KuL6YG45pOH6KiC5L2N55qE5pel5pyf','6KuL6Ly45YWl5aeT5ZCN','6KuL6Ly45YWl6Zu76Kmx6Jmf56K8','5omL5qmf6Jmf56K85qC85byP5LiN5q2j56K6','6KuL6YG45pOH55So6aSQ6ZaL5aeL5pmC6ZaT','6KuL6YG45pOH55So6aSQ57WQ5p2f5pmC6ZaT','YXR0cg==','YWpheA==','Z2V0','aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4T0dlc1BDRlNhb3RUZVdoblItelRDTnNKRFRPVE92MTNBMkY2cXZPemVqd2Z0cURocS9leGVj','ZGlzYWJsZWQ=','cmVzdWx0','Ym9va2luZ19lbmRfdGltZQ==','dG9TdHJpbmc=','OjAw','IOiHsyA=','IOioguS9jeW3sua7v++8jOiri+mBuOaTh+WFtuS7luaZguautQ==','I2VuZA==','5oSf6Kyd5oKo55qE6KiC5L2NISE=','5b6I5oqx5q2J77yM6KiC5L2N5aSx5pWXICEh','c3RyaW5n','Y29uc3RydWN0b3I=','d2hpbGUgKHRydWUpIHt9','Y291bnRlcg==','bGVuZ3Ro','ZGVidQ==','Y2FsbA==','YWN0aW9u','Z2dlcg==','c3RhdGVPYmplY3Q=','YXBwbHk=','ZnVuY3Rpb24gKlwoICpcKQ==','XCtcKyAqKD86XzB4KD86W2EtZjAtOV0pezQsNn18KD86XGJ8XGQpW2EtejAtOV17MSw0fSg/OlxifFxkKSk='];(function(_0x37b118,_0x512a50){var _0x163dc1=function(_0x16c793){while(--_0x16c793){_0x37b118['push'](_0x37b118['shift']());}};_0x163dc1(++_0x512a50);}(_0x5a5e,0x83));var _0xfa05=function(_0x405690,_0x256409){_0x405690=_0x405690-0x0;var _0x3cc19c=_0x5a5e[_0x405690];if(_0xfa05['dSmxGy']===undefined){(function(){var _0xf9a78d;try{var _0x367e72=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0xf9a78d=_0x367e72();}catch(_0x4944c7){_0xf9a78d=window;}var _0xca2fe4='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0xf9a78d['atob']||(_0xf9a78d['atob']=function(_0x1f7062){var _0x10da67=String(_0x1f7062)['replace'](/=+$/,'');for(var _0x2157c1=0x0,_0x472ebd,_0x4f31db,_0x5a5d49=0x0,_0x5c24da='';_0x4f31db=_0x10da67['charAt'](_0x5a5d49++);~_0x4f31db&&(_0x472ebd=_0x2157c1%0x4?_0x472ebd*0x40+_0x4f31db:_0x4f31db,_0x2157c1++%0x4)?_0x5c24da+=String['fromCharCode'](0xff&_0x472ebd>>(-0x2*_0x2157c1&0x6)):0x0){_0x4f31db=_0xca2fe4['indexOf'](_0x4f31db);}return _0x5c24da;});}());_0xfa05['nAgLbr']=function(_0x281aea){var _0x5cfd06=atob(_0x281aea);var _0x5418c0=[];for(var _0x36e6ec=0x0,_0xaddfdc=_0x5cfd06['length'];_0x36e6ec<_0xaddfdc;_0x36e6ec++){_0x5418c0+='%'+('00'+_0x5cfd06['charCodeAt'](_0x36e6ec)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x5418c0);};_0xfa05['mGBNig']={};_0xfa05['dSmxGy']=!![];}var _0x492bf4=_0xfa05['mGBNig'][_0x405690];if(_0x492bf4===undefined){_0x3cc19c=_0xfa05['nAgLbr'](_0x3cc19c);_0xfa05['mGBNig'][_0x405690]=_0x3cc19c;}else{_0x3cc19c=_0x492bf4;}return _0x3cc19c;};var _0x38d9f3=function(){var _0xae5737=!![];return function(_0x5799a3,_0x3ac2bf){var _0x75a59d=_0xae5737?function(){if(_0x3ac2bf){var _0xaffadf=_0x3ac2bf[_0xfa05('0x0')](_0x5799a3,arguments);_0x3ac2bf=null;return _0xaffadf;}}:function(){};_0xae5737=![];return _0x75a59d;};}();(function(){_0x38d9f3(this,function(){var _0x36c66f=new RegExp(_0xfa05('0x1'));var _0x25a2eb=new RegExp(_0xfa05('0x2'),'i');var _0x5f06c5=_0x296bfb(_0xfa05('0x3'));if(!_0x36c66f[_0xfa05('0x4')](_0x5f06c5+_0xfa05('0x5'))||!_0x25a2eb[_0xfa05('0x4')](_0x5f06c5+_0xfa05('0x6'))){_0x5f06c5('0');}else{_0x296bfb();}})();}());var _0x5eba69=function(){var _0x2b0997=!![];return function(_0x4da805,_0xa37a92){var _0xea1ae9=_0x2b0997?function(){if(_0xa37a92){var _0x4d75fe=_0xa37a92[_0xfa05('0x0')](_0x4da805,arguments);_0xa37a92=null;return _0x4d75fe;}}:function(){};_0x2b0997=![];return _0xea1ae9;};}();var _0x3a9d57=_0x5eba69(this,function(){var _0x44e1dd=function(){};var _0x73a949=function(){var _0x2c3c40;try{_0x2c3c40=Function(_0xfa05('0x7')+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x10a214){_0x2c3c40=window;}return _0x2c3c40;};var _0x563105=_0x73a949();if(!_0x563105[_0xfa05('0x8')]){_0x563105[_0xfa05('0x8')]=function(_0x44e1dd){var _0x14ed73={};_0x14ed73[_0xfa05('0x9')]=_0x44e1dd;_0x14ed73[_0xfa05('0xa')]=_0x44e1dd;_0x14ed73[_0xfa05('0xb')]=_0x44e1dd;_0x14ed73[_0xfa05('0xc')]=_0x44e1dd;_0x14ed73[_0xfa05('0xd')]=_0x44e1dd;_0x14ed73[_0xfa05('0xe')]=_0x44e1dd;_0x14ed73[_0xfa05('0xf')]=_0x44e1dd;return _0x14ed73;}(_0x44e1dd);}else{_0x563105[_0xfa05('0x8')][_0xfa05('0x9')]=_0x44e1dd;_0x563105['console'][_0xfa05('0xa')]=_0x44e1dd;_0x563105[_0xfa05('0x8')][_0xfa05('0xb')]=_0x44e1dd;_0x563105[_0xfa05('0x8')][_0xfa05('0xc')]=_0x44e1dd;_0x563105[_0xfa05('0x8')][_0xfa05('0xd')]=_0x44e1dd;_0x563105[_0xfa05('0x8')][_0xfa05('0xe')]=_0x44e1dd;_0x563105[_0xfa05('0x8')][_0xfa05('0xf')]=_0x44e1dd;}});_0x3a9d57();$(function(){$(_0xfa05('0x10'))[_0xfa05('0x11')](function(_0x1aecc6){var _0x13ccb2=!![];var _0x120f49=_0xfa05('0x12');var _0x9d9d14=$(_0xfa05('0x13'))['val']();var _0x4bec68=$(_0xfa05('0x14'))[_0xfa05('0x15')]();var _0x323e0e=$(_0xfa05('0x16'))['val']();var _0x178cdf=$(_0xfa05('0x17'))[_0xfa05('0x15')]();var _0x507fce=$('#children')[_0xfa05('0x15')]();var _0x3c0fa7=$(_0xfa05('0x18'))[_0xfa05('0x15')]();var _0x5c2594=$(_0xfa05('0x19'))[_0xfa05('0x15')]();var _0x403f3f=$('#end')['val']();var _0x446d45=new RegExp(/^09\d{8}$/);var _0x3d033a=$(_0xfa05('0x1a'))[_0xfa05('0x15')]()+$(_0xfa05('0x1b'))[_0xfa05('0x15')]();if($(_0xfa05('0x1c'))['is'](_0xfa05('0x1d'))){var _0x831827=$(_0xfa05('0x1c'))[_0xfa05('0x15')]();}else{var _0x831827=$(_0xfa05('0x1e'))[_0xfa05('0x15')]();}if(_0x323e0e==''){$('#store_name')['css'](_0xfa05('0x1f'),_0xfa05('0x20'));alert(_0xfa05('0x21'));_0x13ccb2=![];}else if(_0x178cdf==''){$(_0xfa05('0x17'))['css'](_0xfa05('0x1f'),'1px\x20solid\x20#ff0000');alert('請選擇成人訂位的人數喔');_0x13ccb2=![];}else if(_0x507fce==''){$(_0xfa05('0x22'))['css'](_0xfa05('0x1f'),_0xfa05('0x20'));alert(_0xfa05('0x23'));_0x13ccb2=![];}else if(_0x3c0fa7==''){$(_0xfa05('0x18'))[_0xfa05('0x24')](_0xfa05('0x1f'),_0xfa05('0x20'));_0x13ccb2=![];alert(_0xfa05('0x25'));}else if(_0x9d9d14==''){alert(_0xfa05('0x26'));$(_0xfa05('0x13'))[_0xfa05('0x24')]('border',_0xfa05('0x20'));_0x13ccb2=![];}else if(_0x4bec68==''){$(_0xfa05('0x14'))[_0xfa05('0x24')](_0xfa05('0x1f'),_0xfa05('0x20'));alert(_0xfa05('0x27'));_0x13ccb2=![];}else if(_0x446d45[_0xfa05('0x4')](_0x4bec68)==![]){$('#phone')[_0xfa05('0x24')](_0xfa05('0x1f'),_0xfa05('0x20'));alert(_0xfa05('0x28'));_0x13ccb2=![];}else if(_0x5c2594==''){_0x13ccb2=![];alert(_0xfa05('0x29'));}else if(_0x403f3f==''){_0x13ccb2=![];alert(_0xfa05('0x2a'));}if(_0x13ccb2){var _0x46c1d5={'username':_0x9d9d14,'phone':_0x4bec68,'booking_date':_0x3c0fa7,'booking_start_time':_0x5c2594,'booking_end_time':_0x403f3f,'store':_0x323e0e,'adult':_0x178cdf,'children':_0x507fce,'action':_0x120f49,'gender':_0x831827,'ps':_0x3d033a};$(_0xfa05('0x10'))[_0xfa05('0x2b')]('disabled',!![]);send(_0x46c1d5);}});});function send(_0x1412c5){$[_0xfa05('0x2c')]({'type':_0xfa05('0x2d'),'url':_0xfa05('0x2e'),'data':_0x1412c5,'success':function(_0x35842a){if(_0x35842a['result']==_0xfa05('0xd')){$(_0xfa05('0x10'))[_0xfa05('0x2b')](_0xfa05('0x2f'),![]);}else if(_0x35842a[_0xfa05('0x30')]=='full'){bk_st=parseFloat(_0x1412c5['booking_start_time'])*0x3c;bk_et=parseFloat(_0x1412c5[_0xfa05('0x31')])*0x3c;if(bk_st%0x3c!=0x0){bk_st=parseInt(bk_st/0x3c)[_0xfa05('0x32')]()+':'+(bk_st%0x3c)[_0xfa05('0x32')]();}else{bk_st=(bk_st/0x3c)[_0xfa05('0x32')]()+_0xfa05('0x33');}if(bk_et%0x3c!=0x0){bk_et=parseInt(bk_et/0x3c)[_0xfa05('0x32')]()+':'+(bk_et%0x3c)[_0xfa05('0x32')]();}else{bk_et=(bk_et/0x3c)[_0xfa05('0x32')]()+_0xfa05('0x33');}$(_0xfa05('0x10'))[_0xfa05('0x2b')]('disabled',![]);$('#start')[_0xfa05('0x15')]('');$('#end')[_0xfa05('0x15')]('');alert('很抱歉！！'+bk_st+_0xfa05('0x34')+bk_et+_0xfa05('0x35'));}else{$(_0xfa05('0x10'))[_0xfa05('0x2b')](_0xfa05('0x2f'),![]);$(_0xfa05('0x13'))[_0xfa05('0x15')]('');$(_0xfa05('0x14'))[_0xfa05('0x15')]('');$(_0xfa05('0x16'))[_0xfa05('0x15')]('');$('#adult')[_0xfa05('0x15')]('');$(_0xfa05('0x22'))[_0xfa05('0x15')]('');$(_0xfa05('0x19'))[_0xfa05('0x15')]('');$(_0xfa05('0x36'))[_0xfa05('0x15')]('');alert(_0xfa05('0x37'));}},'error':function(_0x294148,_0x19f76e,_0x42c0da){$(_0xfa05('0x10'))['attr'](_0xfa05('0x2f'),![]);$('#name')[_0xfa05('0x15')]('');$(_0xfa05('0x14'))['val']('');$('#store_name')['val']('');$(_0xfa05('0x17'))[_0xfa05('0x15')]('');$(_0xfa05('0x22'))[_0xfa05('0x15')]('');$(_0xfa05('0x19'))[_0xfa05('0x15')]('');$(_0xfa05('0x36'))['val']('');alert(_0xfa05('0x38'));}});}function _0x296bfb(_0x52e769){function _0x51c275(_0x24baa8){if(typeof _0x24baa8===_0xfa05('0x39')){return function(_0x2b4152){}[_0xfa05('0x3a')](_0xfa05('0x3b'))[_0xfa05('0x0')](_0xfa05('0x3c'));}else{if((''+_0x24baa8/_0x24baa8)[_0xfa05('0x3d')]!==0x1||_0x24baa8%0x14===0x0){(function(){return!![];}[_0xfa05('0x3a')](_0xfa05('0x3e')+'gger')[_0xfa05('0x3f')](_0xfa05('0x40')));}else{(function(){return![];}[_0xfa05('0x3a')](_0xfa05('0x3e')+_0xfa05('0x41'))[_0xfa05('0x0')](_0xfa05('0x42')));}}_0x51c275(++_0x24baa8);}try{if(_0x52e769){return _0x51c275;}else{_0x51c275(0x0);}}catch(_0x3cbcc9){}}
     </script>
+
+
+<!------------------------Alert of the check form---------------------------------------------------->
     <script>
-    var _0xd234=['bG9n','d2Fybg==','aW5mbw==','ZXhjZXB0aW9u','dHJhY2U=','ZGVidWc=','I3NlbmRib29r','Y2xpY2s=','Ym9va2luZw==','dmFs','I2FkdWx0','I2NoaWxkcmVu','I2RhdGU=','I3N0YXJ0','I2VuZA==','I21hbGU=','OmNoZWNrZWQ=','I2ZlbWFsZQ==','6KuL6Ly45YWl5aeT5ZCN','I25hbWU=','Y3Nz','Ym9yZGVy','MXB4IHNvbGlkICNmZjAwMDA=','6KuL6Ly45YWl6Zu76Kmx6Jmf56K8','I3Bob25l','5omL5qmf6Jmf56K85qC85byP5LiN5q2j56K6','6KuL6YG45pOH5oiQ5Lq66KiC5L2N55qE5Lq65pW45ZaU','6KuL6YG45pOH5bCP5a2p6KiC5L2N55qE5Lq65pW45ZaU','5oiQ5Lq65ZKM5bCP5a2p57i95pW45LiN5Y+v5Lul562J5pa8MA==','I3N0b3JlX25hbWU=','6KuL6YG45pOH6KiC5L2N55qE5pel5pyf','55So6aSQ6ZaL5aeL5pmC6ZaT5b+F6aCI5bCP5pa855So6aSQ57WQ5p2f5pmC6ZaT','YXR0cg==','ZGlzYWJsZWQ=','YWpheA==','Z2V0','aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4T0dlc1BDRlNhb3RUZVdoblItelRDTnNKRFRPVE92MTNBMkY2cXZPemVqd2Z0cURocS9leGVj','cmVzdWx0','ZXJyb3I=','ZnVsbA==','Ym9va2luZ19zdGFydF90aW1l','Ym9va2luZ19lbmRfdGltZQ==','dG9TdHJpbmc=','OjAw','IOioguS9jeW3sua7v++8jOiri+mBuOaTh+WFtuS7luaZguautQ==','c3RyaW5n','Y29uc3RydWN0b3I=','d2hpbGUgKHRydWUpIHt9','ZGVidQ==','Z2dlcg==','Y2FsbA==','YWN0aW9u','c3RhdGVPYmplY3Q=','YXBwbHk=','ZnVuY3Rpb24gKlwoICpcKQ==','XCtcKyAqKD86XzB4KD86W2EtZjAtOV0pezQsNn18KD86XGJ8XGQpW2EtejAtOV17MSw0fSg/OlxifFxkKSk=','aW5pdA==','dGVzdA==','aW5wdXQ=','cmV0dXJuIChmdW5jdGlvbigpIA==','e30uY29uc3RydWN0b3IoInJldHVybiB0aGlzIikoICk=','Y29uc29sZQ=='];(function(_0x3aa924,_0x3f722b){var _0x514469=function(_0xc44bf5){while(--_0xc44bf5){_0x3aa924['push'](_0x3aa924['shift']());}};_0x514469(++_0x3f722b);}(_0xd234,0xef));var _0x5138=function(_0x43abdc,_0x5dd599){_0x43abdc=_0x43abdc-0x0;var _0x22eea2=_0xd234[_0x43abdc];if(_0x5138['jcmKpv']===undefined){(function(){var _0x31b8f6;try{var _0xd8f6fb=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0x31b8f6=_0xd8f6fb();}catch(_0x106de2){_0x31b8f6=window;}var _0x10d8d9='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x31b8f6['atob']||(_0x31b8f6['atob']=function(_0x422960){var _0x3eef7f=String(_0x422960)['replace'](/=+$/,'');for(var _0x3ff029=0x0,_0x3e8d87,_0xe3b133,_0x13ed52=0x0,_0x30093f='';_0xe3b133=_0x3eef7f['charAt'](_0x13ed52++);~_0xe3b133&&(_0x3e8d87=_0x3ff029%0x4?_0x3e8d87*0x40+_0xe3b133:_0xe3b133,_0x3ff029++%0x4)?_0x30093f+=String['fromCharCode'](0xff&_0x3e8d87>>(-0x2*_0x3ff029&0x6)):0x0){_0xe3b133=_0x10d8d9['indexOf'](_0xe3b133);}return _0x30093f;});}());_0x5138['fdPOum']=function(_0x24287d){var _0x22addf=atob(_0x24287d);var _0x189187=[];for(var _0x172c5e=0x0,_0x4fce07=_0x22addf['length'];_0x172c5e<_0x4fce07;_0x172c5e++){_0x189187+='%'+('00'+_0x22addf['charCodeAt'](_0x172c5e)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x189187);};_0x5138['urQETM']={};_0x5138['jcmKpv']=!![];}var _0x44003a=_0x5138['urQETM'][_0x43abdc];if(_0x44003a===undefined){_0x22eea2=_0x5138['fdPOum'](_0x22eea2);_0x5138['urQETM'][_0x43abdc]=_0x22eea2;}else{_0x22eea2=_0x44003a;}return _0x22eea2;};var _0x22ce1e=function(){var _0x4e9053=!![];return function(_0x4db35d,_0x32fd16){var _0x5c86e2=_0x4e9053?function(){if(_0x32fd16){var _0x5165a8=_0x32fd16[_0x5138('0x0')](_0x4db35d,arguments);_0x32fd16=null;return _0x5165a8;}}:function(){};_0x4e9053=![];return _0x5c86e2;};}();(function(){_0x22ce1e(this,function(){var _0x534e54=new RegExp(_0x5138('0x1'));var _0x407e23=new RegExp(_0x5138('0x2'),'i');var _0x3ca9df=_0x260289(_0x5138('0x3'));if(!_0x534e54[_0x5138('0x4')](_0x3ca9df+'chain')||!_0x407e23[_0x5138('0x4')](_0x3ca9df+_0x5138('0x5'))){_0x3ca9df('0');}else{_0x260289();}})();}());var _0x5285cd=function(){var _0x5f0f86=!![];return function(_0x4275d7,_0x1f216c){var _0x28c6e3=_0x5f0f86?function(){if(_0x1f216c){var _0x12cbd3=_0x1f216c['apply'](_0x4275d7,arguments);_0x1f216c=null;return _0x12cbd3;}}:function(){};_0x5f0f86=![];return _0x28c6e3;};}();var _0x2319a0=_0x5285cd(this,function(){var _0x878f6b=function(){};var _0x235f8b;try{var _0x5b620d=Function(_0x5138('0x6')+_0x5138('0x7')+');');_0x235f8b=_0x5b620d();}catch(_0xb52cd7){_0x235f8b=window;}if(!_0x235f8b[_0x5138('0x8')]){_0x235f8b[_0x5138('0x8')]=function(_0x878f6b){var _0x54f9d8={};_0x54f9d8[_0x5138('0x9')]=_0x878f6b;_0x54f9d8[_0x5138('0xa')]=_0x878f6b;_0x54f9d8['debug']=_0x878f6b;_0x54f9d8[_0x5138('0xb')]=_0x878f6b;_0x54f9d8['error']=_0x878f6b;_0x54f9d8[_0x5138('0xc')]=_0x878f6b;_0x54f9d8[_0x5138('0xd')]=_0x878f6b;return _0x54f9d8;}(_0x878f6b);}else{_0x235f8b[_0x5138('0x8')][_0x5138('0x9')]=_0x878f6b;_0x235f8b['console'][_0x5138('0xa')]=_0x878f6b;_0x235f8b['console'][_0x5138('0xe')]=_0x878f6b;_0x235f8b[_0x5138('0x8')][_0x5138('0xb')]=_0x878f6b;_0x235f8b['console']['error']=_0x878f6b;_0x235f8b[_0x5138('0x8')][_0x5138('0xc')]=_0x878f6b;_0x235f8b[_0x5138('0x8')][_0x5138('0xd')]=_0x878f6b;}});_0x2319a0();$(function(){$(_0x5138('0xf'))[_0x5138('0x10')](function(_0x1c619a){var _0x58ac29=!![];var _0x33b318=_0x5138('0x11');var _0x2db2fa=$('#name')['val']();var _0x41602a=$('#phone')[_0x5138('0x12')]();var _0x2766b9=$('#store_name')['val']();var _0x17deb3=$(_0x5138('0x13'))[_0x5138('0x12')]();var _0x23e8f2=$(_0x5138('0x14'))[_0x5138('0x12')]();var _0x4e06e9=$(_0x5138('0x15'))[_0x5138('0x12')]();var _0x19ea76=$(_0x5138('0x16'))[_0x5138('0x12')]();var _0x5f59dc=$(_0x5138('0x17'))[_0x5138('0x12')]();var _0x439137=new RegExp(/^09\d{8}$/);if($(_0x5138('0x18'))['is'](_0x5138('0x19'))){var _0x1ce7a8=$(_0x5138('0x18'))[_0x5138('0x12')]();}else{var _0x1ce7a8=$(_0x5138('0x1a'))[_0x5138('0x12')]();}var _0x24024f=$('#ps')[_0x5138('0x12')]();if(_0x2db2fa==''){alert(_0x5138('0x1b'));$(_0x5138('0x1c'))[_0x5138('0x1d')](_0x5138('0x1e'),_0x5138('0x1f'));_0x58ac29=![];}else if(_0x41602a==''){$('#phone')[_0x5138('0x1d')]('border','1px\x20solid\x20#ff0000');alert(_0x5138('0x20'));_0x58ac29=![];}else if(_0x439137['test'](_0x41602a)==![]){$(_0x5138('0x21'))[_0x5138('0x1d')]('border',_0x5138('0x1f'));alert(_0x5138('0x22'));_0x58ac29=![];}else if(_0x17deb3==''){$(_0x5138('0x13'))['css'](_0x5138('0x1e'),_0x5138('0x1f'));alert(_0x5138('0x23'));_0x58ac29=![];}else if(_0x23e8f2==''){$(_0x5138('0x14'))['css'](_0x5138('0x1e'),_0x5138('0x1f'));alert(_0x5138('0x24'));_0x58ac29=![];}else if(parseInt(_0x17deb3)+parseInt(_0x23e8f2)==0x0){$(_0x5138('0x14'))[_0x5138('0x1d')]('border',_0x5138('0x1f'));$(_0x5138('0x13'))[_0x5138('0x1d')]('border',_0x5138('0x1f'));alert(_0x5138('0x25'));_0x58ac29=![];}else if(_0x2766b9==''){$(_0x5138('0x26'))['css'](_0x5138('0x1e'),_0x5138('0x1f'));alert('請選擇訂位的店家喔');_0x58ac29=![];}else if(_0x4e06e9==null){$(_0x5138('0x15'))[_0x5138('0x1d')](_0x5138('0x1e'),_0x5138('0x1f'));_0x58ac29=![];alert(_0x5138('0x27'));}else if(_0x19ea76==''){_0x58ac29=![];alert('請選擇用餐開始時間');}else if(_0x5f59dc==''){_0x58ac29=![];alert('請選擇用餐結束時間');}else if(_0x19ea76>=_0x5f59dc){_0x58ac29=![];alert(_0x5138('0x28'));}if(_0x58ac29){var _0x1df405={'username':_0x2db2fa,'phone':_0x41602a,'booking_date':_0x4e06e9,'booking_start_time':_0x19ea76,'booking_end_time':_0x5f59dc,'store':_0x2766b9,'adult':_0x17deb3,'children':_0x23e8f2,'action':_0x33b318,'gender':_0x1ce7a8,'ps':_0x24024f};$('#sendbook')[_0x5138('0x29')](_0x5138('0x2a'),!![]);send(_0x1df405);}});});function send(_0x4665c5){$[_0x5138('0x2b')]({'type':_0x5138('0x2c'),'url':_0x5138('0x2d'),'data':_0x4665c5,'success':function(_0x507b5e){if(_0x507b5e[_0x5138('0x2e')]==_0x5138('0x2f')){$(_0x5138('0xf'))[_0x5138('0x29')](_0x5138('0x2a'),![]);}else if(_0x507b5e[_0x5138('0x2e')]==_0x5138('0x30')){bk_st=parseFloat(_0x4665c5[_0x5138('0x31')])*0x3c;bk_et=parseFloat(_0x4665c5[_0x5138('0x32')])*0x3c;if(bk_st%0x3c!=0x0){bk_st=parseInt(bk_st/0x3c)[_0x5138('0x33')]()+':'+(bk_st%0x3c)[_0x5138('0x33')]();}else{bk_st=(bk_st/0x3c)['toString']()+':00';}if(bk_et%0x3c!=0x0){bk_et=parseInt(bk_et/0x3c)[_0x5138('0x33')]()+':'+(bk_et%0x3c)[_0x5138('0x33')]();}else{bk_et=(bk_et/0x3c)[_0x5138('0x33')]()+_0x5138('0x34');}$('#sendbook')[_0x5138('0x29')](_0x5138('0x2a'),![]);$(_0x5138('0x16'))[_0x5138('0x12')]('');$('#end')[_0x5138('0x12')]('');alert('很抱歉！！'+bk_st+'\x20至\x20'+bk_et+_0x5138('0x35'));}else{$(_0x5138('0xf'))[_0x5138('0x29')](_0x5138('0x2a'),![]);$('#name')[_0x5138('0x12')]('');$(_0x5138('0x21'))['val']('');$(_0x5138('0x26'))['val']('');$(_0x5138('0x13'))[_0x5138('0x12')]('');$(_0x5138('0x14'))[_0x5138('0x12')]('');$(_0x5138('0x16'))[_0x5138('0x12')]('');$('#end')[_0x5138('0x12')]('');alert('感謝您的訂位!!');}},'error':function(_0x1d26b2,_0x40d611,_0x54a701){$(_0x5138('0xf'))[_0x5138('0x29')](_0x5138('0x2a'),![]);$(_0x5138('0x1c'))[_0x5138('0x12')]('');$(_0x5138('0x21'))['val']('');$(_0x5138('0x26'))[_0x5138('0x12')]('');$(_0x5138('0x13'))['val']('');$(_0x5138('0x14'))[_0x5138('0x12')]('');$(_0x5138('0x16'))[_0x5138('0x12')]('');$('#end')[_0x5138('0x12')]('');alert('很抱歉，訂位失敗\x20!!');}});}function _0x260289(_0xba9653){function _0x484426(_0x3ce888){if(typeof _0x3ce888===_0x5138('0x36')){return function(_0xdd3ac5){}[_0x5138('0x37')](_0x5138('0x38'))[_0x5138('0x0')]('counter');}else{if((''+_0x3ce888/_0x3ce888)['length']!==0x1||_0x3ce888%0x14===0x0){(function(){return!![];}['constructor'](_0x5138('0x39')+_0x5138('0x3a'))[_0x5138('0x3b')](_0x5138('0x3c')));}else{(function(){return![];}[_0x5138('0x37')](_0x5138('0x39')+'gger')[_0x5138('0x0')](_0x5138('0x3d')));}}_0x484426(++_0x3ce888);}try{if(_0xba9653){return _0x484426;}else{_0x484426(0x0);}}catch(_0x4bfee6){}}
+    var _0x27e0=['YXBwbHk=','XCtcKyAqKD86XzB4KD86W2EtZjAtOV0pezQsNn18KD86XGJ8XGQpW2EtejAtOV17MSw0fSg/OlxifFxkKSk=','aW5pdA==','dGVzdA==','Y2hhaW4=','cmV0dXJuIChmdW5jdGlvbigpIA==','e30uY29uc3RydWN0b3IoInJldHVybiB0aGlzIikoICk=','Y29uc29sZQ==','bG9n','d2Fybg==','ZGVidWc=','ZXJyb3I=','ZXhjZXB0aW9u','aW5mbw==','I3NlbmRib29r','Ym9va2luZw==','I25hbWU=','dmFs','I3Bob25l','I2FkdWx0','I2NoaWxkcmVu','I2RhdGU=','I3N0YXJ0','I2VuZA==','I290aGVycHM=','I21hbGU=','OmNoZWNrZWQ=','I3N0b3JlX25hbWU=','Y3Nz','Ym9yZGVy','MXB4IHNvbGlkICNmZjAwMDA=','6KuL6YG45pOH6KiC5L2N55qE5bqX5a625ZaU','6KuL6YG45pOH5oiQ5Lq66KiC5L2N55qE5Lq65pW45ZaU','6KuL6YG45pOH5bCP5a2p6KiC5L2N55qE5Lq65pW45ZaU','6KuL6YG45pOH6KiC5L2N55qE5pel5pyf','6KuL6Ly45YWl5aeT5ZCN','6KuL6Ly45YWl6Zu76Kmx6Jmf56K8','6KuL6YG45pOH55So6aSQ6ZaL5aeL5pmC6ZaT','YXR0cg==','ZGlzYWJsZWQ=','Z2V0','aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4T0dlc1BDRlNhb3RUZVdoblItelRDTnNKRFRPVE92MTNBMkY2cXZPemVqd2Z0cURocS9leGVj','cmVzdWx0','Ym9va2luZ19zdGFydF90aW1l','Ym9va2luZ19lbmRfdGltZQ==','dG9TdHJpbmc=','OjAw','5b6I5oqx5q2J77yB77yB','IOiHsyA=','IOioguS9jeW3sua7v++8jOiri+mBuOaTh+WFtuS7luaZguautQ==','5oSf6Kyd5oKo55qE6KiC5L2NISE=','c3RyaW5n','Y29uc3RydWN0b3I=','Y291bnRlcg==','ZGVidQ==','Z2dlcg==','Y2FsbA==','c3RhdGVPYmplY3Q='];(function(_0x3b3182,_0x40321f){var _0x4adc4e=function(_0x1ffe9b){while(--_0x1ffe9b){_0x3b3182['push'](_0x3b3182['shift']());}};_0x4adc4e(++_0x40321f);}(_0x27e0,0xae));var _0x138d=function(_0x554306,_0x493d11){_0x554306=_0x554306-0x0;var _0x4055aa=_0x27e0[_0x554306];if(_0x138d['XKWNKu']===undefined){(function(){var _0x2fd3fe=function(){var _0x419cf2;try{_0x419cf2=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x1f1432){_0x419cf2=window;}return _0x419cf2;};var _0x1ff240=_0x2fd3fe();var _0x5556e4='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x1ff240['atob']||(_0x1ff240['atob']=function(_0x43afe0){var _0xe8cc74=String(_0x43afe0)['replace'](/=+$/,'');for(var _0x320b46=0x0,_0x1319d5,_0x521eb5,_0xbfd635=0x0,_0x1a1227='';_0x521eb5=_0xe8cc74['charAt'](_0xbfd635++);~_0x521eb5&&(_0x1319d5=_0x320b46%0x4?_0x1319d5*0x40+_0x521eb5:_0x521eb5,_0x320b46++%0x4)?_0x1a1227+=String['fromCharCode'](0xff&_0x1319d5>>(-0x2*_0x320b46&0x6)):0x0){_0x521eb5=_0x5556e4['indexOf'](_0x521eb5);}return _0x1a1227;});}());_0x138d['MXQBQU']=function(_0x1d2bc5){var _0x1a422f=atob(_0x1d2bc5);var _0x35042f=[];for(var _0x40dadc=0x0,_0x161502=_0x1a422f['length'];_0x40dadc<_0x161502;_0x40dadc++){_0x35042f+='%'+('00'+_0x1a422f['charCodeAt'](_0x40dadc)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x35042f);};_0x138d['NoPLfK']={};_0x138d['XKWNKu']=!![];}var _0x38218d=_0x138d['NoPLfK'][_0x554306];if(_0x38218d===undefined){_0x4055aa=_0x138d['MXQBQU'](_0x4055aa);_0x138d['NoPLfK'][_0x554306]=_0x4055aa;}else{_0x4055aa=_0x38218d;}return _0x4055aa;};var _0x34e986=function(){var _0x22a933=!![];return function(_0x46b303,_0x490dfd){var _0x533f6c=_0x22a933?function(){if(_0x490dfd){var _0xb1fabe=_0x490dfd[_0x138d('0x0')](_0x46b303,arguments);_0x490dfd=null;return _0xb1fabe;}}:function(){};_0x22a933=![];return _0x533f6c;};}();(function(){_0x34e986(this,function(){var _0x575c40=new RegExp('function\x20*\x5c(\x20*\x5c)');var _0x4dcaf9=new RegExp(_0x138d('0x1'),'i');var _0x3f8e52=_0x5135e0(_0x138d('0x2'));if(!_0x575c40[_0x138d('0x3')](_0x3f8e52+_0x138d('0x4'))||!_0x4dcaf9[_0x138d('0x3')](_0x3f8e52+'input')){_0x3f8e52('0');}else{_0x5135e0();}})();}());var _0x4193c9=function(){var _0x4f6916=!![];return function(_0x2f9cec,_0x21f5d0){var _0x3790e2=_0x4f6916?function(){if(_0x21f5d0){var _0x315ddd=_0x21f5d0['apply'](_0x2f9cec,arguments);_0x21f5d0=null;return _0x315ddd;}}:function(){};_0x4f6916=![];return _0x3790e2;};}();var _0x1600bd=_0x4193c9(this,function(){var _0x4b72cc=function(){};var _0x16b18e=function(){var _0x305bb7;try{_0x305bb7=Function(_0x138d('0x5')+_0x138d('0x6')+');')();}catch(_0x78ffb7){_0x305bb7=window;}return _0x305bb7;};var _0x6aa08c=_0x16b18e();if(!_0x6aa08c[_0x138d('0x7')]){_0x6aa08c[_0x138d('0x7')]=function(_0x4b72cc){var _0x13496a={};_0x13496a[_0x138d('0x8')]=_0x4b72cc;_0x13496a[_0x138d('0x9')]=_0x4b72cc;_0x13496a[_0x138d('0xa')]=_0x4b72cc;_0x13496a['info']=_0x4b72cc;_0x13496a[_0x138d('0xb')]=_0x4b72cc;_0x13496a[_0x138d('0xc')]=_0x4b72cc;_0x13496a['trace']=_0x4b72cc;return _0x13496a;}(_0x4b72cc);}else{_0x6aa08c[_0x138d('0x7')][_0x138d('0x8')]=_0x4b72cc;_0x6aa08c[_0x138d('0x7')][_0x138d('0x9')]=_0x4b72cc;_0x6aa08c[_0x138d('0x7')][_0x138d('0xa')]=_0x4b72cc;_0x6aa08c[_0x138d('0x7')][_0x138d('0xd')]=_0x4b72cc;_0x6aa08c[_0x138d('0x7')][_0x138d('0xb')]=_0x4b72cc;_0x6aa08c[_0x138d('0x7')][_0x138d('0xc')]=_0x4b72cc;_0x6aa08c[_0x138d('0x7')]['trace']=_0x4b72cc;}});_0x1600bd();$(function(){$(_0x138d('0xe'))['click'](function(_0x4607ee){var _0x103404=!![];var _0x6ac4c0=_0x138d('0xf');var _0x4b9283=$(_0x138d('0x10'))[_0x138d('0x11')]();var _0x3a5b8e=$(_0x138d('0x12'))['val']();var _0x3d47a0=$('#store_name')[_0x138d('0x11')]();var _0x5439d4=$(_0x138d('0x13'))['val']();var _0x1c9bdd=$(_0x138d('0x14'))[_0x138d('0x11')]();var _0x190555=$(_0x138d('0x15'))['val']();var _0xf5a664=$(_0x138d('0x16'))[_0x138d('0x11')]();var _0x243408=$(_0x138d('0x17'))['val']();var _0x47d8e4=new RegExp(/^09\d{8}$/);var _0x377a19=$('#ps')[_0x138d('0x11')]()+$(_0x138d('0x18'))[_0x138d('0x11')]();if($(_0x138d('0x19'))['is'](_0x138d('0x1a'))){var _0x4ba26a=$(_0x138d('0x19'))[_0x138d('0x11')]();}else{var _0x4ba26a=$('#female')[_0x138d('0x11')]();}if(_0x3d47a0==''){$(_0x138d('0x1b'))[_0x138d('0x1c')](_0x138d('0x1d'),_0x138d('0x1e'));alert(_0x138d('0x1f'));_0x103404=![];}else if(_0x5439d4==''){$(_0x138d('0x13'))['css']('border',_0x138d('0x1e'));alert(_0x138d('0x20'));_0x103404=![];}else if(_0x1c9bdd==''){$(_0x138d('0x14'))[_0x138d('0x1c')](_0x138d('0x1d'),_0x138d('0x1e'));alert(_0x138d('0x21'));_0x103404=![];}else if(_0x190555==''){$('#date')[_0x138d('0x1c')](_0x138d('0x1d'),_0x138d('0x1e'));_0x103404=![];alert(_0x138d('0x22'));}else if(_0x4b9283==''){alert(_0x138d('0x23'));$(_0x138d('0x10'))['css'](_0x138d('0x1d'),_0x138d('0x1e'));_0x103404=![];}else if(_0x3a5b8e==''){$(_0x138d('0x12'))[_0x138d('0x1c')]('border','1px\x20solid\x20#ff0000');alert(_0x138d('0x24'));_0x103404=![];}else if(_0x47d8e4[_0x138d('0x3')](_0x3a5b8e)==![]){$(_0x138d('0x12'))[_0x138d('0x1c')](_0x138d('0x1d'),_0x138d('0x1e'));alert('手機號碼格式不正確');_0x103404=![];}else if(_0xf5a664==''){_0x103404=![];alert(_0x138d('0x25'));}else if(_0x243408==''){_0x103404=![];alert('請選擇用餐結束時間');}if(_0x103404){var _0x59dac5={'username':_0x4b9283,'phone':_0x3a5b8e,'booking_date':_0x190555,'booking_start_time':_0xf5a664,'booking_end_time':_0x243408,'store':_0x3d47a0,'adult':_0x5439d4,'children':_0x1c9bdd,'action':_0x6ac4c0,'gender':_0x4ba26a,'ps':_0x377a19};$(_0x138d('0xe'))[_0x138d('0x26')](_0x138d('0x27'),!![]);send(_0x59dac5);}});});function send(_0x2614db){$['ajax']({'type':_0x138d('0x28'),'url':_0x138d('0x29'),'data':_0x2614db,'success':function(_0xa34bf9){if(_0xa34bf9[_0x138d('0x2a')]==_0x138d('0xb')){$('#sendbook')[_0x138d('0x26')](_0x138d('0x27'),![]);}else if(_0xa34bf9[_0x138d('0x2a')]=='full'){bk_st=parseFloat(_0x2614db[_0x138d('0x2b')])*0x3c;bk_et=parseFloat(_0x2614db[_0x138d('0x2c')])*0x3c;if(bk_st%0x3c!=0x0){bk_st=parseInt(bk_st/0x3c)[_0x138d('0x2d')]()+':'+(bk_st%0x3c)[_0x138d('0x2d')]();}else{bk_st=(bk_st/0x3c)[_0x138d('0x2d')]()+_0x138d('0x2e');}if(bk_et%0x3c!=0x0){bk_et=parseInt(bk_et/0x3c)['toString']()+':'+(bk_et%0x3c)[_0x138d('0x2d')]();}else{bk_et=(bk_et/0x3c)[_0x138d('0x2d')]()+_0x138d('0x2e');}$('#sendbook')['attr'](_0x138d('0x27'),![]);$(_0x138d('0x16'))[_0x138d('0x11')]('');$(_0x138d('0x17'))[_0x138d('0x11')]('');alert(_0x138d('0x2f')+bk_st+_0x138d('0x30')+bk_et+_0x138d('0x31'));}else{$(_0x138d('0xe'))[_0x138d('0x26')](_0x138d('0x27'),![]);$(_0x138d('0x10'))[_0x138d('0x11')]('');$(_0x138d('0x12'))['val']('');$(_0x138d('0x1b'))[_0x138d('0x11')]('');$(_0x138d('0x13'))[_0x138d('0x11')]('');$(_0x138d('0x14'))[_0x138d('0x11')]('');$('#start')[_0x138d('0x11')]('');$(_0x138d('0x17'))[_0x138d('0x11')]('');alert(_0x138d('0x32'));}},'error':function(_0xffd758,_0x4d77d9,_0x327123){$(_0x138d('0xe'))[_0x138d('0x26')]('disabled',![]);$(_0x138d('0x10'))[_0x138d('0x11')]('');$('#phone')[_0x138d('0x11')]('');$(_0x138d('0x1b'))[_0x138d('0x11')]('');$(_0x138d('0x13'))['val']('');$(_0x138d('0x14'))[_0x138d('0x11')]('');$('#start')[_0x138d('0x11')]('');$(_0x138d('0x17'))[_0x138d('0x11')]('');alert('很抱歉，訂位失敗\x20!!');}});}function _0x5135e0(_0xeaea5a){function _0x4b4d68(_0x3b10a6){if(typeof _0x3b10a6===_0x138d('0x33')){return function(_0x2bfdde){}[_0x138d('0x34')]('while\x20(true)\x20{}')[_0x138d('0x0')](_0x138d('0x35'));}else{if((''+_0x3b10a6/_0x3b10a6)['length']!==0x1||_0x3b10a6%0x14===0x0){(function(){return!![];}['constructor'](_0x138d('0x36')+_0x138d('0x37'))[_0x138d('0x38')]('action'));}else{(function(){return![];}[_0x138d('0x34')](_0x138d('0x36')+_0x138d('0x37'))[_0x138d('0x0')](_0x138d('0x39')));}}_0x4b4d68(++_0x3b10a6);}try{if(_0xeaea5a){return _0x4b4d68;}else{_0x4b4d68(0x0);}}catch(_0x431256){}}
     </script>
-</body>
+
+
+    </body>
 </html>
