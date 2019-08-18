@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> Softway 舒微生活管理員</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+
+    <style>
+        body {
+            padding-top: 54px;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        img.img-responsive {
+            height: 400px;
+        }
+        
+        @media (min-width: 992px) {
+            body {
+                padding-top: 56px;
+            }
+        }
+        
+        @media (max-width: 980px) {
+            img.img-responsive {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            img.img-responsive {
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="mt-5">管理員訂位查詢</h1>
+
+                <div class="form-group col-xs-12">
+                    <label for="pwd">店家:</label>
+                    <select name="store_name" id="store_name" class="select form-control" data-price="50" data-name="店家">
+                        <option style="display:none" value="">請選擇店家</option>
+                        <option value="總店">總店</option>
+                    </select>
+
+                </div>
+                <div class="form-group col-xs-12">
+                    <label for="pwd">日期:</label>
+                    <form>
+                        <div class="form-group">
+                            <div class='input-group date' id='datepicker'>
+                                <input type='text' class="form-control" readonly />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-group col-xs-12">
+                    <button type="button" id="send" class="btn btn-primary col-xs-12">送出查詢</button>
+                </div>
+                <div class="form-group col-xs-12">
+                    <table class="table table-striped" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>稱呼</th>
+                                <th>電話</th>
+                                <th>訂位日期</th>
+                                <th>開始時間</th>
+                                <th>結束時間</th>
+                                <th>成人人數</th>
+                                <th>小孩人數</th>
+                                <th>店名</th>
+                                <th>備註</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataView">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-12 text-center"><a href=""></a></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#datepicker').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                autoclose: true,
+                changeMonth: true,
+                changeYear: true,
+                orientation: "button",
+            });
+        });
+        $(function () {
+            $('#send').click(function (e) {
+                var d = $("#datepicker").datepicker("getDate");
+                var status = true;
+                var store = $('#store_name').val();
+                $('input').focus(function () {
+                    $(this).css('border', '');
+                });
+                if (store == '') {
+                    $('#store_name').css('border', '1px solid #ff0000');
+                    alert('請選擇訂位的店家喔');
+                    status = false;
+                }
+                else if (d == null) {
+                    $('#datepicker').css('border', '1px solid #ff0000');
+                    status = false;
+                    alert('請選擇訂位的日期');
+                }
+                if (status) {
+                    var booking_date = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)
+                    var data = {
+                        'store': store,
+                        'booking_date': booking_date,
+                        'action': 'querying_boss'
+                    }
+                    $("#send").attr("disabled", true);
+                    sendQuery(data);
+                }
+            });
+        });
+
+        function handleData(response) {
+            var content = '';
+            response.result.sort(function (a, b) {
+                var adate = a[2];
+                var bdate = b[2];
+                var a_stime = a[3];
+                var b_stime = b[3];
+                var a_etime = a[4];
+                var b_etime = b[4];
+                var a_store = a[8];
+                var b_store = b[8];   
+                if (a_store === b_store) {
+                    if (adate === bdate) {
+                        if (a_stime === b_stime){
+                            return (a_etime < b_etime) ? -1 : (a_etime > b_etime) ? 1 : 0;
+                        }else{
+                            return (a_stime< b_stime) ? -1 : 1;
+                        }
+
+                    } else {
+                        return (adate < bdate) ? -1 : 1;
+                    }
+                } else {
+                    return (a_store < b_store) ? -1 : 1;
+                }
+            });
+            response.result.forEach(element => {
+
+                var [name,phone, bk_date,bk_st, bk_et,when,adult,children,store,ps,status,sex,index] = element;
+
+                if (bk_st % 60 != 0) {
+                    bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
+                }
+                else {
+                    bk_st = (bk_st / 60).toString() + ':00'
+                }
+                if (bk_et % 60 != 0) {
+                    bk_et = parseInt(bk_et / 60).toString() + ':' + (bk_et % 60).toString()
+                }
+                else {
+                    bk_et = (bk_et / 60).toString() + ':00'
+                }
+                if(sex == 'M'){
+                    var gender = '先生'
+                }
+                else{
+                    var gender = '女士'
+                }
+                content +=
+                    `<tr>
+                <td>${name}</td>
+                <td>${gender}</td>
+                <td>${phone}</td>
+                <td>${bk_date}</td>
+                <td>${bk_st}</td>
+                <td>${bk_et}</td>
+                <td>${adult}</td>
+                <td>${children}</td>
+                <td>${store}</td>
+                <td>${ps}</td>
+                <td>
+                  <button type="button" onclick="updateStatus('${name}', '${phone}', '${index}','${store}' ,this)" class="btn btn-primary">取消訂單</button>
+                </td>
+              </tr>`
+            });
+            if (content) {
+                document.getElementsByClassName('table-striped')[0].style.display = 'table';
+            } else {
+                alert('查無資料');
+            }
+            var dataView = document.getElementById('dataView');
+            dataView.innerHTML = content;
+        }
+
+        function sendQuery(data) {
+            $.ajax({
+                type: "post",
+                url: "https://script.google.com/macros/s/AKfycbxOGesPCFSaotTeWhnR-zTCNsJDTOTOv13A2F6qvOzejwftqDhq/exec",
+                data: data,
+                success: function (response) {
+                    if (response.result == 'error') {
+                        alert("資料不存在，請確認輸入資料是否正確")
+                    }
+                    else {
+                        handleData(response);
+                    }
+                    $("#send").attr("disabled", false);
+                    $('#name').val('');
+                    $('#phone').val('');
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $("#send").attr("disabled", false);
+                    $('#name').val('');
+                    $('#phone').val('');
+                    alert('很抱歉，查詢失敗!!')
+                }
+
+            });
+        }
+        function updateStatus(name, phone, index, store, that) {
+            var data = {
+                name: name,
+                phone: phone,
+                action: 'del',
+                index: index,
+                store: store
+            };
+            $.ajax({
+                type: "post",
+                url: "https://script.google.com/macros/s/AKfycbxOGesPCFSaotTeWhnR-zTCNsJDTOTOv13A2F6qvOzejwftqDhq/exec",
+                data: data,
+                success: function (response) {
+                    if (response.result === 'success') {
+                        var i = that.parentNode.parentNode.rowIndex;
+                        document.getElementById("dataView").deleteRow(parseInt(i)-1);
+                        
+                        alert('更新成功! ')
+
+                    } else {
+                        alert('更新失敗！');
+                    }
+                    $("#send").attr("disabled", false);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('很抱歉，更新失敗!!')
+                    $("#send").attr("disabled", false);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

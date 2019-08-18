@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<title>Softway 舒微生活管理員</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet"
+    id="bootstrap-css">
+<body>
+
+<!-- datepicker --->
+<style type="text/css">
+        .dtp-buttons > button.btn {
+            border: none;
+            border-radius: 2px;
+            position: relative;
+            box-shadow: none;
+            color: rgba(0,0,0, 0.87);
+            padding: 5px 16px;
+            font-size: 12px;
+            margin: 10px 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            will-change: box-shadow, transform;
+            transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+        }
+            .dtp-buttons > button.btn:hover,
+            .dtp-buttons > button.btn:focus {
+                background-color: rgba(153, 153, 153, 0.2);
+            } 
+            /*我自己多寫這個*/
+         .dtp-picker-calendar > table {
+            width: 100%;
+        } 
+    </style>
+
+    <!--影響 Close < > 的切換icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     
+    <!--引用plugin的css(自行到作者GitHub下載)-->
+    <link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <div class="w3-center">
+    <h1 class="w3-xxlarge ">歡迎來到 </h1>
+      <h2>Softway 舒微生活管理員</h2>
+  </div>
+</header>
+
+
+<!-- 標 題(預約人數/日期)  --->
+<div class="w3-container">
+<header class="w3-container w3-pale-blue">
+  <h2><i class="fa fa-calendar"></i> 預約人數/日期</h2>
+ </header>
+    </div>
+
+<!-- 表 單(預約人數/日期)  --->
+<div class="w3-row-padding">
+
+<div class="w3-container">
+<form class="w3-panel w3-border">
+  <div class="w3-section">
+    <label><i class="fa fa-home"></i> 店家位置</label>
+    <select class="w3-input w3-border"  value="" id="store_name" name="store_name" required>
+          <option style="display:none" value="">請選擇店家</option>
+            <option value="總店">北投吉利店  (總店)</option>
+    </select>
+  </div>
+
+      
+ <div class="w3-section">  
+    <label><i class="fa fa-male"></i> 成人</label>
+    <select class="w3-input w3-border" type="number" value="" id="adult" name="adult" required>
+            <option style="display:none" value="">選擇人數</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">包場</option>
+            </select>
+    </div>
+<div class="w3-section">    
+      <label><i class="fa fa-child"></i> 兒童</label>
+          <select class="w3-input w3-border" type="number" value="" id="children" name="children" required>
+          <option style="display:none" value="">選擇人數</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">包場</option>
+            </select>
+  </div>
+    
+    <div class='w3-section' id='datepicker'>
+            <label><i class="fa fa-calendar"></i> 日期</label>
+              <br>
+            <input class="w3-input" id="date" type="text" placeholder="YYYY/MM/DD"  required >
+    </div>
+    <div class="w3-section">
+      <input id="noforce" class="w3-radio" type="radio" name="force" value="no" checked>
+      <label>不強迫訂位</label>
+      <input id="force" class="w3-radio" type="radio" name="force" value="force">
+      <label>強迫訂位</label>
+      
+    </div>
+</form>
+</div>
+</div>
+    
+
+<!-- 標 題(預約時段)  --->
+<div class="w3-container">
+<hr>
+<header class="w3-container w3-pale-blue">
+  <h2><i class="fa fa-clock-o"></i> 預約時段</h2>
+    <h7><i class="fa fa-bullhorn"></i> 因用餐沒有時間限制，請事先預約。
+    <br>
+    <i class="fa fa-bullhorn"></i> 若有需要" 更改訂位 "的日期、時間或人數等資訊，請務必來電告知(Kevin : 0936-336233 )</h7>
+</header>
+</div>
+
+
+<!----T i m e  ---->
+<div class="w3-row-padding">
+
+<div class="w3-container">
+<form class="w3-panel w3-border">
+  <div class="w3-section">
+    <label><i class="fa fa-clock-o"></i> 開始用餐時間</label>
+    <select name="start" id="start" class="select form-control" data-name="開始時間">
+              <option style="display:none" value="">請選擇用餐開始時間</option>
+              <option value="10">10:00</option>
+              <option value="10.5">10:30</option>
+              <option value="11">11:00</option>
+              <option value="11.5">11:30</option>
+              <option value="12">12:00</option>
+              <option value="12.5">12:30</option>
+              <option value="13">13:00</option>
+              <option value="13.5">13:30</option>
+              <option value="14">14:00</option>
+              <option value="14.5">14:30</option>
+              <option value="15">15:00</option>
+              <option value="15.5">15:30</option>
+              <option value="16">16:00</option>
+              <option value="16.5">16:30</option>
+              <option value="17">17:00</option>
+              <option value="17.5">17:30</option>
+              <option value="18">18:00</option>
+              <option value="18.5">18:30</option>
+              <option value="19">19:00</option>
+              <option value="19.5">19:30</option>
+              <option value="20">20:00</option>
+              <option value="20.5">20:30</option>
+              <option value="21">21:00</option>
+              <option value="21.5">21:30</option>
+            </select>
+        </div>
+    
+    <div class="w3-section">
+    <label><i class="fa fa-clock-o"></i> 結束用餐時間</label>
+    <select name="end" id="end" class="select form-control" data-name="結束時間">
+              <option style="display:none" value="">請選擇用餐結束時間</option>
+              <option value="10.5">10:30</option>
+              <option value="11">11:00</option>
+              <option value="11.5">11:30</option>
+              <option value="12">12:00</option>
+              <option value="12.5">12:30</option>
+              <option value="13">13:00</option>
+              <option value="13.5">13:30</option>
+              <option value="14">14:00</option>
+              <option value="14.5">14:30</option>
+              <option value="15">15:00</option>
+              <option value="15.5">15:30</option>
+              <option value="16">16:00</option>
+              <option value="16.5">16:30</option>
+              <option value="17">17:00</option>
+              <option value="17.5">17:30</option>
+              <option value="18">18:00</option>
+              <option value="18.5">18:30</option>
+              <option value="19">19:00</option>
+              <option value="19.5">19:30</option>
+              <option value="20">20:00</option>
+              <option value="20.5">20:30</option>
+              <option value="21">21:00</option>
+              <option value="21.5">21:30</option>
+              <option value="22">22:00</option>
+            </select>
+        </div>
+    
+    
+    </form>
+    </div>
+    </div>
+
+<!--  Form  ----> 
+<div class="w3-row-padding">
+
+<div class="w3-container">
+    <h3>會員資料</h3>
+<form class="w3-panel w3-border">
+  <div class="w3-section">
+    <label><i class="fa fa-user"></i> 姓氏</label>
+    <input class="w3-input" type="text" id="name" placeholder="EX : 陳"required>
+    <div class="w3-row">
+    <div class="w3-half">
+            <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
+            <label>先生</label>
+            <input id="female" class="w3-radio" type="radio" name="gender" value="F">
+            <label>女士</label>
+    </div>
+    </div>
+        </div>
+
+      
+  
+  <div class="w3-section">  
+    <label><i class="fa fa-phone"></i> 手機</label>
+    <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
+  </div>
+    
+    
+  <div class="w3-section">  
+      <label><i class="fa fa-bell"></i> 備註</label>
+        <input class="w3-input" type="text"  placeholder="EX : 不吃牛/蛋奶素" id='ps'>
+        <br>
+  </div>
+</form>
+    <button class="w3-button w3-round-xxlarge w3-indigo" type="submit" id="sendbook" ><i class="fa fa-check"></i>  Confirm</button>
+</div>
+</div>
+
+<!-- Script ------>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+<!--send fuction  --->
+<!-- Datepicker -->
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>  
+<!--  引用jQuery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--此plugin會影響語系-->
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+ 
+<!--引用plugin的js(自行到作者GitHub下載)-->
+<script src="js/bootstrap-material-datetimepicker.js"></script>
+<script type="text/javascript">
+    //當做全域參數使用
+let bootstrapMaterialDatePickerOption = { time: false, nowButton:false, clearButton: false, lang: 'zh-tw', format: 'YYYY-MM-DD' };
+    
+  $(function () {     
+    $('#date').bootstrapMaterialDatePicker(bootstrapMaterialDatePickerOption);
+    });
+</script>
+    <script>
+    $(function () {
+      $('#sendbook').click(function (e) {
+        var status = true;
+        var action = 'booking_admin';
+        // 姓名
+        var name = $('#name').val();
+        // 電話
+        var phone = $('#phone').val();
+        // 店家
+        var store = $('#store_name').val();
+        //人數
+        var adult = $('#adult').val();
+        var children = $('#children').val();
+        //訂位日期
+        var booking_date = $('#date').val();
+        // 訂位開始
+        var booking_start = $('#start').val();
+        //訂位結束
+        var booking_end = $('#end').val();
+        var reg_phone = new RegExp(/^09\d{8}$/);
+        if ($('#male').is(':checked')){
+          var gender = $('#male').val();
+        }
+        else { 
+          var gender = $('#female').val();
+        }
+        if ($('#noforce').is(':checked')){
+          var force = $('#noforce').val();
+        }
+        else { 
+          var force = $('#force').val();
+        }
+        var ps = $('#ps').val();
+        if (name == '') {
+          alert('請輸入姓名');
+          $('#name').css('border', '1px solid #ff0000');
+          status = false;
+        }
+        
+        else if (phone == '') {
+          $('#phone').css('border', '1px solid #ff0000');
+          alert('請輸入電話號碼');
+          status = false;
+        }
+        else if (reg_phone.test(phone) ==false){
+          $('#phone').css('border', '1px solid #ff0000');
+          alert('手機號碼格式不正確');
+          status = false;
+        }
+        else if (adult == '') {
+          $('#adult').css('border', '1px solid #ff0000');
+          alert('請選擇成人訂位的人數喔');
+          status = false;
+        }
+        else if (children == '') {
+          $('#children').css('border', '1px solid #ff0000');
+          alert('請選擇小孩訂位的人數喔');
+          status = false;
+        }
+        else if(parseInt(adult)+parseInt(children)==0){
+          $('#children').css('border', '1px solid #ff0000');
+          $('#adult').css('border', '1px solid #ff0000');
+          alert('成人和小孩總數不可以等於0');
+          status = false;
+        }
+        else if (store == '') {
+          $('#store_name').css('border', '1px solid #ff0000');
+          alert('請選擇訂位的店家喔');
+          status = false;
+        }
+        else if (booking_date == null) {
+          $('#date').css('border', '1px solid #ff0000');
+          status = false;
+          alert('請選擇訂位的日期');
+        }
+        else if (booking_start == '') {
+          status = false;
+          alert('請選擇用餐開始時間')
+        }
+        else if (booking_end == '') {
+          status = false;
+          alert('請選擇用餐結束時間')
+        }
+        else if (booking_start >= booking_end) {
+          status = false;
+          alert('用餐開始時間必須小於用餐結束時間')
+        }
+        if (status) {
+          
+          var data = {
+            'username': name,
+            'phone': phone,
+            'booking_date': booking_date,
+            'booking_start_time': booking_start,
+            'booking_end_time': booking_end,
+            'store': store,
+            'adult': adult,
+            'children':children,
+            'action': action,
+            'force':force,
+            'gender':gender,
+            'ps':ps
+          }
+          // 呼叫 send ajax function
+          $("#sendbook").attr("disabled", true);
+
+          send(data);
+        }
+        else {
+          alert('發生未知的錯誤')
+        }
+      });
+    });
+        
+    function send(data) {
+      $.ajax({
+        type: "get",
+        url: "https://script.google.com/macros/s/AKfycbxOGesPCFSaotTeWhnR-zTCNsJDTOTOv13A2F6qvOzejwftqDhq/exec",
+        data: data,
+        success: function (response) {
+          if (response.result == 'error') {
+            $("#sendbook").attr("disabled", false);
+          }
+          else if (response.result == 'full'){
+            bk_st=parseFloat(data.booking_start_time)*60
+            bk_et=parseFloat(data.booking_end_time)*60
+            if (bk_st %60 != 0){
+                    bk_st = parseInt(bk_st/60).toString()+':'+(bk_st%60).toString()
+                }
+                else{
+                    bk_st = (bk_st/60).toString()+':00'
+                }
+                if(bk_et%60 != 0){
+                    bk_et = parseInt(bk_et/60).toString()+':'+(bk_et%60).toString()
+                }  
+                else{
+                    bk_et = (bk_et/60).toString()+':00'
+                }
+            $("#sendbook").attr("disabled", false);
+            $('#start').val('');
+            $('#end').val('');
+            alert('很抱歉！！'+bk_st+" 至 "+bk_et+" 訂位已滿，請選擇其他時段")
+          }
+          else {
+            $("#sendbook").attr("disabled", false);
+            $('#name').val('');
+            $('#phone').val('');
+            $('#store_name').val('');
+            $('#adult').val('');
+            $('#children').val('');
+            $('#start').val('');
+            $('#end').val('');
+            alert('感謝您的訂位!!');
+          }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+          $("#sendbook").attr("disabled", false);
+          $('#name').val('');
+          $('#phone').val('');
+          $('#store_name').val('');
+          $('#adult').val('');
+          $('#children').val('');
+          $('#start').val('');
+          $('#end').val('');
+          alert('很抱歉，訂位失敗 !!')
+        }
+      });
+    }
+    </script>
+</body>
+</html>
