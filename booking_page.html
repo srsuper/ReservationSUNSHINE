@@ -49,25 +49,19 @@
     <!--影響 Close < > 的切換icon-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--引用plugin的css(自行到作者GitHub下載)-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.css" />
+    <link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
 
 
 <!-- Header -->
 <header class="w3-container w3-pale-blue" id="myHeader">
   <div class="w3-center w3-pale-blue">
     <!--h1 class="w3-xxlarge ">歡迎來到 </h1-->
-      <h2 class="w3-myfont">Softway 線上訂位</h2>
+      <h2 class="w3-myfont">Softway</h2>
   </div>
 </header>
 
 
-<!-- 標 題(預約人數/日期)
-<div class="w3-container">
-<header class="w3-container w3-pale-blue">
-  <h2><i class="fa fa-calendar"></i> 線上訂位</h2>
- </header>
-    </div>
---->
+
 <!-- 表 單(預約人數/日期)  ----------------------------------------------------------->
 
 <div class="w3-container">
@@ -128,23 +122,24 @@
 <br>
         <font size="4">
         <label><i class="fa fa-calendar"></i> 日期</label>
-            <input class="w3-input" id="date" type="text" value="" placeholder="YYYY/MM/DD"  required>
+            <input class="w3-input" id="date" type="text" value="" placeholder="請選擇日期"  required>
         </font>
 <br>
+        <font size="4">
+        <label><i class="fa fa-usd"></i> 價位/每人</label>
+            <br>
+            <div id="price" class="w3-center w3-bar">
+            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$500" onclick="priceClick(this)">$500</button>
+            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$600" onclick="priceClick(this)">$600</button>
+            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$800" onclick="priceClick(this)">$800</button>
+            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$1000" onclick="priceClick(this)">$1000</button>
+            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$1200" onclick="priceClick(this)">$1200</button>
+            </div>
+        </font>
 </form>
 </div>
+    
 
-
-
-<!-- 標 題(預約時段)  ----------------------------------------------------
-<div class="w3-container">
-<header class="w3-container w3-pale-blue">
-    <h4><i class="fa fa-bullhorn"></i> 因用餐無時間限制，請事先預約。
-    <br>
-    <i class="fa fa-bullhorn"></i> 若有需要" 更改訂位 "的日期、時間或人數等資訊，請務必來電告知<br>(Kevin : 0936-336233 )</h4>
-</header>
-</div>
--------->
 
 <!----------------------------------Time Form ---------------------------------------------------->
 
@@ -154,16 +149,15 @@
 <br>
 
     <div class="w3-center w3-bar">
-        <button type ="button" id="button_1" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="onClick_1('timeForm_1','timeForm_2', 'button_1', 'button_2')">中午時段</button>
-        <button type ="button" id="button_2" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="onClick_2('timeForm_1','timeForm_2', 'button_1', 'button_2')">晚上時段</button>
+        <button type ="button" id="button_1" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'button_1', 'button_2')">中午時段</button>
+        <button type ="button" id="button_2" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'button_1', 'button_2')">晚上時段</button>
     </div>
-
-
 
 <hr>
     <!----早上時段----->
     <div style="display:none" id="timeForm_1" >
     <div id="start" class="w3-center w3-bar" >
+        剩餘？人數<br>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11">11:00</button>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11.5">11:30</button>
         <br>
@@ -178,147 +172,30 @@
     <!----晚上時段----->
     <div style="display:none" id="timeForm_2" >
     <div id="start" class="w3-center w3-bar">
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="17">17:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="17.5">17:30</button>
+        剩餘？人數<br>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17">17:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17.5">17:30</button>
         <br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="18">18:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="18.5">18:30</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="18">18:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="18.5">18:30</button>
         <br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="19">19:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-large" onClick="timeClick(this)" value="19.5">19:30</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19">19:00</button>
+        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19.5">19:30</button>
     </div>
     </div>
     <input id="end" style="display: none" value="">
 
 
-
-
-<!----
-    <div class="w3-section">
-        <label><i class="fa fa-clock-o"></i> 開始用餐時間</label>
-        <select name="start" id="start" class="select form-control" data-name="開始時間">
-              <option style="display:none" value="">請選擇用餐開始時間</option>
-              <option value="10">10:00</option>
-              <option value="10.5">10:30</option>
-              <option value="11">11:00</option>
-              <option value="11.5">11:30</option>
-              <option value="12">12:00</option>
-              <option value="12.5">12:30</option>
-              <option value="13">13:00</option>
-              <option value="13.5">13:30</option>
-              <option value="14">14:00</option>
-              <option value="14.5">14:30</option>
-              <option value="15">15:00</option>
-              <option value="15.5">15:30</option>
-              <option value="16">16:00</option>
-              <option value="16.5">16:30</option>
-              <option value="17">17:00</option>
-              <option value="17.5">17:30</option>
-              <option value="18">18:00</option>
-              <option value="18.5">18:30</option>
-              <option value="19">19:00</option>
-              <option value="19.5">19:30</option>
-              <option value="20">20:00</option>
-              <option value="20.5">20:30</option>
-              <option value="21">21:00</option>
-              <option value="21.5">21:30</option>
-            </select>
-        </div>
-
-    <div class="w3-section">
-    <label><i class="fa fa-clock-o"></i> 結束用餐時間</label>
-    <select name="end" id="end" class="select form-control" data-name="結束時間">
-              <option style="display:none" value="">請選擇用餐結束時間</option>
-              <option value="10.5">10:30</option>
-              <option value="11">11:00</option>
-              <option value="11.5">11:30</option>
-              <option value="12">12:00</option>
-              <option value="12.5">12:30</option>
-              <option value="13">13:00</option>
-              <option value="13.5">13:30</option>
-              <option value="14">14:00</option>
-              <option value="14.5">14:30</option>
-              <option value="15">15:00</option>
-              <option value="15.5">15:30</option>
-              <option value="16">16:00</option>
-              <option value="16.5">16:30</option>
-              <option value="17">17:00</option>
-              <option value="17.5">17:30</option>
-              <option value="18">18:00</option>
-              <option value="18.5">18:30</option>
-              <option value="19">19:00</option>
-              <option value="19.5">19:30</option>
-              <option value="20">20:00</option>
-              <option value="20.5">20:30</option>
-              <option value="21">21:00</option>
-              <option value="21.5">21:30</option>
-              <option value="22">22:00</option>
-            </select>
-        </div>
----->
     </form>
     </div>
-
-
-
-<!---Function of onClick_1(), onClick_2()------------------->
-<script>
-
-function onClick_1(id_1,id_2,id_3,id_4) {
-  var x = document.getElementById(id_1);
-  var y = document.getElementById(id_2);
-  var a = document.getElementById(id_3);
-  var b = document.getElementById(id_4);
-
-  if (x.classList.contains("w3-show") == false) {
-    x.classList.add("w3-show");
-    y.classList.remove("w3-show");
-    a.innerHTML = "✓中午時段"
-    b.innerHTML = "晚上時段"
-    a.classList.add("w3-red")
-    b.classList.remove("w3-red");
-
-  }
-}
-
-function onClick_2(id_1,id_2,id_3,id_4) {
-  var x = document.getElementById(id_1);
-  var y = document.getElementById(id_2);
-  var a = document.getElementById(id_3);
-  var b = document.getElementById(id_4);
-
-  if (y.classList.contains("w3-show") == false) {
-    y.classList.add("w3-show");
-    x.classList.remove("w3-show");
-    b.innerHTML = "✓晚上時段"
-    a.innerHTML = "中午時段"
-    b.classList.add("w3-red")
-    a.classList.remove("w3-red");
-
-  }
-}
-
-function timeClick(x){
-    var k = document.getElementsByName("st")
-        for (i = 0; i < k.length; i++){
-            k[i].classList.remove("w3-red")
-        }
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add('w3-red');
-        document.getElementById('start').value = x.value;
-    }else{
-        x.classList.remove("w3-red");
-        document.getElementById('start').value = "";
-    }
-
-    document.getElementById('end').value = "20.5"; //是否需要結束用餐時間？？？
-}
-</script>
-
-
+<!--   
+<button class="w3-btn w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="document.getElementById('userData').style.display='block'">下一步填寫個人資料 <i class="fa fa-check"></i></button>
+-->
+    
+    
 <!-----------------------------Member Form------------------------------------------------------>
-<div class="w3-container">
-    <h3>會員資料</h3>
+<div id="userData" class="w3-container">
+    <h3 class="w3-center">會員資料</h3>
 <form class="w3-panel w3-border">
 
 <div class="w3-section">
@@ -356,34 +233,101 @@ function timeClick(x){
           <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蔬食(無肉)" onclick="psClick(this)">蔬食(無肉)</button>
           <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#全素(無辛料)" onclick="psClick(this)">全素</button>
         <br><br>
-        其他<input id="otherps" type="text" class="w3-input" value="">
+        特殊飲食習慣<input id="otherps" type="text" class="w3-input" value="">
       </font>
   </div>
 
     <font size="4">
-    <button type="submit" id="sendbook" class="w3-btn w3-bar w3-round-large w3-indigo"><i class="fa fa-check"></i> 確定送出</button>
+    <button type="submit" id="sendbook" class="w3-btn w3-block w3-teal w3-padding-16 w3-section w3-right"><i class="fa fa-check"></i> 確定送出</button>
     </font>
-
 
 </form>
 </div>
 
-    <script>
-        function psClick(x){
-            i = document.getElementById("ps")
-
-            if(x.classList.contains("w3-red") == false){
-                x.classList.add("w3-red")
-                i.value += x.value
-            }else{
-                x.classList.remove("w3-red")
-                i.value -= x.value
-            }
-
+    
+<!---Function of priceClick(), noonClick(), nightClick(), timeClick(), psClick()------------------->
+<script>
+function priceClick(x){
+    var k = document.getElementsByName("price")
+        for (i = 0; i < k.length; i++){
+            k[i].classList.remove("w3-red")
         }
+    if(x.classList.contains("w3-red") == false){
+        x.classList.add('w3-red');
+        document.getElementById('price').value = x.value;
+    }else{
+        x.classList.remove("w3-red");
+        document.getElementById('price').value = "";
+    }
+}
+    
+function noonClick(id_1,id_2,id_3,id_4) {
+  var x = document.getElementById(id_1);
+  var y = document.getElementById(id_2);
+  var a = document.getElementById(id_3);
+  var b = document.getElementById(id_4);
 
-    </script>
+  if (x.classList.contains("w3-show") == false) {
+    x.classList.add("w3-show");
+    y.classList.remove("w3-show");
+    a.innerHTML = "✓中午時段"
+    b.innerHTML = "晚上時段"
+    a.classList.add("w3-red")
+    b.classList.remove("w3-red");
 
+  }
+}
+
+function nightClick(id_1,id_2,id_3,id_4) {
+  var x = document.getElementById(id_1);
+  var y = document.getElementById(id_2);
+  var a = document.getElementById(id_3);
+  var b = document.getElementById(id_4);
+
+  if (y.classList.contains("w3-show") == false) {
+    y.classList.add("w3-show");
+    x.classList.remove("w3-show");
+    b.innerHTML = "✓晚上時段"
+    a.innerHTML = "中午時段"
+    b.classList.add("w3-red")
+    a.classList.remove("w3-red");
+
+  }
+}
+
+function timeClick(x){
+    var k = document.getElementsByName("st")
+        for (i = 0; i < k.length; i++){
+            k[i].classList.remove("w3-red")
+        }
+    if(x.classList.contains("w3-red") == false){
+        x.classList.add('w3-red');
+        document.getElementById('start').value = x.value;
+    }else{
+        x.classList.remove("w3-red");
+        document.getElementById('start').value = "";
+    }
+
+    document.getElementById('end').value = "20.5"; //是否需要結束用餐時間？？？
+}
+    
+function psClick(x){
+    var p = document.getElementById("ps")
+
+    if(x.classList.contains("w3-red") == false){
+        x.classList.add("w3-red")
+        p.value += x.value
+    }else{
+         x.classList.remove("w3-red")
+         p.value -= x.val
+         if(isNaN(p.value)){
+             p.value = ''
+         }
+    }
+
+}
+    
+</script>
 <!------------------------------Script-------------------------------------------------------->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -400,13 +344,14 @@ function timeClick(x){
 <!--此plugin會影響語系-------------->
 <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.js"></script>
 <!--引用plugin的js----------------->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.js"></script>
+<script src="js/bootstrap-material-datetimepicker.js"></script>
+    
 <!--datetimepicker of parameter--->
 <script type="text/javascript">
   $(function () {
     $('#date').bootstrapMaterialDatePicker(
         {
-            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(5,'day'), format: 'YYYY/MM/DD dddd'
+            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(14,'day'), disabledDays: [1], format: 'YYYY/MM/DD dddd'
         });
     });
 </script>
@@ -419,7 +364,8 @@ function timeClick(x){
                 {
                     var disname = {'name' : profile.displayName};
                     disname_json = JSON.parse(JSON.stringify(disname.name))
-                    //DisplayName = JSON.parse(disname_json)
+
+                    
                     //var pictureurl = {'url' : profile.pictureUrl};
                     //pictureurl_json = JSON.stringify(pictureurl.url)
                     //PictureUrl = JSON.parse(pictureurl_json)
@@ -692,9 +638,9 @@ function timeClick(x){
             'gender':gender,
             'ps':ps
           }
-          // 呼叫 send ajax function
+          
           $("#sendbook").attr("disabled", true);
-
+          // 呼叫 send ajax function
           send(data);
         }
 
@@ -716,13 +662,13 @@ function timeClick(x){
             if (bk_st %60 != 0){
                     bk_st = parseInt(bk_st/60).toString()+':'+(bk_st%60).toString()
                 }
-                else{
+            else{
                     bk_st = (bk_st/60).toString()+':00'
                 }
-                if(bk_et%60 != 0){
+            if(bk_et%60 != 0){
                     bk_et = parseInt(bk_et/60).toString()+':'+(bk_et%60).toString()
                 }
-                else{
+            else{
                     bk_et = (bk_et/60).toString()+':00'
                 }
             $("#sendbook").attr("disabled", false);
