@@ -64,13 +64,13 @@
 
 <!-- 表 單(預約人數/日期)  ----------------------------------------------------------->
 
-<div class="w3-container">
+<div id="firstForm" class="w3-container">
     <div class="w3-center">
     <font size='6'>
         <label ><i class="fa fa-map-marker"></i> 北投吉利店</label>
     </font>
         </div>
-<form class="w3-panel w3-border">
+<form id="first" class="w3-panel w3-border">
     <input id="store_name" value="總店" style="display: none">
     <!---
     <font size="4">
@@ -88,7 +88,7 @@
  <br>
         <font size="4">
         <label><i class="fa fa-male"></i> 成人</label>
-            <select class="select form-control" type="number" value="" id="adult" name="adult" required>
+            <select class="select form-control" type="number" value="" id="adult" required>
                 <option value="" disabled selected>請選擇人數</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -104,7 +104,7 @@
 <br>
         <font size="4">
         <label><i class="fa fa-child"></i> 兒童</label>
-          <select class="select form-control" type="number" value="" id="children" name="children" required>
+          <select class="select form-control" type="number" value="" id="children" required>
           <option value="" disabled selected>請選擇人數</option>
             <option value="0">0</option>
             <option value="1">1</option>
@@ -121,21 +121,18 @@
 
 <br>
         <font size="4">
-        <label><i class="fa fa-calendar"></i> 日期</label>
-            <input class="w3-input" id="date" type="text" value="" placeholder="請選擇日期"  required>
-        </font>
-<br>
-        <font size="4">
         <label><i class="fa fa-usd"></i> 價位/每人</label>
             <br>
-            <div id="price" class="w3-center w3-bar">
-            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$500" onclick="priceClick(this)">$500</button>
-            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$600" onclick="priceClick(this)">$600</button>
-            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$800" onclick="priceClick(this)">$800</button>
-            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$1000" onclick="priceClick(this)">$1000</button>
-            <button type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="#$1200" onclick="priceClick(this)">$1200</button>
-            </div>
+            <input id="price" style="display: none" required>
+            <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$500" onclick="priceClick(this)">
+            <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$600" onclick="priceClick(this)">
+            <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$800" onclick="priceClick(this)">
+            <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$1000" onclick="priceClick(this)">
+            <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$1200" onclick="priceClick(this)">
+            
         </font>
+    
+        
 </form>
 </div>
     
@@ -144,20 +141,25 @@
 <!----------------------------------Time Form ---------------------------------------------------->
 
 
-<div class="w3-container" >
+<div id="timeForm" class="w3-container" >
 <form class="w3-panel w3-border">
 <br>
-
+    <font size="4">
+        <label><i class="fa fa-calendar"></i> 日期</label>
+            <input class="w3-input w3-border w3-round-large" id="date" type="text" value="" placeholder="請選擇日期"  required>
+        </font>
+    <br>
+    
     <div class="w3-center w3-bar">
-        <button type ="button" id="button_1" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'button_1', 'button_2')">中午時段</button>
-        <button type ="button" id="button_2" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'button_1', 'button_2')">晚上時段</button>
+        <button type ="button" id="noonTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')">中午時段</button>
+        <button type ="button" id="nightTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')">晚上時段</button>
     </div>
 
 <hr>
     <!----早上時段----->
     <div style="display:none" id="timeForm_1" >
     <div id="start" class="w3-center w3-bar" >
-        剩餘？人數<br>
+        剩餘<p id="noon"></p>人數<br>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11">11:00</button>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11.5">11:30</button>
         <br>
@@ -172,7 +174,7 @@
     <!----晚上時段----->
     <div style="display:none" id="timeForm_2" >
     <div id="start" class="w3-center w3-bar">
-        剩餘？人數<br>
+        剩餘<p id="night"></p>人數<br>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17">17:00</button>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17.5">17:30</button>
         <br>
@@ -183,25 +185,29 @@
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19.5">19:30</button>
     </div>
     </div>
-    <input id="end" style="display: none" value="">
-
 
     </form>
+    
+    <font size='4'>
+    <button id="next" type="submit" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick()" form="first">下一步填寫個人資料 <i class="fa fa-arrow-right w3-margin-left"></i></button>
+    </font>
     </div>
-<!--   
-<button class="w3-btn w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="document.getElementById('userData').style.display='block'">下一步填寫個人資料 <i class="fa fa-check"></i></button>
--->
+   
+
+
     
     
 <!-----------------------------Member Form------------------------------------------------------>
-<div id="userData" class="w3-container">
-    <h3 class="w3-center">會員資料</h3>
+<div id="userData" style="display: none" class="w3-container">
+    <div class="w3-center w3-padding">
+    <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">會員資料</span>
+  </div>
 <form class="w3-panel w3-border">
 
 <div class="w3-section">
     <font size="4">
         <label><i class="fa fa-user"></i> 姓名</label>
-    <input class="w3-input" type="text" id="name" placeholder="EX : 陳小明" required>
+    <input class="w3-input w3-border w3-round-large" type="text" id="name" placeholder="EX : 陳小明" required>
         <div class="w3-row">
         <div class="w3-half">
     <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
@@ -217,7 +223,7 @@
   <div class="w3-section">
     <font size="4">
     <label><i class="fa fa-phone"></i> 手機</label>
-    <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
+    <input class="w3-input w3-border w3-round-large" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
       </font>
   </div>
 
@@ -233,12 +239,13 @@
           <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蔬食(無肉)" onclick="psClick(this)">蔬食(無肉)</button>
           <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#全素(無辛料)" onclick="psClick(this)">全素</button>
         <br><br>
-        特殊飲食習慣<input id="otherps" type="text" class="w3-input" value="">
+        特殊飲食習慣<input id="otherps" type="text" class="w3-input w3-border w3-round-large" value="">
       </font>
   </div>
 
     <font size="4">
-    <button type="submit" id="sendbook" class="w3-btn w3-block w3-teal w3-padding-16 w3-section w3-right"><i class="fa fa-check"></i> 確定送出</button>
+    <button type="button" class="w3-btn w3-round-large w3-block w3-blue-grey w3-padding w3-right" onclick="previousClick()"><i class="fa fa-arrow-left"></i> 回上一層</button>
+    <button type="submit" id="sendbook" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"><i class="fa fa-check"></i> 確定送出</button>
     </font>
 
 </form>
@@ -327,6 +334,17 @@ function psClick(x){
 
 }
     
+function nextClick(){
+    document.getElementById('timeForm').style.display='none';
+    document.getElementById('firstForm').style.display='none';
+    document.getElementById('userData').style.display='block'
+} 
+
+function previousClick(){
+    document.getElementById('timeForm').style.display='block';
+    document.getElementById('firstForm').style.display='block';
+    document.getElementById('userData').style.display='none'
+} 
 </script>
 <!------------------------------Script-------------------------------------------------------->
 
@@ -540,6 +558,7 @@ function psClick(x){
 <!------------------------Alert of the check form---------------------------------------------------->
     <script>
     $(function () {
+                       
       $('#sendbook').click(function (e) {
         var status = true;
         var action = 'booking';
