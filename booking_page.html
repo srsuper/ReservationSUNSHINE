@@ -597,7 +597,7 @@ function previousClick(){
         var userid = $('#userid').val();
         var time_session = $('#session').val();
         var price = $('#price').val();
-
+      
 
         var ps = $('#ps').val() + $('#otherps').val();
 
@@ -613,6 +613,7 @@ function previousClick(){
           alert('請選擇訂位的店家喔');
           status = false;
         }
+
         else if (adult == '') {
           $('#adult').css('border', '1px solid #ff0000');
           alert('請選擇成人訂位的人數喔');
@@ -707,7 +708,6 @@ function previousClick(){
               document.getElementById('night_num').innerHTML=('剩餘'+(20-number)+'人');
             }
           }
-          
           
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
