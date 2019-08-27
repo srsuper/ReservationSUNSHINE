@@ -123,7 +123,7 @@
         <font size="4">
         <label><i class="fa fa-usd"></i> 價位/每人</label>
             <br>
-            <input id="price" style="display: none" required>
+            <input id="price" style="display: none" value="" required>
             <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$500" onclick="priceClick(this)">
             <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$600" onclick="priceClick(this)">
             <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$800" onclick="priceClick(this)">
@@ -151,8 +151,9 @@
     <br>
     
     <div class="w3-center w3-bar">
-        <button type ="button" id="noonTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')">中午時段</button>
-        <button type ="button" id="nightTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')">晚上時段</button>
+        <input id="session" style="display: none" value="">
+        <button type ="button" id="noonTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="中午時段">中午時段</button>
+        <button type ="button" id="nightTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="晚上時段">晚上時段</button>
     </div>
 
 <hr>
@@ -188,9 +189,11 @@
 
     </form>
     
+<!--
     <font size='4'>
-    <button id="next" type="submit" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick()" form="first">下一步填寫個人資料 <i class="fa fa-arrow-right w3-margin-left"></i></button>
+    <button id="next" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick()">下一步填寫個人資料 <i class="fa fa-arrow-right w3-margin-left"></i></button>
     </font>
+-->
     </div>
    
 
@@ -198,7 +201,7 @@
     
     
 <!-----------------------------Member Form------------------------------------------------------>
-<div id="userData" style="display: none" class="w3-container">
+<div id="userData"  class="w3-container">
     <div class="w3-center w3-padding">
     <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">會員資料</span>
   </div>
@@ -208,6 +211,7 @@
     <font size="4">
         <label><i class="fa fa-user"></i> 姓名</label>
     <input class="w3-input w3-border w3-round-large" type="text" id="name" placeholder="EX : 陳小明" required>
+    <input id="userid" style="display: none" value="">
         <div class="w3-row">
         <div class="w3-half">
     <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
@@ -244,7 +248,7 @@
   </div>
 
     <font size="4">
-    <button type="button" class="w3-btn w3-round-large w3-block w3-blue-grey w3-padding w3-right" onclick="previousClick()"><i class="fa fa-arrow-left"></i> 回上一層</button>
+<!--    <button type="button" class="w3-btn w3-round-large w3-block w3-blue-grey w3-padding w3-right" onclick="previousClick()"><i class="fa fa-arrow-left"></i> 回上一層</button>-->
     <button type="submit" id="sendbook" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"><i class="fa fa-check"></i> 確定送出</button>
     </font>
 
@@ -273,7 +277,8 @@ function noonClick(id_1,id_2,id_3,id_4) {
   var y = document.getElementById(id_2);
   var a = document.getElementById(id_3);
   var b = document.getElementById(id_4);
-
+  
+    
   if (x.classList.contains("w3-show") == false) {
     x.classList.add("w3-show");
     y.classList.remove("w3-show");
@@ -281,6 +286,7 @@ function noonClick(id_1,id_2,id_3,id_4) {
     b.innerHTML = "晚上時段"
     a.classList.add("w3-red")
     b.classList.remove("w3-red");
+    document.getElementById('session').value = '中午時段';
     var noon='中午時段';
     var booking_date = $('#date').val();
     data={
@@ -298,7 +304,8 @@ function nightClick(id_1,id_2,id_3,id_4) {
   var y = document.getElementById(id_2);
   var a = document.getElementById(id_3);
   var b = document.getElementById(id_4);
-
+  
+    
   if (y.classList.contains("w3-show") == false) {
     y.classList.add("w3-show");
     x.classList.remove("w3-show");
@@ -306,6 +313,7 @@ function nightClick(id_1,id_2,id_3,id_4) {
     a.innerHTML = "中午時段"
     b.classList.add("w3-red")
     a.classList.remove("w3-red");
+    document.getElementById('session').value = '晚上時段';
     var night='晚上時段';
     var booking_date = $('#date').val();
     data={
@@ -330,8 +338,6 @@ function timeClick(x){
         x.classList.remove("w3-red");
         document.getElementById('start').value = "";
     }
-
-    document.getElementById('end').value = "20.5"; //是否需要結束用餐時間？？？
 }
     
 function psClick(x){
@@ -394,11 +400,12 @@ function previousClick(){
 <!-------------------------------LINE LIFF of script------------------------------------------------>
 <script>
         function initializeApp(data) {
+            
             liff.getProfile().then(profile =>
                 {
                     var disname = {'name' : profile.displayName};
                     disname_json = JSON.parse(JSON.stringify(disname.name))
-
+                    $('#userid').val(profile.userId)
                     
                     //var pictureurl = {'url' : profile.pictureUrl};
                     //pictureurl_json = JSON.stringify(pictureurl.url)
@@ -415,8 +422,6 @@ function previousClick(){
             //ButtonSendMsg
             $('#sendbook').click(function () {
                 var start = parseFloat($("#start").val());
-                var end = parseFloat($("#end").val());
-                //var ps = $('#ps').val() + $('#otherps').val();
 
                 if (start-parseInt($("#start").val()) === 0){
                      start =  $("#start").val() + ":00";
@@ -424,12 +429,7 @@ function previousClick(){
                 else{
                      start =  parseInt($("#start").val()).toString() +':'+ ((start-parseInt($("#start").val()))*60).toString();
                   }
-                if (end-parseInt($('#end').val()) === 0){
-                     end =  $("#end").val() + ":00";
-                  }
-                else{
-                     end =  parseInt($("#end").val()).toString() +':'+ ((end-parseInt($("#end").val()))*60).toString();
-                  }
+                
                 if($('#male').is(':checked')){
                     var gender = '先生';
                 }
@@ -523,7 +523,7 @@ function previousClick(){
                                 },
                                 {
                                   "type": "text",
-                                  "text": $("#date").val() +" "+ start + "~"+ end ,
+                                  "text": $("#date").val() +" ->"+ start ,
                                   "flex": 5,
                                   "size": "sm",
                                   "color": "#666666",
@@ -593,9 +593,9 @@ function previousClick(){
         var booking_start = $('#start').val();
         // 電話(除錯)
         var reg_phone = new RegExp(/^09\d{8}$/);
-        var userid = '';
-        var time_session = '';
-        var price = '';
+        var userid = $('#userid').val();
+        var time_session = $('#session').val();
+        var price = $('#price').val();
 
 
         var ps = $('#ps').val() + $('#otherps').val();
@@ -657,17 +657,19 @@ function previousClick(){
         if (status) {
 
           var data = {
+            'userid': userid,
             'username': name,
+            'gender': gender,
             'phone': phone,
             'booking_date': booking_date,
             'booking_start_time': booking_start,
-            'booking_end_time': booking_end,
+            'time_session': time_session,
             'store': store,
             'adult': adult,
-            'children':children,
+            'children': children,
+            'price': price,
+            'ps': ps,
             'action': action,
-            'gender':gender,
-            'ps':ps
           }
           
           $("#sendbook").attr("disabled", true);
@@ -677,6 +679,7 @@ function previousClick(){
 
       });
     });
+        
     function query_people(data){
       $.ajax({
         type: "get",
@@ -690,10 +693,11 @@ function previousClick(){
         }
       })
     }
+        
     function send(data) {
       $.ajax({
         type: "get",
-        url: "https://script.google.com/macros/s/AKfycbxOGesPCFSaotTeWhnR-zTCNsJDTOTOv13A2F6qvOzejwftqDhq/exec",
+        url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
         data: data,
         success: function (response) {
           if (response.result == 'error') {
@@ -701,23 +705,16 @@ function previousClick(){
           }
           else if (response.result == 'full'){
             bk_st=parseFloat(data.booking_start_time)*60
-            bk_et=parseFloat(data.booking_end_time)*60
             if (bk_st %60 != 0){
                     bk_st = parseInt(bk_st/60).toString()+':'+(bk_st%60).toString()
                 }
             else{
                     bk_st = (bk_st/60).toString()+':00'
                 }
-            if(bk_et%60 != 0){
-                    bk_et = parseInt(bk_et/60).toString()+':'+(bk_et%60).toString()
-                }
-            else{
-                    bk_et = (bk_et/60).toString()+':00'
-                }
+            
             $("#sendbook").attr("disabled", false);
             $('#start').val('');
-            $('#end').val('');
-            alert('很抱歉！！'+bk_st+" 至 "+bk_et+" 訂位已滿，請選擇其他時段")
+            alert('很抱歉！！'+bk_st+" 至 "+" 訂位已滿，請選擇其他時段")
           }
           else {
             $("#sendbook").attr("disabled", false);
@@ -727,7 +724,6 @@ function previousClick(){
             $('#adult').val('');
             $('#children').val('');
             $('#start').val('');
-            $('#end').val('');
             alert('感謝您的訂位!!');
           }
 
@@ -741,7 +737,6 @@ function previousClick(){
           $('#adult').val('');
           $('#children').val('');
           $('#start').val('');
-          $('#end').val('');
           alert('很抱歉，訂位失敗 !!')
         }
       });
