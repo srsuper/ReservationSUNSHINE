@@ -160,7 +160,7 @@
     <!----早上時段----->
     <div style="display:none" id="timeForm_1" >
     <div id="start" class="w3-center w3-bar" >
-        剩餘<p id="noon_num">人數<br>
+        <p id="noon_num"></p><br>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11">11:00</button>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11.5">11:30</button>
         <br>
@@ -175,7 +175,7 @@
     <!----晚上時段----->
     <div style="display:none" id="timeForm_2" >
     <div id="start" class="w3-center w3-bar">
-        剩餘<p id="night_num">人數<br>
+        <p id="night_num"></p><br>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17">17:00</button>
         <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17.5">17:30</button>
         <br>
@@ -277,7 +277,7 @@ function noonClick(id_1,id_2,id_3,id_4) {
   var y = document.getElementById(id_2);
   var a = document.getElementById(id_3);
   var b = document.getElementById(id_4);
-  
+  document.getElementById('noon_num').innerHTML='讀取中...';
     
   if (x.classList.contains("w3-show") == false) {
     x.classList.add("w3-show");
@@ -290,7 +290,7 @@ function noonClick(id_1,id_2,id_3,id_4) {
     var noon='中午時段';
     var booking_date = $('#date').val();
     data={
-      'noon':noon,
+      'time_session':noon,
       'booking_date':booking_date,
       'action':'querying_num'
     }
@@ -304,7 +304,7 @@ function nightClick(id_1,id_2,id_3,id_4) {
   var y = document.getElementById(id_2);
   var a = document.getElementById(id_3);
   var b = document.getElementById(id_4);
-  
+  document.getElementById('night_num').innerHTML='讀取中...';
     
   if (y.classList.contains("w3-show") == false) {
     y.classList.add("w3-show");
@@ -317,7 +317,7 @@ function nightClick(id_1,id_2,id_3,id_4) {
     var night='晚上時段';
     var booking_date = $('#date').val();
     data={
-      'night':night,
+      'time_session':night,
       'booking_date':booking_date,
       'action':'querying_num'
     }
@@ -687,19 +687,32 @@ function previousClick(){
         url:"https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
         data:data,
         success:function(response){
-          var result = response.result;
-          var time_session = result.time_session;
-          var number =result.number;
-          if(time_session=='中午時段'){
-            document.getElementById('noon_num').innerHTML=number;
+          var number = parseInt(response.result);
+          var time_session = response.time_session;
+          if (number >=20){
+            if(time_session=='中午時段'){
+
+              document.getElementById('noon_num').innerHTML=('已額滿');
+            }
+            else{
+              document.getElementById('night_num').innerHTML=('已額滿');
+            }
           }
           else{
-            document.getElementById('night_num').innerHTML=number;
+              if(time_session=='中午時段'){
+
+                document.getElementById('noon_num').innerHTML=('剩餘'+(20-number)+'人');
+              }
+            else{
+              document.getElementById('night_num').innerHTML=('剩餘'+(20-number)+'人');
+            }
           }
+          
           
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-          alert('時段剩餘人數取得失敗，請重新點擊．');
+
+          alert('該時段剩餘人數取得失敗，請重新點擊．');
         }
       })
     }
