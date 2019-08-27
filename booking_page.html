@@ -70,21 +70,8 @@
         <label ><i class="fa fa-map-marker"></i> 北投吉利店</label>
     </font>
         </div>
-<form id="first" class="w3-panel w3-border">
+<div class="w3-panel w3-border">
     <input id="store_name" value="總店" style="display: none">
-    <!---
-    <font size="4">
-    <label ><i class="fa fa-home"></i> 店家位置</label>
-        <label></label>
-
-    <select class="select form-control"  value="" id="store_name" name="store_name" required>
-          <option value="" disabled selected>請選擇店家</option>
-          <option value="總店">北投吉利店  (總店)</option>
-          </select>
-
-    </font>
-    --->
-
  <br>
         <font size="4">
         <label><i class="fa fa-male"></i> 成人</label>
@@ -133,7 +120,7 @@
         </font>
     
         
-</form>
+</div>
 </div>
     
 
@@ -142,7 +129,7 @@
 
 
 <div id="timeForm" class="w3-container" >
-<form class="w3-panel w3-border">
+<div class="w3-container w3-panel w3-border">
 <br>
     <font size="4">
         <label><i class="fa fa-calendar"></i> 日期</label>
@@ -187,7 +174,7 @@
     </div>
     </div>
 
-    </form>
+    </div>
     
 <!--
     <font size='4'>
@@ -201,11 +188,11 @@
     
     
 <!-----------------------------Member Form------------------------------------------------------>
-<div id="userData"  class="w3-container">
+<div id="userData"  class="w3-container w3-panel w3-border">
     <div class="w3-center w3-padding">
     <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">會員資料</span>
   </div>
-<form class="w3-panel w3-border">
+<form>
 
 <div class="w3-section">
     <font size="4">
@@ -598,7 +585,7 @@ function previousClick(){
         var time_session = $('#session').val();
         var price = $('#price').val();
 
-
+        
         var ps = $('#ps').val() + $('#otherps').val();
 
         if ($('#male').is(':checked')){
