@@ -561,10 +561,11 @@ function previousClick(){
                 }
                 ])
                .then(() => {
+                   setTimeout(function(){}, 1000);
                    liff.closeWindow();
                })
                .catch((err) => {
-                    console.log('error', err);
+                    // console.log('error', err);
                });
             });
         });
@@ -683,13 +684,22 @@ function previousClick(){
     function query_people(data){
       $.ajax({
         type: "get",
-        url:"",
+        url:"https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
         data:data,
         success:function(response){
-          document.getElementById('').innerHTML='';
+          var result = response.result;
+          var time_session = result.time_session;
+          var number =result.number;
+          if(time_session=='中午時段'){
+            document.getElementById('noon_num').innerHTML=number;
+          }
+          else{
+            document.getElementById('night_num').innerHTML=number;
+          }
+          
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-
+          alert('時段剩餘人數取得失敗，請重新點擊．');
         }
       })
     }
