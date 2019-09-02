@@ -78,8 +78,8 @@ body, html {height: 100%}
     </div>
 
 <!-- Phone -->
-<div  id="Memberphone" class="w3-display-container w3-text-white w3-padding"  >
-<form id="form1" class="w3-container w3-white w3-animate-top w3-padding-small">
+<div  id="memberphone" class="w3-display-container w3-text-white w3-padding"  >
+<div id="form1" class="w3-container w3-white w3-animate-top w3-padding-small">
     
     <font size="3">
     <label><b>綁定手機</b></label>
@@ -90,7 +90,7 @@ body, html {height: 100%}
     <button class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick()">下一步 <span class="glyphicon glyphicon-chevron-right"></span> </button>
     </font>
     
-</form>
+  </div>
 </div>
 
 
@@ -232,13 +232,13 @@ body, html {height: 100%}
 function priceClick(x){
     var k = document.getElementsByName("price")
         for (i = 0; i < k.length; i++){
-            k[i].classList.remove("w3-red")
+            k[i].classList.remove("w3-teal")
         }
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add('w3-red');
+    if(x.classList.contains("w3-teal") == false){
+        x.classList.add('w3-teal');
         document.getElementById('price').value = x.value;
     }else{
-        x.classList.remove("w3-red");
+        x.classList.remove("w3-teal");
         document.getElementById('price').value = "";
     }
 }
@@ -255,8 +255,8 @@ function noonClick(id_1,id_2,id_3,id_4) {
     y.classList.remove("w3-show");
     a.innerHTML = "✓中午時段"
     b.innerHTML = "晚上時段"
-    a.classList.add("w3-red")
-    b.classList.remove("w3-red");
+    a.classList.add("w3-teal")
+    b.classList.remove("w3-teal");
     document.getElementById('session').value = '中午時段';
     var noon='中午時段';
     var booking_date = $('#date').val();
@@ -282,8 +282,8 @@ function nightClick(id_1,id_2,id_3,id_4) {
     x.classList.remove("w3-show");
     b.innerHTML = "✓晚上時段"
     a.innerHTML = "中午時段"
-    b.classList.add("w3-red")
-    a.classList.remove("w3-red");
+    b.classList.add("w3-teal")
+    a.classList.remove("w3-teal");
     document.getElementById('session').value = '晚上時段';
     var night='晚上時段';
     var booking_date = $('#date').val();
@@ -300,13 +300,13 @@ function nightClick(id_1,id_2,id_3,id_4) {
 function timeClick(x){
     var k = document.getElementsByName("st")
         for (i = 0; i < k.length; i++){
-            k[i].classList.remove("w3-red")
+            k[i].classList.remove("w3-teal")
         }
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add('w3-red');
+    if(x.classList.contains("w3-teal") == false){
+        x.classList.add('w3-teal');
         document.getElementById('start').value = x.value;
     }else{
-        x.classList.remove("w3-red");
+        x.classList.remove("w3-teal");
         document.getElementById('start').value = "";
     }
 }
@@ -314,11 +314,11 @@ function timeClick(x){
 function psClick(x){
     var p = document.getElementById("ps")
 
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add("w3-red")
+    if(x.classList.contains("w3-teal") == false){
+        x.classList.add("w3-teal")
         p.value += x.value
     }else{
-         x.classList.remove("w3-red")
+         x.classList.remove("w3-teal")
          p.value -= x.val
          if(isNaN(p.value)){
              p.value = ''
@@ -358,11 +358,7 @@ function nextClick2(){
                 {   
                     var disname = {'name' : profile.displayName};
                     disname_json = JSON.parse(JSON.stringify(disname.name))
-                    $('#userid').val(profile.userId)
-                    //var disname = {'name' : profile.displayName};
-                    //disname_json = JSON.parse(JSON.stringify(disname.name))
-                    //var pictureurl = {'url' : profile.pictureUrl};
-                    //pictureurl_json = JSON.parse(JSON.stringify(pictureurl.url))
+                    $('#userid').val(profile.userId);
                     $('#img').attr('src',profile.pictureUrl);
                     $('#displayname').html(profile.displayName);
 
@@ -435,7 +431,7 @@ function nextClick2(){
                                 },
                                 {
                                   "type": "text",
-                                  "text": $('#name').val() + gender + " " +$('#adult').val() + "大"+ $('#children').val() + "小",
+                                  "text": disname_json + gender + " " +$('#adult').val() + "大"+ $('#children').val() + "小",
                                   "flex": 5,
                                   "size": "sm",
                                   "color": "#666666",
