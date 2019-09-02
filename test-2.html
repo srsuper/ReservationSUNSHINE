@@ -75,6 +75,7 @@ body, html {height: 100%}
 <div class="w3-center w3-animate-top w3-padding-small">
         <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle" style="width:115px">
         <p><b id="displayname"></b></p><hr>
+        <input id="userid" style="display: none" value="">
     </div>
 
 <!-- Phone -->
@@ -222,6 +223,7 @@ body, html {height: 100%}
     
     </div>
     <font size='4'>
+    <button id="previous" class="w3-btn w3-round-large w3-block w3-dark-grey w3-padding w3-right" onclick="prevClick()"><span class="glyphicon glyphicon-chevron-left"></span> 上一頁</button>
     <button type="submit" id="sendbook" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right">完成 <span class="glyphicon glyphicon-ok"></span></button>
     </font>
     
@@ -335,8 +337,12 @@ function nextClick(){
 function nextClick2(){
     document.getElementById('time').style.display='none';
     document.getElementById('member').style.display='block';
-    
 } 
+
+function prevClick(){
+  document.getElementById('member').style.display='none';
+  document.getElementById('time').style.display='block';
+}
 </script>
 
     
@@ -534,7 +540,7 @@ function nextClick2(){
         var status = true;
         var action = 'booking';
         // 姓名
-        var name = $('#name').val();
+        var name = disname_json;
         // 電話
         var phone = $('#phone').val();
         // 店家
@@ -542,6 +548,8 @@ function nextClick2(){
         // 人數
         var adult = $('#adult').val();
         var children = $('#children').val();
+        //gender
+        var gender = 'M';
         // 訂位日期
         var booking_date = $('#date').val();
         // 訂位開始
@@ -555,12 +563,12 @@ function nextClick2(){
         
         var ps = $('#ps').val() + $('#otherps').val();
 
-        if ($('#male').is(':checked')){
-          var gender = $('#male').val();
-        }
-        else {
-          var gender = $('#female').val();
-        }
+        // if ($('#male').is(':checked')){
+        //   var gender = $('#male').val();
+        // }
+        // else {
+        //   var gender = $('#female').val();
+        // }
 
         if (store == '') {
           $('#store_name').css('border', '1px solid #ff0000');
