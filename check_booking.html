@@ -201,6 +201,7 @@
         url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
         data: data,
         success: function (response) {
+            console.log(response)
           if (response.result == 'error'){
              alert("資料不存在，請確認輸入資料是否正確")
           }
