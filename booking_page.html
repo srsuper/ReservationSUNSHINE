@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html>
-<title>Softway 舒微生活</title>
+<title>Softway 24hr-Booking</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet"id="bootstrap-css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<!--影響 Close < > 的切換icon-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--引用plugin的css(自行到作者GitHub下載)-->
+<link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+<!-- Line LIFF ------------------>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!------------------------------Script-------------------------------------------------------->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Line LIFF ------------------>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<!-- Datepicker ----------------->
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>
+<!--  引用jQuery------------------>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--此plugin會影響語系-------------->
+<script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+<!--引用plugin的js----------------->
+<script src="js/bootstrap-material-datetimepicker.js"></script>
 
-<body>
 
-<!-- datepicker --->
+
 <style type="text/css">
         .dtp-buttons > button.btn {
             border: none;
@@ -41,38 +63,109 @@
          .dtp-picker-calendar > table {
             width: 100%;
         }
-    .w3-myfont {
-        font-family: "Comic Sans MS", cursive, sans-serif;
-    }
-    </style>
-
-    <!--影響 Close < > 的切換icon-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--引用plugin的css(自行到作者GitHub下載)-->
-    <link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
 
 
-<!-- Header -->
-<header class="w3-container w3-pale-blue" id="myHeader">
-  <div class="w3-center w3-pale-blue">
-    <!--h1 class="w3-xxlarge ">歡迎來到 </h1-->
-      <h2 class="w3-myfont">Softway</h2>
-  </div>
-</header>
+</style>
 
 
+<body>
+<!-- profile -->
+<div class="w3-center w3-animate-top w3-padding-small">
+        <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle" style="width:115px">
+        <p style="font-size:135%;"><b id="displayname"></b></p><hr>
+        <input id="userid" style="display: none" value="">
+    </div>
 
-<!-- 表 單(預約人數/日期)  ----------------------------------------------------------->
-
-<div id="firstForm" class="w3-container">
-    <div class="w3-center">
-    <font size='6'>
-        <label ><i class="fa fa-map-marker"></i> 北投吉利店</label>
+<!-- Phone -->
+<div  id="memberphone" class="w3-display-container w3-text-white w3-padding"  >
+<div id="form1" class="w3-container w3-white w3-animate-top w3-padding-small">
+    <font size="4">
+    <label><b>綁定手機</b></label>
+    <input id="phone" class="w3-input w3-border w3-round-large" type="tel" placeholder="E.g. : 0900123456"  autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
     </font>
-        </div>
-<div class="w3-panel w3-border">
-    <input id="store_name" value="總店" style="display: none">
- <br>
+
+    <font size="3">
+    <input type='checkbox' id="privacy_policy" class="w3-check" style="min-height:20px;min-width:20px;" checked>
+    <label>我已閱讀並同意<a href="https://i.imgur.com/AZrtk03.jpg" target="_blank" title="Softway隱私權條款"> Softway隱私權條款</a></label></p>
+
+    </font>
+
+    <font size='4'>
+    <button name="phone_button" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick_2()" disabled='disabled'> 下一步 <span class="glyphicon glyphicon-chevron-right"></span> </button>
+    </font>
+
+  </div>
+</div>
+
+
+
+<!-- Time -->
+<div id="time" class="w3-display-container w3-text-white w3-padding" style="display: none">
+<div class="w3-container w3-white w3-animate-right w3-padding-small">
+<br>
+    <font size="4">
+        <label><i class="fa fa-calendar"></i> 日期</label>
+            <input class="w3-input w3-border w3-round-large" id="date" type="text" value="" placeholder="請選擇日期" required>
+        </font>
+    <br>
+
+
+    <div class="w3-center w3-bar">
+        <input id="session" style="display: none" value="">
+        <button type ="button" id="noonTime" name="session" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="noon" disabled>中午時段</button>
+        <button type ="button" id="nightTime" name="session" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="night" disabled>晚上時段</button>
+    </div>
+
+<hr>
+    <!----早上時段----->
+    <div style="display:none" id="timeForm_1" >
+    <div id="start" class="w3-center w3-bar" >
+        <p id="noon_num"></p><br>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11">11:00</button>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11.5">11:30</button>
+        <br>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="12">12:00</button>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="12.5">12:30</button>
+        <br>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="13">13:00</button>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="13.5">13:30</button>
+    </div>
+    </div>
+
+    <!----晚上時段----->
+    <div style="display:none" id="timeForm_2" >
+    <div id="start" class="w3-center w3-bar">
+        <p id="night_num"></p><br>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17">17:00</button>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17.5">17:30</button>
+        <br>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="18">18:00</button>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="18.5">18:30</button>
+        <br>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19">19:00</button>
+        <button type ="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19.5">19:30</button>
+    </div>
+    </div>
+
+
+
+    <font size='4'>
+    <button id="next" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick_1()" disabled>下一步 <span class="glyphicon glyphicon-chevron-right"></span></button>
+    </font>
+    </div>
+
+
+    </div>
+
+
+
+<!-- Number & Price % Ps-->
+<div id="member" class="w3-display-container w3-text-white w3-padding" style="display: none">
+<input id="store_name" value="mainstore" style="display: none">
+<div class="w3-container w3-white w3-animate-right w3-padding-small">
+
         <font size="4">
         <label><i class="fa fa-male"></i> 成人</label>
             <select class="select form-control" type="number" value="" id="adult" required>
@@ -88,7 +181,7 @@
                 <option value="9">9</option>
             </select>
             </font>
-<br>
+ <br>
         <font size="4">
         <label><i class="fa fa-child"></i> 兒童</label>
           <select class="select form-control" type="number" value="" id="children" required>
@@ -105,7 +198,6 @@
             <option value="9">9</option>
             </select>
         </font>
-
 <br>
         <font size="4">
         <label><i class="fa fa-usd"></i> 價位/每人</label>
@@ -116,165 +208,65 @@
             <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$800" onclick="priceClick(this)">
             <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$1000" onclick="priceClick(this)">
             <input type="button" name="price" class="w3-btn w3-border w3-round-large w3-normal" value="$1200" onclick="priceClick(this)">
-            
+
         </font>
-    
-        
-</div>
-</div>
-    
 
-
-<!----------------------------------Time Form ---------------------------------------------------->
-
-
-<div id="timeForm" class="w3-container" >
-<div class="w3-container w3-panel w3-border">
-<br>
-    <font size="4">
-        <label><i class="fa fa-calendar"></i> 日期</label>
-            <input class="w3-input w3-border w3-round-large" id="date" type="text" value="" placeholder="請選擇日期"  required>
-        </font>
-    <br>
-    
-    <div class="w3-center w3-bar">
-        <input id="session" style="display: none" value="">
-        <button type ="button" id="noonTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="中午時段">中午時段</button>
-        <button type ="button" id="nightTime" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="晚上時段">晚上時段</button>
-    </div>
-
-<hr>
-    <!----早上時段----->
-    <div style="display:none" id="timeForm_1" >
-    <div id="start" class="w3-center w3-bar" >
-        <p id="noon_num"></p><br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11">11:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="11.5">11:30</button>
-        <br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="12">12:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="12.5">12:30</button>
-        <br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="13">13:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="13.5">13:30</button>
-    </div>
-    </div>
-
-    <!----晚上時段----->
-    <div style="display:none" id="timeForm_2" >
-    <div id="start" class="w3-center w3-bar">
-        <p id="night_num"></p><br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17">17:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="17.5">17:30</button>
-        <br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="18">18:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="18.5">18:30</button>
-        <br>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19">19:00</button>
-        <button type ="button" name="st" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="timeClick(this)" value="19.5">19:30</button>
-    </div>
-    </div>
+        <div class="w3-section">
+              <font size="3.5">
+              <label><i class="fa fa-bell"></i> 飲食習慣</label>
+                <br>
+                  <input id="ps" style="display: none" value="">
+                  <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃牛" onclick="psClick(this)">不吃牛</button>
+                  <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃海鮮" onclick="psClick(this)">不吃海鮮</button>
+                <br>
+                  <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蛋奶素" onclick="psClick(this)">蛋奶素</button>
+                  <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蔬食(無肉)" onclick="psClick(this)">蔬食(無肉)</button>
+                  <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#全素(無辛料)" onclick="psClick(this)">全素</button>
+                <br><br>
+                特殊飲食習慣<input id="otherps" type="text" class="w3-input w3-border w3-round-large" value="">
+              </font>
+          </div>
 
     </div>
-    
-<!--
     <font size='4'>
-    <button id="next" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick()">下一步填寫個人資料 <i class="fa fa-arrow-right w3-margin-left"></i></button>
+    <button id="previous" class="w3-btn w3-round-large w3-block w3-dark-grey w3-padding w3-right" onclick="prevClick()"><span class="glyphicon glyphicon-chevron-left"></span> 上一頁</button>
+    <button type="submit" id="sendbook" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right">完成 <span class="glyphicon glyphicon-ok"></span></button>
     </font>
--->
+
     </div>
-   
 
-
-    
-    
-<!-----------------------------Member Form------------------------------------------------------>
-<div id="userData"  class="w3-container w3-panel w3-border">
-    <div class="w3-center w3-padding">
-    <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">會員資料</span>
-  </div>
-<form>
-
-<div class="w3-section">
-    <font size="4">
-        <label><i class="fa fa-user"></i> 姓名</label>
-    <input class="w3-input w3-border w3-round-large" type="text" id="name" placeholder="EX : 陳小明" required>
-    <input id="userid" style="display: none" value="">
-        <div class="w3-row">
-        <div class="w3-half">
-    <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
-    <label>先生</label>
-    <input id="female" class="w3-radio" type="radio" name="gender" value="F">
-    <label>女士</label>
-        </div>
-        </div>
-    </font>
-  </div>
-
-
-  <div class="w3-section">
-    <font size="4">
-    <label><i class="fa fa-phone"></i> 手機</label>
-    <input class="w3-input w3-border w3-round-large" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
-      </font>
-  </div>
-
-  <div class="w3-section">
-      <font size="3.5">
-      <label><i class="fa fa-bell"></i> 飲食習慣</label>
-        <br>
-          <input id="ps" style="display: none" value="">
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃牛" onclick="psClick(this)">不吃牛</button>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃海鮮" onclick="psClick(this)">不吃海鮮</button>
-        <br>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蛋奶素" onclick="psClick(this)">蛋奶素</button>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蔬食(無肉)" onclick="psClick(this)">蔬食(無肉)</button>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#全素(無辛料)" onclick="psClick(this)">全素</button>
-        <br><br>
-        特殊飲食習慣<input id="otherps" type="text" class="w3-input w3-border w3-round-large" value="">
-      </font>
-  </div>
-
-    <font size="4">
-<!--    <button type="button" class="w3-btn w3-round-large w3-block w3-blue-grey w3-padding w3-right" onclick="previousClick()"><i class="fa fa-arrow-left"></i> 回上一層</button>-->
-    <button type="submit" id="sendbook" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"><i class="fa fa-check"></i> 確定送出</button>
-    </font>
-
-</form>
-</div>
-
-    
-<!---Function of priceClick(), noonClick(), nightClick(), timeClick(), psClick()------------------->
+<!--script function -->
 <script>
 function priceClick(x){
     var k = document.getElementsByName("price")
         for (i = 0; i < k.length; i++){
-            k[i].classList.remove("w3-red")
+            k[i].classList.remove("w3-teal")
         }
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add('w3-red');
+    if(x.classList.contains("w3-teal") == false){
+        x.classList.add('w3-teal');
         document.getElementById('price').value = x.value;
     }else{
-        x.classList.remove("w3-red");
+        x.classList.remove("w3-teal");
         document.getElementById('price').value = "";
     }
 }
-    
+
 function noonClick(id_1,id_2,id_3,id_4) {
   var x = document.getElementById(id_1);
   var y = document.getElementById(id_2);
   var a = document.getElementById(id_3);
   var b = document.getElementById(id_4);
   document.getElementById('noon_num').innerHTML='讀取中...';
-    
+
   if (x.classList.contains("w3-show") == false) {
     x.classList.add("w3-show");
     y.classList.remove("w3-show");
     a.innerHTML = "✓中午時段"
     b.innerHTML = "晚上時段"
-    a.classList.add("w3-red")
-    b.classList.remove("w3-red");
-    document.getElementById('session').value = '中午時段';
-    var noon='中午時段';
+    a.classList.add("w3-teal")
+    b.classList.remove("w3-teal");
+    document.getElementById('session').value = 'noon';
+    var noon='noon';
     var booking_date = $('#date').val();
     data={
       'time_session':noon,
@@ -283,7 +275,7 @@ function noonClick(id_1,id_2,id_3,id_4) {
     }
     query_people(data);
   }
-  
+
 }
 
 function nightClick(id_1,id_2,id_3,id_4) {
@@ -292,16 +284,16 @@ function nightClick(id_1,id_2,id_3,id_4) {
   var a = document.getElementById(id_3);
   var b = document.getElementById(id_4);
   document.getElementById('night_num').innerHTML='讀取中...';
-    
+
   if (y.classList.contains("w3-show") == false) {
     y.classList.add("w3-show");
     x.classList.remove("w3-show");
     b.innerHTML = "✓晚上時段"
     a.innerHTML = "中午時段"
-    b.classList.add("w3-red")
-    a.classList.remove("w3-red");
-    document.getElementById('session').value = '晚上時段';
-    var night='晚上時段';
+    b.classList.add("w3-teal")
+    a.classList.remove("w3-teal");
+    document.getElementById('session').value = 'night';
+    var night='night';
     var booking_date = $('#date').val();
     data={
       'time_session':night,
@@ -309,32 +301,32 @@ function nightClick(id_1,id_2,id_3,id_4) {
       'action':'querying_num'
     }
     query_people(data);
-    
+
   }
 }
 
 function timeClick(x){
-    var k = document.getElementsByName("st")
+    var k = document.getElementsByName("startTime")
         for (i = 0; i < k.length; i++){
-            k[i].classList.remove("w3-red")
+            k[i].classList.remove("w3-teal")
         }
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add('w3-red');
+    if(x.classList.contains("w3-teal") == false){
+        x.classList.add('w3-teal');
         document.getElementById('start').value = x.value;
     }else{
-        x.classList.remove("w3-red");
+        x.classList.remove("w3-teal");
         document.getElementById('start').value = "";
     }
 }
-    
+
 function psClick(x){
     var p = document.getElementById("ps")
 
-    if(x.classList.contains("w3-red") == false){
-        x.classList.add("w3-red")
+    if(x.classList.contains("w3-teal") == false){
+        x.classList.add("w3-teal")
         p.value += x.value
     }else{
-         x.classList.remove("w3-red")
+         x.classList.remove("w3-teal")
          p.value -= x.val
          if(isNaN(p.value)){
              p.value = ''
@@ -342,71 +334,56 @@ function psClick(x){
     }
 
 }
-    
-function nextClick(){
-    document.getElementById('timeForm').style.display='none';
-    document.getElementById('firstForm').style.display='none';
-    document.getElementById('userData').style.display='block'
-} 
 
-function previousClick(){
-    document.getElementById('timeForm').style.display='block';
-    document.getElementById('firstForm').style.display='block';
-    document.getElementById('userData').style.display='none'
-} 
+function nextClick_1(){
+    document.getElementById('time').style.display='none';
+    document.getElementById('member').style.display='block';
+}
+
+function nextClick_2(){
+    document.getElementById('memberphone').style.display='none';
+    document.getElementById('time').style.display='block'
+}
+
+function prevClick(){
+  document.getElementById('member').style.display='none';
+  document.getElementById('time').style.display='block';
+}
 </script>
-<!------------------------------Script-------------------------------------------------------->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Line LIFF ------------------>
-<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-<!-- Datepicker ----------------->
-<script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>
-<!--  引用jQuery------------------>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<!--此plugin會影響語系-------------->
-<script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.js"></script>
-<!--引用plugin的js----------------->
-<script src="js/bootstrap-material-datetimepicker.js"></script>
-    
+
 <!--datetimepicker of parameter--->
 <script type="text/javascript">
   $(function () {
     $('#date').bootstrapMaterialDatePicker(
         {
-            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(14,'day'), disabledDays: [1], format: 'YYYY/MM/DD dddd'
+            time: false, nowButton:false, clearButton: false, okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(14,'day'), disabledDays: [1], format: 'YYYY/MM/DD dddd'
         });
     });
 </script>
 
 
-<!-------------------------------LINE LIFF of script------------------------------------------------>
+<!-- script  Line jquery-->
 <script>
-        function initializeApp(data) {
-            
+    function initializeApp(data) {
             liff.getProfile().then(profile =>
                 {
                     var disname = {'name' : profile.displayName};
                     disname_json = JSON.parse(JSON.stringify(disname.name))
-                    $('#userid').val(profile.userId)
-                    
-                    //var pictureurl = {'url' : profile.pictureUrl};
-                    //pictureurl_json = JSON.stringify(pictureurl.url)
-                    //PictureUrl = JSON.parse(pictureurl_json)
+                    $('#userid').val(profile.userId);
+                    $('#img').attr('src',profile.pictureUrl);
+                    $('#displayname').html(profile.displayName);
+
                 }
             )
         }
-        //ready
-        $(function () {
-            //init LIFF
-            liff.init(function(data) {
-                initializeApp(data);
-            });
-            //ButtonSendMsg
+    //ready
+    $(function () {
+        //init LIFF
+        liff.init(function(data) {
+            initializeApp(data);
+        });
+        //ButtonSendMsg
             $('#sendbook').click(function () {
                 var start = parseFloat($("#start").val());
 
@@ -416,7 +393,7 @@ function previousClick(){
                 else{
                      start =  parseInt($("#start").val()).toString() +':'+ ((start-parseInt($("#start").val()))*60).toString();
                   }
-                
+
                 if($('#male').is(':checked')){
                     var gender = '先生';
                 }
@@ -442,7 +419,7 @@ function previousClick(){
                       "contents": [
                         {
                           "type": "text",
-                          "text": "恭喜 "+ disname_json +" 預約成功",
+                          "text": "👤 "+ disname_json +" 預約成功",
                           "size": "xl",
                           "weight": "bold"
                         },
@@ -466,7 +443,7 @@ function previousClick(){
                                 },
                                 {
                                   "type": "text",
-                                  "text": $('#name').val() + gender + " " +$('#adult').val() + "大"+ $('#children').val() + "小",
+                                  "text": disname_json + " " +$('#adult').val() + "大"+ $('#children').val() + "小",
                                   "flex": 5,
                                   "size": "sm",
                                   "color": "#666666",
@@ -510,7 +487,7 @@ function previousClick(){
                                 },
                                 {
                                   "type": "text",
-                                  "text": $("#date").val() +" ->"+ start ,
+                                  "text": $("#date").val() +" ⏱ "+ start ,
                                   "flex": 5,
                                   "size": "sm",
                                   "color": "#666666",
@@ -543,9 +520,28 @@ function previousClick(){
                           ]
                         }
                       ]
-                    }
+                    },
+                    "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "flex": 0,
+                    "spacing": "sm",
+                    "contents": [
+                      {
+                        "type": "button",
+                        "action": {
+                          "type": "uri",
+                          "label": "變更/取消訂位",
+                          "uri": "line://app/1577114898-D5d8edOv"
+                        },
+                        "color": "#2C9278",
+                        "height": "sm",
+                        "style": "primary"
+                      }
+                    ]
                   }
                 }
+              }
                 ])
                .then(() => {
                    setTimeout(function(){}, 1000);
@@ -555,19 +551,57 @@ function previousClick(){
                     // console.log('error', err);
                });
             });
-        });
+
+    })
     </script>
 
 
-<!------------------------Alert of the check form---------------------------------------------------->
-    <script>
+
+<!--script jquery -->
+<script>
+    $(document).ready(function(){
+      //if phonenumber is not correct, then show the alert message and clean phone value.
+      $('#phone').change(function(){
+        var phone = $('#phone').val();
+        var reg_phone = new RegExp(/^09\d{8}$/);
+        if(reg_phone.test(phone) == false){
+          alert('手機號碼格式不正確!!');
+          $('#phone').val('');
+          $("button[name='phone_button']").attr("disabled",true);
+        }
+        else if($('#privacy_policy').is(':checked') && phone != ''){
+          $("button[name='phone_button']").attr("disabled",false);
+        }
+      });
+      //if privacy_policy checkbox is checked, then phone_button of attribution will be disabled.
+      $('#privacy_policy').click(function(){
+        var phone = $('#phone').val();
+        var reg_phone = new RegExp(/^09\d{8}$/);
+        if($('#privacy_policy').is(':checked') && phone != ''){
+          $("button[name='phone_button']").attr("disabled",false);
+        }
+        else if($('#privacy_policy').is(':checked') == false || phone == ''){
+          $("button[name='phone_button']").attr("disabled",true);
+        }
+      });
+      //if date is not null, then the session button of attribution disabled will be removed.
+      $("#date").change(function(){
+        $("button[name='session']").removeAttr('disabled')
+      });
+
+      //if startTime button be clicked, then the next button of disabled attribution will be removed.
+      $("button[name='startTime']").click(function(){
+        $("#next").removeAttr('disabled')
+      })
+
+    });
+
     $(function () {
-                       
       $('#sendbook').click(function (e) {
         var status = true;
         var action = 'booking';
         // 姓名
-        var name = $('#name').val();
+        var name = disname_json;
         // 電話
         var phone = $('#phone').val();
         // 店家
@@ -575,6 +609,8 @@ function previousClick(){
         // 人數
         var adult = $('#adult').val();
         var children = $('#children').val();
+        //gender
+        var gender = 'M';
         // 訂位日期
         var booking_date = $('#date').val();
         // 訂位開始
@@ -585,23 +621,17 @@ function previousClick(){
         var time_session = $('#session').val();
         var price = $('#price').val();
 
-        
+
         var ps = $('#ps').val() + $('#otherps').val();
 
-        if ($('#male').is(':checked')){
-          var gender = $('#male').val();
-        }
-        else {
-          var gender = $('#female').val();
-        }
+        // if ($('#male').is(':checked')){
+        //   var gender = $('#male').val();
+        // }
+        // else {
+        //   var gender = $('#female').val();
+        // }
 
-        if (store == '') {
-          $('#store_name').css('border', '1px solid #ff0000');
-          alert('請選擇訂位的店家喔');
-          status = false;
-        }
-
-        else if (adult == '') {
+        if (adult == '') {
           $('#adult').css('border', '1px solid #ff0000');
           alert('請選擇成人訂位的人數喔');
           status = false;
@@ -611,37 +641,41 @@ function previousClick(){
           alert('請選擇小孩訂位的人數喔');
           status = false;
         }
-        else if (booking_date == '') {
-          $('#date').css('border', '1px solid #ff0000');
-          status = false;
-          alert('請選擇訂位的日期');
-        }
-        else if (name == '') {
-          alert('請輸入姓名');
-          $('#name').css('border', '1px solid #ff0000');
-          status = false;
-        }
         else if (phone == '') {
           $('#phone').css('border', '1px solid #ff0000');
           alert('請輸入電話號碼');
           status = false;
         }
-        // debug
         else if (reg_phone.test(phone) ==false){
           $('#phone').css('border', '1px solid #ff0000');
-          alert('手機號碼格式不正確');
+          alert('手機號碼格式不正確!!');
           status = false;
         }
+        // if (store == '') {
+        //   $('#store_name').css('border', '1px solid #ff0000');
+        //   alert('請選擇訂位的店家喔');
+        //   status = false;
+        // }
+        // else if (booking_date == '') {
+        //   $('#date').css('border', '1px solid #ff0000');
+        //   status = false;
+        //   alert('請選擇訂位的日期');
+        // }
+        // else if (name == '') {
+        //   alert('請輸入姓名');
+        //   $('#name').css('border', '1px solid #ff0000');
+        //   status = false;
+        // }
         //else if(parseInt(adult)+parseInt(children)==0){
           //$('#children').css('border', '1px solid #ff0000');
           //$('#adult').css('border', '1px solid #ff0000');
           //alert('成人和小孩總數不可以等於0');
           //status = false;
         //}
-        else if (booking_start == '') {
-          status = false;
-          alert('請選擇用餐開始時間')
-        }
+        // else if (booking_start == '') {
+        //   status = false;
+        //   alert('請選擇用餐開始時間')
+        // }
 
         if (status) {
 
@@ -660,7 +694,7 @@ function previousClick(){
             'ps': ps,
             'action': action,
           }
-          
+
           $("#sendbook").attr("disabled", true);
           // 呼叫 send ajax function
           send(data);
@@ -668,7 +702,7 @@ function previousClick(){
 
       });
     });
-        
+
     function query_people(data){
       $.ajax({
         type: "get",
@@ -678,7 +712,7 @@ function previousClick(){
           var number = parseInt(response.result);
           var time_session = response.time_session;
           if (number >=20){
-            if(time_session=='中午時段'){
+            if(time_session=='noon'){
 
               document.getElementById('noon_num').innerHTML=('已額滿');
             }
@@ -687,7 +721,7 @@ function previousClick(){
             }
           }
           else{
-              if(time_session=='中午時段'){
+              if(time_session=='noon'){
 
                 document.getElementById('noon_num').innerHTML=('剩餘'+(20-number)+'人');
               }
@@ -695,7 +729,8 @@ function previousClick(){
               document.getElementById('night_num').innerHTML=('剩餘'+(20-number)+'人');
             }
           }
-          
+
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
 
@@ -703,7 +738,7 @@ function previousClick(){
         }
       })
     }
-        
+
     function send(data) {
       $.ajax({
         type: "get",
@@ -721,7 +756,7 @@ function previousClick(){
             else{
                     bk_st = (bk_st/60).toString()+':00'
                 }
-            
+
             $("#sendbook").attr("disabled", false);
             $('#start').val('');
             alert('很抱歉！！'+bk_st+" 至 "+" 訂位已滿，請選擇其他時段")
@@ -753,6 +788,5 @@ function previousClick(){
     }
     </script>
 
-
-    </body>
+</body>
 </html>
