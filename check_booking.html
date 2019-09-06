@@ -63,7 +63,7 @@
                 <!-- profile -->
                 <div class="w3-center w3-animate-top w3-padding-small">
                     <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle" style="width:115px">
-                    <p style="font-size:135%;"><b id="displayname"></b></p><hr>
+                    <p style="font-size:135%;"><b id="userid"></b></p><hr>
                     <input id="userid" style="display: none" value="">
                     <font size='4'>
                     <button id='send' class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 下一步 <span class="glyphicon glyphicon-chevron-right"></span> </button>
@@ -201,7 +201,7 @@
         url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
         data: data,
         success: function (response) {
-
+            console.log(response)
           if (response.result == 'error'){
              alert("資料不存在，請確認輸入資料是否正確")
           }
@@ -209,13 +209,9 @@
             handleData(response);
           }
           $("#send").attr("disabled", false); 
-        //   $('#name').val('');
-        //   $('#phone').val(''); 
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
             $("#send").attr("disabled", false);
-            // $('#name').val('');
-            // $('#phone').val(''); 
             alert('很抱歉，查詢失敗!!')
         }
         
