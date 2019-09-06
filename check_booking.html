@@ -76,14 +76,15 @@
                     <table class="table table-striped" style="display: none;">
                         <thead>
                             <tr>
-                                <th>訂位人</th> 
+                                <th>訂位者</th> 
                                 <th>電話</th>
                                 <th>訂位日期</th>
                                 <th>開始時間</th>
                                 <th>成人人數</th>
                                 <th>小孩人數</th>
-                                <th>備註</th>
+                                <th>價格</th>
                                 <th>店名</th>
+                                <th>備註</th>
                                 <th>動作</th>
                             </tr>
                         </thead>
@@ -125,61 +126,30 @@
     <script>
         $(function() {
             $('#send').click(function(e) {
-                var status = true;
                 var userid = $('#userid').val();
-                // var name = $('#name').val();
-                // var phone = $('#phone').val();
-                // var reg_phone = new RegExp(/^09\d{8}$/);
-                // $('input').focus(function() {
-                //     $(this).css('border', '');
-                // });
-                // if (name == '') {
-                //     $('#name').css('border', '1px solid #ff0000');
-                //     alert('請輸入查詢姓名')
-                //     status = false;
-                // }
-                // if (phone == '') {
-                //     $('#phone').css('border', '1px solid #ff0000');
-                //     alert('請輸入查詢電話')
-                //     status = false;
-                // }
-                // else if (reg_phone.test(phone) ==false){
-                //     $('#phone').css('border', '1px solid #ff0000');
-                //     alert('手機號碼格式不正確');
-                //     status = false;
-                // }
-
-                if (status) {
-                    var data = {
-                        'name': userid,
-                        
-                        'action': 'querying'
-                    }
-                    $("#send").attr("disabled", true);
-                    sendQuery(data);
+                var data = {
+                    'name': userid,
+                    
+                    'action': 'querying'
                 }
+                $("#send").attr("disabled", true);
+                sendQuery(data);
             });
         });
 
         function handleData(response) {
             var content = '';
             response.result.sort(function (a, b) {
-                var adate = a[2];
-                var bdate = b[2];
-                var a_stime = a[3];
-                var b_stime = b[3];
-                var a_etime = a[4];
-                var b_etime = b[4];
-                var a_store = a[8];
-                var b_store = b[8];   
+                var adate = a[4];
+                var bdate = b[4];
+                var a_stime = a[5];
+                var b_stime = b[5];
+                var a_store = a[10];
+                var b_store = b[10];   
                 
                 if (a_store === b_store) {
                     if (adate === bdate) {
-                        if (a_stime === b_stime){
-                            return (a_etime - b_etime);
-                        }else{
-                            return (a_stime< b_stime) ? -1 : 1;
-                        }
+                        return (a_stime< b_stime) ? -1 : 1;
 
                     } else {
                         return (adate < bdate) ? -1 : 1;
@@ -191,7 +161,7 @@
             
             response.result.forEach(element => {
 
-                var [name,phone, bk_date, bk_st, adult, children, store, ps, status, index] = element;
+                var [userid,name,gender,phone, bk_date, bk_st,t_session,when, adult, children, store, ps, price,status, index] = element;
             
                 if (bk_st %60 != 0){
                     bk_st = parseInt(bk_st/60).toString()+':'+(bk_st%60).toString()
@@ -199,18 +169,6 @@
                 else{
                     bk_st = (bk_st/60).toString()+':00'
                 }
-                // if(bk_et%60 != 0){
-                //     bk_et = parseInt(bk_et/60).toString()+':'+(bk_et%60).toString()
-                // }  
-                // else{
-                //     bk_et = (bk_et/60).toString()+':00'
-                // }
-                // if(sex == 'M'){
-                //     var gender = '先生'
-                // }
-                // else{
-                //     var gender = '女士'
-                // }
                 content +=
                             `<tr>
                 <td>${name}</td>
@@ -219,11 +177,12 @@
                 <td>${bk_st}</td>
                 <td>${adult}</td>
                 <td>${children}</td>
-                <td>${ps}</td>
+                <td>${price}</td>
                 <td>${store}</td>
-                
+                <td>${ps}</td>
+
                 <td>
-                  <button type="button" onclick="updateStatus('${name}', '${phone}', '${index}','${store}' ,this)" class="btn btn-primary">取消訂單</button>
+                  <button type="button" onclick="updateStatus('${userid}', '${phone}', '${index}','${store}' ,this)" class="btn btn-primary">取消訂單</button>
                 </td>
               </tr>`
         });
@@ -249,21 +208,21 @@
             handleData(response);
           }
           $("#send").attr("disabled", false); 
-          $('#name').val('');
-          $('#phone').val(''); 
+        //   $('#name').val('');
+        //   $('#phone').val(''); 
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
             $("#send").attr("disabled", false);
-            $('#name').val('');
-            $('#phone').val(''); 
+            // $('#name').val('');
+            // $('#phone').val(''); 
             alert('很抱歉，查詢失敗!!')
         }
         
       });
     }
-    function updateStatus(name, phone, index,store, that){
+    function updateStatus(userid, phone, index,store, that){
       var data = {
-        name: name,
+        name: userid,
         phone: phone,
         action: 'del',
         index: index,
