@@ -104,7 +104,7 @@
                     {   
                         var disname = {'name' : profile.displayName};
                         disname_json = JSON.parse(JSON.stringify(disname.name))
-                        $('#userid').val(profile.userId);
+                        $('#userid').val(data.context.userId);
                         $('#img').attr('src',profile.pictureUrl);
                         $('#displayname').html(profile.displayName);
         
