@@ -81,7 +81,6 @@ body, html {height: 100%}
 <!-- Phone -->
 <div  id="memberphone" class="w3-display-container w3-text-white w3-padding"  >
 <div id="form1" class="w3-container w3-white w3-animate-top w3-padding-small">
-
     <font size="4">
     <label><b>綁定手機</b></label>
     <input id="phone" class="w3-input w3-border w3-round-large" type="tel" placeholder="E.g. : 0900123456"  autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
@@ -96,6 +95,7 @@ body, html {height: 100%}
     <font size='4'>
     <button name="phone_button" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right" onclick="nextClick_2()" disabled='disabled'> 下一步 <span class="glyphicon glyphicon-chevron-right"></span> </button>
     </font>
+
   </div>
 </div>
 
@@ -114,8 +114,8 @@ body, html {height: 100%}
 
     <div class="w3-center w3-bar">
         <input id="session" style="display: none" value="">
-        <button type ="button" id="noonTime" name="session" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="中午時段" disabled>中午時段</button>
-        <button type ="button" id="nightTime" name="session" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="晚上時段" disabled>晚上時段</button>
+        <button type ="button" id="noonTime" name="session" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="noonClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="noon" disabled>中午時段</button>
+        <button type ="button" id="nightTime" name="session" class="w3-btn w3-border w3-round-large w3-xlarge" onClick="nightClick('timeForm_1','timeForm_2', 'noonTime', 'nightTime')" value="night" disabled>晚上時段</button>
     </div>
 
 <hr>
@@ -264,8 +264,8 @@ function noonClick(id_1,id_2,id_3,id_4) {
     b.innerHTML = "晚上時段"
     a.classList.add("w3-teal")
     b.classList.remove("w3-teal");
-    document.getElementById('session').value = '中午時段';
-    var noon='中午時段';
+    document.getElementById('session').value = 'noon';
+    var noon='noon';
     var booking_date = $('#date').val();
     data={
       'time_session':noon,
@@ -291,8 +291,8 @@ function nightClick(id_1,id_2,id_3,id_4) {
     a.innerHTML = "中午時段"
     b.classList.add("w3-teal")
     a.classList.remove("w3-teal");
-    document.getElementById('session').value = '晚上時段';
-    var night='晚上時段';
+    document.getElementById('session').value = 'night';
+    var night='night';
     var booking_date = $('#date').val();
     data={
       'time_session':night,
@@ -337,15 +337,12 @@ function psClick(x){
 function nextClick_1(){
     document.getElementById('time').style.display='none';
     document.getElementById('member').style.display='block';
-
 }
-
 
 function nextClick_2(){
     document.getElementById('memberphone').style.display='none';
     document.getElementById('time').style.display='block'
 }
-
 
 function prevClick(){
   document.getElementById('member').style.display='none';
@@ -359,7 +356,7 @@ function prevClick(){
   $(function () {
     $('#date').bootstrapMaterialDatePicker(
         {
-            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(14,'day'), disabledDays: [1], format: 'YYYY/MM/DD dddd'
+            time: false, nowButton:false, clearButton: false, okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(14,'day'), disabledDays: [1], format: 'YYYY/MM/DD dddd'
         });
     });
 </script>
@@ -599,7 +596,6 @@ function prevClick(){
     });
 
     $(function () {
-
       $('#sendbook').click(function (e) {
         var status = true;
         var action = 'booking';
@@ -715,7 +711,7 @@ function prevClick(){
           var number = parseInt(response.result);
           var time_session = response.time_session;
           if (number >=20){
-            if(time_session=='中午時段'){
+            if(time_session=='noon'){
 
               document.getElementById('noon_num').innerHTML=('已額滿');
             }
@@ -724,7 +720,7 @@ function prevClick(){
             }
           }
           else{
-              if(time_session=='中午時段'){
+              if(time_session=='noon'){
 
                 document.getElementById('noon_num').innerHTML=('剩餘'+(20-number)+'人');
               }
