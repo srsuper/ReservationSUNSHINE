@@ -169,7 +169,7 @@ body, html {height: 100%}
         <font size="4">
         <label><i class="fa fa-male"></i> 成人</label>
             <select class="select form-control" type="number" value="" id="adult" required>
-                <option value="" disabled selected>請選擇人數</option>
+                <option value="0" disabled selected>請選擇人數</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -185,7 +185,7 @@ body, html {height: 100%}
         <font size="4">
         <label><i class="fa fa-child"></i> 兒童</label>
           <select class="select form-control" type="number" value="" id="children" required>
-          <option value="" disabled selected>請選擇人數</option>
+          <option value="0" disabled selected>請選擇人數</option>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -666,12 +666,10 @@ function prevClick(){
         //   $('#name').css('border', '1px solid #ff0000');
         //   status = false;
         // }
-        //else if(parseInt(adult)+parseInt(children)==0){
-          //$('#children').css('border', '1px solid #ff0000');
-          //$('#adult').css('border', '1px solid #ff0000');
-          //alert('成人和小孩總數不可以等於0');
-          //status = false;
-        //}
+        else if((parseInt(adult)+parseInt(children))==0){
+          alert('請選擇人數');
+          status = false;
+        }
         // else if (booking_start == '') {
         //   status = false;
         //   alert('請選擇用餐開始時間')
