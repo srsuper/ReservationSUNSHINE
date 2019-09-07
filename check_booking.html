@@ -51,6 +51,70 @@
         .w3-myfont {
         font-family: "Comic Sans MS", cursive, sans-serif;
         }
+
+        @media screen and (max-width: 600px) {
+            table thead {
+                display: none;
+            }
+            table td {
+                display: flex;
+            }
+            
+            td:nth-of-type(1):before {
+                content: '電話';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(2):before {
+                content: '訂位日期';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(3):before {
+                content: '時段';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(4):before {
+                content: '成人';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(5):before {
+                content: '小孩';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(6):before {
+                content: '價位';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(7):before {
+                content: '店名';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(8):before {
+                content: '備註';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+            td:nth-of-type(9):before {
+                content: '';
+                font-weight: bold;
+                width: 120px;
+                min-width: 120px;
+            }
+        }
     </style>
 </head>
     
@@ -63,26 +127,25 @@
                 <!-- profile -->
                 <div class="w3-center w3-animate-top w3-padding-small">
                     <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle" style="width:115px">
-                    <p style="font-size:135%;"><b id="displayname"></b></p><hr>
-                    <input id="userid" style="display: none" value="U5ee811f1f2f899eb66844500ef14a371">
+                    <p style="font-size:135%;"><b id="displayname">James</b></p><hr>
+                    <input id="userid" style="display: none" value="">
                     <font size='4'>
-                    <button id='send' class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 下一步 <span class="glyphicon glyphicon-chevron-right"></span> </button>
+                    <button id='send' class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span class="glyphicon glyphicon-search"></span> </button>
                     </font>
                  </div>
                 
                 
                 
-                <div class="form-group col-xs-12">
-                    <table class="table table-striped" style="display: none;">
+                
+                    <table class="table w3-bordered" style="display: none;">
                         <thead>
                             <tr>
-                                <th>訂位者</th> 
                                 <th>電話</th>
                                 <th>訂位日期</th>
-                                <th>開始時間</th>
-                                <th>成人人數</th>
-                                <th>小孩人數</th>
-                                <th>價格</th>
+                                <th>時段</th>
+                                <th>成人</th>
+                                <th>小孩</th>
+                                <th>價位</th>
                                 <th>店名</th>
                                 <th>備註</th>
                                 <th>動作</th>
@@ -91,8 +154,6 @@
                         <tbody id="dataView">
                         </tbody>
                     </table>
-                </div>
-                <div class="col-xs-12 text-center"><a href=""></a></div>
             </div>
         </div>
     </div>
@@ -121,7 +182,24 @@
 
             });
     </script>
-    
+    <script>
+        
+        
+
+        window.setMobileTable = function(selector) {
+        // if (window.innerWidth > 600) return false;
+        // const tableEl = document.querySelector(selector);
+        // const thEls = tableEl.querySelectorAll('thead th');
+        // const tdLabels = Array.from(thEls).map(el => el.innerText);
+        
+        // tableEl.querySelectorAll('tbody tr').forEach( tr => {
+        //     Array.from(tr.children).forEach( 
+        //     (td, ndx) =>  td.setAttribute('label', tdLabels[ndx])
+        //     );
+        // });
+        }
+        setMobileTable('table');
+    </script>
     
     <script>
         $(function() {
@@ -129,7 +207,6 @@
                 var userid = $('#userid').val();
                 var data = {
                     'userid': userid,
-                    
                     'action': 'querying'
                 }
                 $("#send").attr("disabled", true);
@@ -171,7 +248,6 @@
                 }
                 content +=
                             `<tr>
-                <td>${name}</td>
                 <td>${phone}</td>
                 <td>${bk_date}</td>
                 <td>${bk_st}</td>
@@ -187,7 +263,7 @@
               </tr>`
         });
         if (content) {
-          document.getElementsByClassName('table-striped')[0].style.display = 'table'; 
+          document.getElementsByClassName('w3-bordered')[0].style.display = 'table'; 
         } else {
           alert('查無資料');
         }
