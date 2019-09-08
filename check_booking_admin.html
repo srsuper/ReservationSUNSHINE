@@ -14,7 +14,8 @@
 
     <!-- Bootstrap core JavaScript and jquery-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <!--影響 Close < > 的切換icon-->
@@ -31,13 +32,16 @@
     <!--引用plugin的js----------------->
     <script src="js/bootstrap-material-datetimepicker.js"></script>
 
+    <!-- Line LIFF ------------------>
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+
     <style>
-        .dtp-buttons > button.btn {
+        .dtp-buttons>button.btn {
             border: none;
             border-radius: 15px;
             position: relative;
             box-shadow: none;
-            color: rgba(0,0,0, 0.87);
+            color: rgba(0, 0, 0, 0.87);
             padding: 5px 40px;
             font-size: 20px;
             margin: 5px 5px;
@@ -51,25 +55,28 @@
             text-decoration: none;
             background: transparent;
         }
-            .dtp-buttons > button.btn:hover,
-            .dtp-buttons > button.btn:focus {
-                background-color: rgba(153, 153, 153, 0.2);
-            }
-            /*我自己多寫這個*/
-         /* .dtp-picker-calendar > table {
+
+        .dtp-buttons>button.btn:hover,
+        .dtp-buttons>button.btn:focus {
+            background-color: rgba(153, 153, 153, 0.2);
+        }
+
+        /*我自己多寫這個*/
+        /* .dtp-picker-calendar > table {
             width: 100%;
         } */
     </style>
 
-<style>
+    <style>
         .w3-myfont {
-        font-family: "Comic Sans MS", cursive, sans-serif;
+            font-family: "Comic Sans MS", cursive, sans-serif;
         }
 
         @media screen and (max-width: 600px) {
             .w3-bordered thead {
                 display: none;
             }
+
             .w3-bordered td {
                 display: flex;
             }
@@ -80,63 +87,68 @@
                 width: 120px;
                 min-width: 120px;
             }
-    
+
         }
-</style>
+    </style>
 </head>
 
 <body>
 
-<!-- Page Content -->
-<div class="container">
+    <!-- Page Content -->
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <!-- profile -->
                 <div class="w3-center w3-animate-top w3-padding-small">
-                    <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle" style="width:115px">
-                    <p style="font-size:135%;"><b id="displayname">管理員訂位查詢</b></p><hr>
+                    <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle"
+                        style="width:115px">
+                    <p style="font-size:135%;"><b>管理員:</b><b id="displayname"></b></p>
+                    <hr>
                 </div>
 
                 <div>
                     <font size="4">
-                         <label><span class="glyphicon glyphicon-cutlery"></i> <b>店家</b></label>
-                             <select id="store_name" class="w3-input w3-border w3-round-large" value="" required>
-                                    <option style="display:none" value="">請選擇店家</option>
-                                    <option value="總店">總店</option>
-                            </select>
+                        <label><span class="glyphicon glyphicon-cutlery"></i> <b>店家</b></label>
+                        <select id="store_name" class="w3-input w3-border w3-round-large" value="" required>
+                            <option style="display:none" value="">請選擇店家</option>
+                            <option value="總店">總店</option>
+                        </select>
                     </font>
                     <br>
                     <font size="4">
-                            <label><span class="glyphicon glyphicon-calendar"></i> <b>日期</b></label>
-                                <input class="w3-input w3-border w3-round-large" id="date" type="text" value="" placeholder="請選擇日期" required>
+                        <label><span class="glyphicon glyphicon-calendar"></i> <b>日期</b></label>
+                        <input class="w3-input w3-border w3-round-large" id="date" type="text" value=""
+                            placeholder="請選擇日期" required>
                     </font>
 
                     <font size='4'>
-                    <button id='send' class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span class="glyphicon glyphicon-search"></span> </button>
+                        <button id='send'
+                            class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
+                                class="glyphicon glyphicon-search"></span> </button>
                     </font>
                 </div>
-                
-                
-                
-                
-                    <table class="table w3-bordered" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>姓名</th>
-                                <th>電話</th>
-                                <th>訂位日期</th>
-                                <th>時段</th>
-                                <th>成人</th>
-                                <th>小孩</th>
-                                <th>價位</th>
-                                <th>店名</th>
-                                <th>備註</th>
-                                <th>動作</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dataView">
-                        </tbody>
-                    </table>
+
+
+
+
+                <table class="table w3-bordered" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>電話</th>
+                            <th>訂位日期</th>
+                            <th>時段</th>
+                            <th>成人</th>
+                            <th>小孩</th>
+                            <th>價位</th>
+                            <th>店名</th>
+                            <th>備註</th>
+                            <th>動作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataView">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -198,30 +210,35 @@
 
 
 
-    
+
     <script>
-            window.setMobileTable = function(selector) {
-            // if (window.innerWidth > 600) return false;
-            // const tableEl = document.querySelector(selector);
-            // const thEls = tableEl.querySelectorAll('thead th');
-            // const tdLabels = Array.from(thEls).map(el => el.innerText);
-            
-            // tableEl.querySelectorAll('tbody tr').forEach( tr => {
-            //     Array.from(tr.children).forEach( 
-            //     (td, ndx) =>  td.setAttribute('label', tdLabels[ndx])
-            //     );
-            // });
-            }
-            setMobileTable('table');
-        </script>
+        function initializeApp(data) {
+            liff.getProfile().then(profile => {
+                $('#img').attr('src', profile.pictureUrl);
+                $('#displayname').html(profile.displayName);
+
+            })
+        }
+        //ready
+        $(function () {
+            //init LIFF
+            liff.init(function (data) {
+                initializeApp(data);
+            });
+        })
+    </script>
 
 
     <!--datetimepicker of parameter--->
     <script type="text/javascript">
         $(function () {
-        $('#date').bootstrapMaterialDatePicker(
-            {
-                time: false, nowButton:false, clearButton: false, okText: '確認', cancelText: '取消', format: 'YYYY/MM/DD dddd'
+            $('#date').bootstrapMaterialDatePicker({
+                time: false,
+                nowButton: false,
+                clearButton: false,
+                okText: '確認',
+                cancelText: '取消',
+                format: 'YYYY/MM/DD dddd'
             });
         });
     </script>
@@ -253,8 +270,7 @@
                     $('#store_name').css('border', '1px solid #ff0000');
                     alert('請選擇訂位的店家喔');
                     status = false;
-                }
-                else if (date == '') {
+                } else if (date == '') {
                     $('#datepicker').css('border', '1px solid #ff0000');
                     status = false;
                     alert('請選擇訂位的日期');
@@ -266,7 +282,7 @@
                         'booking_date': date,
                         'action': 'querying_boss'
                     }
-                    
+
                     $("#send").attr("disabled", true);
                     sendQuery(data);
                 }
@@ -283,13 +299,13 @@
                 var a_etime = a[4];
                 var b_etime = b[4];
                 var a_store = a[8];
-                var b_store = b[8];   
+                var b_store = b[8];
                 if (a_store === b_store) {
                     if (adate === bdate) {
-                        if (a_stime === b_stime){
+                        if (a_stime === b_stime) {
                             return (a_etime < b_etime) ? -1 : (a_etime > b_etime) ? 1 : 0;
-                        }else{
-                            return (a_stime< b_stime) ? -1 : 1;
+                        } else {
+                            return (a_stime < b_stime) ? -1 : 1;
                         }
 
                     } else {
@@ -301,13 +317,14 @@
             });
             response.result.forEach(element => {
 
-                var [userid, name, gender, phone, bk_date, bk_st, t_session, when, adult, children, store, ps, price,status, index] = element;
+                var [userid, name, gender, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
+                    price, status, index
+                ] = element;
 
-                if (bk_st %60 != 0){
-                    bk_st = parseInt(bk_st/60).toString()+':'+(bk_st%60).toString()
-                }
-                else{
-                    bk_st = (bk_st/60).toString()+':00'
+                if (bk_st % 60 != 0) {
+                    bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
+                } else {
+                    bk_st = (bk_st / 60).toString() + ':00'
                 }
                 // if(sex == 'M'){
                 //     var gender = '先生'
@@ -348,8 +365,7 @@
                 success: function (response) {
                     if (response.result == 'error') {
                         alert("資料不存在，請確認輸入資料是否正確")
-                    }
-                    else {
+                    } else {
                         handleData(response);
                     }
                     $("#send").attr("disabled", false);
@@ -365,6 +381,7 @@
 
             });
         }
+
         function updateStatus(name, phone, index, store, that) {
             var data = {
                 name: name,
@@ -380,8 +397,8 @@
                 success: function (response) {
                     if (response.result === 'success') {
                         var i = that.parentNode.parentNode.rowIndex;
-                        document.getElementById("dataView").deleteRow(parseInt(i)-1);
-                        
+                        document.getElementById("dataView").deleteRow(parseInt(i) - 1);
+
                         alert('更新成功! ')
 
                     } else {
