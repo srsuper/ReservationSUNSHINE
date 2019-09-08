@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 
@@ -17,193 +16,107 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+
     <style>
-        body {
-            padding-top: 54px;
-        }
-        
-        .form-group {
-            text-align: left;
-        }
-        
-        img.img-responsive {
-            height: 400px;
-        }
-        
-        @media (min-width: 992px) {
-            body {
-                padding-top: 56px;
-            }
-        }
-        
-        @media (max-width: 980px) {
-            img.img-responsive {
-                height: 250px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            img.img-responsive {
-                height: 100px;
-            }
-        }
+
         .w3-myfont {
-        font-family: "Comic Sans MS", cursive, sans-serif;
+            font-family: "Comic Sans MS", cursive, sans-serif;
         }
 
         @media screen and (max-width: 600px) {
             table thead {
                 display: none;
             }
+
             table td {
                 display: flex;
             }
-            
-            td:nth-of-type(1):before {
-                content: '電話';
+
+            table td::before {
+                content: attr(label);
                 font-weight: bold;
                 width: 120px;
                 min-width: 120px;
             }
-            td:nth-of-type(2):before {
-                content: '訂位日期';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(3):before {
-                content: '時段';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(4):before {
-                content: '成人';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(5):before {
-                content: '小孩';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(6):before {
-                content: '價位';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(7):before {
-                content: '店名';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(8):before {
-                content: '備註';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
-            td:nth-of-type(9):before {
-                content: '';
-                font-weight: bold;
-                width: 120px;
-                min-width: 120px;
-            }
+        
         }
     </style>
 </head>
-    
+
 <body>
-    
-<!-- Page Content -->
+
+    <!-- Page Content -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- profile -->
                 <div class="w3-center w3-animate-top w3-padding-small">
-                    <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle" style="width:115px">
-                    <p style="font-size:135%;"><b id="displayname">James</b></p><hr>
-                    <input id="userid" style="display: none" value="">
+                    <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle"
+                        style="width:115px">
+                    <p style="font-size:135%;"><b id="displayname">James</b></p>
+                    <hr>
+                    <input id="userid" style="display: none" value="U5ee811f1f2f899eb66844500ef14a371">
                     <font size='4'>
-                    <button id='send' class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span class="glyphicon glyphicon-search"></span> </button>
+                        <button id='send'
+                            class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
+                                class="glyphicon glyphicon-search"></span> </button>
                     </font>
-                 </div>
-                
-                
-                
-                
-                    <table class="table w3-bordered" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>電話</th>
-                                <th>訂位日期</th>
-                                <th>時段</th>
-                                <th>成人</th>
-                                <th>小孩</th>
-                                <th>價位</th>
-                                <th>店名</th>
-                                <th>備註</th>
-                                <th>動作</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dataView">
-                        </tbody>
-                    </table>
+                </div>
+
+
+
+
+                <table class="table w3-bordered" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>電話</th>
+                            <th>訂位日期</th>
+                            <th>時段</th>
+                            <th>成人</th>
+                            <th>小孩</th>
+                            <th>價位</th>
+                            <th>店名</th>
+                            <th>備註</th>
+                            <th>動作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataView">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    
+
     <!-- script  Line jquery-->
     <script>
-            function initializeApp(data) {
-                liff.getProfile().then(profile =>
-                    {   
-                        var disname = {'name' : profile.displayName};
-                        disname_json = JSON.parse(JSON.stringify(disname.name))
-                        $('#userid').val(data.context.userId);
-                        $('#img').attr('src',profile.pictureUrl);
-                        $('#displayname').html(profile.displayName);
-        
-                        }
-                    )
-                }
-            //ready
-            $(function () {
-                //init LIFF
-                liff.init(function(data) {
-                    initializeApp(data);
-                });
+        function initializeApp(data) {
+            liff.getProfile().then(profile => {
+                var disname = {
+                    'name': profile.displayName
+                };
+                disname_json = JSON.parse(JSON.stringify(disname.name))
+                $('#userid').val(data.context.userId);
+                $('#img').attr('src', profile.pictureUrl);
+                $('#displayname').html(profile.displayName);
 
-
-            });
-    </script>
-    <script>
-        
-        
-
-        window.setMobileTable = function(selector) {
-        // if (window.innerWidth > 600) return false;
-        // const tableEl = document.querySelector(selector);
-        // const thEls = tableEl.querySelectorAll('thead th');
-        // const tdLabels = Array.from(thEls).map(el => el.innerText);
-        
-        // tableEl.querySelectorAll('tbody tr').forEach( tr => {
-        //     Array.from(tr.children).forEach( 
-        //     (td, ndx) =>  td.setAttribute('label', tdLabels[ndx])
-        //     );
-        // });
+            })
         }
-        setMobileTable('table');
+        //ready
+        $(function () {
+            //init LIFF
+            liff.init(function (data) {
+                initializeApp(data);
+            });
+
+
+        });
     </script>
-    
+
+
+
     <script>
-        $(function() {
-            $('#send').click(function(e) {
+        $(function () {
+            $('#send').click(function (e) {
                 var userid = $('#userid').val();
                 var data = {
                     'userid': userid,
@@ -222,11 +135,11 @@
                 var a_stime = a[5];
                 var b_stime = b[5];
                 var a_store = a[10];
-                var b_store = b[10];   
-                
+                var b_store = b[10];
+
                 if (a_store === b_store) {
                     if (adate === bdate) {
-                        return (a_stime< b_stime) ? -1 : 1;
+                        return (a_stime < b_stime) ? -1 : 1;
 
                     } else {
                         return (adate < bdate) ? -1 : 1;
@@ -235,90 +148,91 @@
                     return (a_store < b_store) ? -1 : 1;
                 }
             });
-            
+
             response.result.forEach(element => {
 
-                var [userid,name,gender,phone, bk_date, bk_st,t_session,when, adult, children, store, ps, price,status, index] = element;
-            
-                if (bk_st %60 != 0){
-                    bk_st = parseInt(bk_st/60).toString()+':'+(bk_st%60).toString()
-                }
-                else{
-                    bk_st = (bk_st/60).toString()+':00'
+                var [userid, name, gender, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
+                    price, status, index
+                ] = element;
+
+                if (bk_st % 60 != 0) {
+                    bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
+                } else {
+                    bk_st = (bk_st / 60).toString() + ':00'
                 }
                 content +=
-                            `<tr>
-                <td>${phone}</td>
-                <td>${bk_date}</td>
-                <td>${bk_st}</td>
-                <td>${adult}</td>
-                <td>${children}</td>
-                <td>${price}</td>
-                <td>${store}</td>
-                <td>${ps}</td>
+                    `<tr>
+                <td label='電話'>${phone}</td>
+                <td label='訂位日期'>${bk_date}</td>
+                <td label='時段'>${bk_st}</td>
+                <td label='成人'>${adult}</td>
+                <td label='小孩'>${children}</td>
+                <td label='價格'>${price}</td>
+                <td label='店家'>${store}</td>
+                <td label=' 備註'>${ps}</td>
 
                 <td>
                   <button type="button" onclick="updateStatus('${userid}' ,'${index}' ,this)" class="btn btn-primary">取消訂單</button>
                 </td>
               </tr>`
-        });
-        if (content) {
-          document.getElementsByClassName('w3-bordered')[0].style.display = 'table'; 
-        } else {
-          alert('查無資料');
+            });
+            if (content) {
+                document.getElementsByClassName('w3-bordered')[0].style.display = 'table';
+            } else {
+                alert('查無資料');
+            }
+            var dataView = document.getElementById('dataView');
+            dataView.innerHTML = content;
         }
-        var dataView = document.getElementById('dataView');
-        dataView.innerHTML = content;
-    }
 
-    function sendQuery(data){
-      $.ajax({
-        type: "post",
-        url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
-        data: data,
-        success: function (response) {
-          if (response.result == 'error'){
-             alert("資料不存在，請確認輸入資料是否正確")
-          }
-          else {
-            handleData(response);
-          }
-          $("#send").attr("disabled", false); 
-        },
-        error : function(XMLHttpRequest, textStatus, errorThrown){
-            $("#send").attr("disabled", false);
-            alert('很抱歉，查詢失敗!!')
+        function sendQuery(data) {
+            $.ajax({
+                type: "post",
+                url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
+                data: data,
+                success: function (response) {
+                    if (response.result == 'error') {
+                        alert("資料不存在，請確認輸入資料是否正確")
+                    } else {
+                        handleData(response);
+                    }
+                    $("#send").attr("disabled", false);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $("#send").attr("disabled", false);
+                    alert('很抱歉，查詢失敗!!')
+                }
+
+            });
         }
-        
-      });
-    }
-    function updateStatus(userid, index, that){
-      var data = {
-        'userid': userid,
-        'action': 'del',
-        'index': index,
-      };
-      $.ajax({
-        type: "post",
-        url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
-        data: data,
-        success: function (response) {
-          if(response.result === 'success'){
-            var i = that.parentNode.parentNode.rowIndex;
-            document.getElementById("dataView").deleteRow(parseInt(i)-1);
-            alert('更新成功! ')
-            
-          } else {
-            alert('更新失敗！');
-          }
-          $("#send").attr("disabled", false); 
-        },
-        error : function(XMLHttpRequest, textStatus, errorThrown){
-            alert('很抱歉，更新失敗!!')
-            $("#send").attr("disabled", false); 
+
+        function updateStatus(userid, index, that) {
+            var data = {
+                'userid': userid,
+                'action': 'del',
+                'index': index,
+            };
+            $.ajax({
+                type: "post",
+                url: "https://script.google.com/macros/s/AKfycbz4QU7y1coY0DPM8sBFumKxKabm7xOVtIxE0Lzt4IMz-qTmH6w/exec",
+                data: data,
+                success: function (response) {
+                    if (response.result === 'success') {
+                        var i = that.parentNode.parentNode.rowIndex;
+                        document.getElementById("dataView").deleteRow(parseInt(i) - 1);
+                        alert('更新成功! ')
+
+                    } else {
+                        alert('更新失敗！');
+                    }
+                    $("#send").attr("disabled", false);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('很抱歉，更新失敗!!')
+                    $("#send").attr("disabled", false);
+                }
+            });
         }
-      });
-    }
     </script>
 </body>
 
