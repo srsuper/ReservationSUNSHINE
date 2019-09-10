@@ -96,18 +96,18 @@
 </style>
 
 
-<body>
+<body onload="checkmember()">
   <!-- profile -->
-  <div class="w3-center w3-animate-top w3-padding-small" onload="checkmember()">
+  <div class="w3-center w3-animate-top w3-padding-small" >
     <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle"
-      style="width:115px">
+      style="width:115px" >
     <p style="font-size:135%;"><b id="displayname"></b></p>
     <hr>
     <input id="userid" style="display: none" value="U5ee811f1f2f899eb66844500ef14a371">
   </div>
 
   <!-- Name & Phone -->
-  <div id="memberform" class="w3-display-container w3-text-white w3-padding">
+  <div id="memberform" class="w3-display-container w3-text-white w3-padding" >
     <div class="w3-container w3-white w3-animate-top w3-padding-small">
       <font size="4">
         <label><b>姓名</b></label>
@@ -833,14 +833,14 @@
         success: function (response) {
           var number = parseInt(response.result);
           var time_session = response.time_session;
-          var userid = 'U5ee811f1f2f899eb66844500ef14a371';
-          var phone = '0900123123';
-          console.log(phone)
+          // var userid = 'U5ee811f1f2f899eb66844500ef14a371';
+          // var phone = '0900123123';
+          // console.log(phone)
 
-          if (userid == $('#userid').val() && phone != '') {
-            document.getElementById('memberform').style.display = 'none';
-            document.getElementById('time').style.display = 'block'
-          }
+          // if (userid == $('#userid').val() && phone != '') {
+          //   document.getElementById('memberform').style.display = 'none';
+          //   document.getElementById('time').style.display = 'block'
+          // }
 
           if (number >= 20) {
             if (time_session == 'noon') {
