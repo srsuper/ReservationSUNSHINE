@@ -96,18 +96,20 @@
 </style>
 
 
-<body onload="checkmember()">
+<body>
   <!-- profile -->
-  <div class="w3-center w3-animate-top w3-padding-small" >
+  <div class="w3-center w3-animate-top w3-padding-small">
     <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle"
-      style="width:115px" >
+      style="width:115px">
     <p style="font-size:135%;"><b id="displayname"></b></p>
     <hr>
     <input id="userid" style="display: none" value="">
   </div>
 
+  <div id='spinner' class="w3-center"><img src="images/spinner.svg" /></div>
+
   <!-- Name & Phone -->
-  <div id="memberform" class="w3-display-container w3-text-white w3-padding" >
+  <div id="memberform" class="w3-display-container w3-text-white w3-padding" style="display: none">
     <div class="w3-container w3-white w3-animate-top w3-padding-small">
       <font size="4">
         <label><b>姓名</b></label>
@@ -129,7 +131,8 @@
 
       <font size='4'>
         <button name="phone_button" class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"
-          onclick="nextClick_2()" disabled='disabled'> 建立會員並下一步訂位 <span class="glyphicon glyphicon-chevron-right"></span>
+          onclick="nextClick_2()" disabled='disabled'> 建立會員並下一步訂位 <span
+            class="glyphicon glyphicon-chevron-right"></span>
         </button>
       </font>
 
@@ -146,7 +149,7 @@
         <label><i class="fa fa-calendar"></i> 日期</label>
         <input class="w3-input w3-border w3-round-large" id="date" type="text" value="" placeholder="請選擇日期" required>
       </font>
-      <p>每週一公休，只接受包場（Kevin賴 : <a href="tel:0936336233">0936-336233</a>）</p>
+      <p>每週一公休(只接受包場) 包場專線 : <a href="tel:0936336233">0936-336233</a></p>
       <br>
 
 
@@ -163,7 +166,7 @@
       <!----早上時段----->
       <div style="display:none" id="timeForm_1">
         <div id="start" class="w3-center w3-bar">
-          <p id="noon_num"></p><br>
+          <p id="noon_num" style="font-size:15pt;"></p><br>
           <button type="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge"
             onClick="timeClick(this)" value="11" disabled>11:00</button>
           <button type="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge"
@@ -188,7 +191,7 @@
       <!----晚上時段----->
       <div style="display:none" id="timeForm_2">
         <div id="start" class="w3-center w3-bar">
-          <p id="night_num"></p><br>
+          <p id="night_num" style="font-size:15pt;"></p><br>
           <button type="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge"
             onClick="timeClick(this)" value="17" disabled>17:00</button>
           <button type="button" name="startTime" class="w3-btn w3-border w3-round-large w3-xlarge"
@@ -232,7 +235,7 @@
         <div class="left-half" style="width:100%;">
           <font size="4">
             <label><i class="fa fa-male"></i> 成人</label>
-            <select class="select form-control" type="number" value="" id="adult" required>
+            <select class="select form-control" style='font-size:18px; height:40px;' type="number" value="" id="adult" required>
               <!-- <option value="" selected disabled hidden>請選擇人數</option> -->
               <option value="1">1 大</option>
               <option value="2" selected>2 大</option>
@@ -259,7 +262,7 @@
         <div class="right-half" style="width:100%;">
           <font size="4">
             <label><i class="fa fa-child"></i> 兒童</label>
-            <select class="select form-control" type="number" value="" id="children" required>
+            <select class="select form-control" style='font-size:18px; height:40px;' type="number" value="" id="children" required>
               <!-- <option value="0" selected disabled hidden>請選擇人數</option> -->
               <option value="0" selected>0 小</option>
               <option value="1">1 小</option>
@@ -324,14 +327,24 @@
 
   <!--script function -->
   <script>
-    function checkmember() {
+    setTimeout(function checkmember() {
       var userid = $('#userid').val();
-      data ={
-        'userid':userid,
-        'action':'checkmember'
+      data = {
+        'userid': userid,
+        'action': 'checkmember'
       }
       query_member(data)
-    }
+    }, 300)
+    // function checkmember() {
+
+    //   alert('fuck')
+    //   var userid = $('#userid').val();
+    //   data ={
+    //     'userid':userid,
+    //     'action':'checkmember'
+    //   }
+    //   query_member(data)
+    // }
 
     function priceClick(x) {
       var k = document.getElementsByName("price")
@@ -423,7 +436,8 @@
 
       if (document.getElementById('noon_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
         $("#entire1").attr("disabled", false);
-      } else if (document.getElementById('night_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
+      }
+      if (document.getElementById('night_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
         $("#entire2").attr("disabled", false);
       }
     }
@@ -497,7 +511,8 @@
           'name': profile.displayName
         };
         disname_json = JSON.parse(JSON.stringify(disname.name))
-        $('#userid').val(data.context.userId);
+        $('#userid').val(data.context.userId); //
+
         $('#img').attr('src', profile.pictureUrl);
         $('#displayname').html(profile.displayName);
 
@@ -654,7 +669,7 @@
                   "type": "button",
                   "action": {
                     "type": "uri",
-                    "label": "變更/取消訂位",
+                    "label": "查詢/取消訂位",
                     "uri": "line://app/1577114898-D5d8edOv"
                   },
                   "color": "#2C9278",
@@ -681,6 +696,7 @@
   <!--script jquery -->
   <script>
     $(document).ready(function () {
+
       //if phonenumber is not correct, then show the alert message and clean phone value.
       $('#phone').change(function () {
         var phone = $('#phone').val();
@@ -790,7 +806,7 @@
         //   $('#name').css('border', '1px solid #ff0000');
         //   status = false;
         // }
-        else if((parseInt(adult)+parseInt(children))==0){
+        else if ((parseInt(adult) + parseInt(children)) == 0) {
           alert('請選擇人數');
           status = false;
         }
@@ -876,11 +892,15 @@
         success: function (response) {
           var userid = response.userid;
           var phone = response.phone;
-          
+
 
           if (userid == $('#userid').val() && phone != '') {
             document.getElementById('memberform').style.display = 'none';
             document.getElementById('time').style.display = 'block'
+            document.getElementById('spinner').style.display = 'none'
+          } else {
+            document.getElementById('memberform').style.display = 'block';
+            document.getElementById('spinner').style.display = 'none'
           }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
