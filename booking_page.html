@@ -325,11 +325,13 @@
   <!--script function -->
   <script>
     function checkmember() {
+      
       var userid = $('#userid').val();
       data ={
         'userid':userid,
         'action':'checkmember'
       }
+
       query_member(data)
     }
 
