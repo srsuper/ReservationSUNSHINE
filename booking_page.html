@@ -859,6 +859,8 @@
         success: function (response) {
           var number = parseInt(response.result);
           var time_session = response.time_session;
+          var entire_time = response.entire_time;
+
           // var userid = 'U5ee811f1f2f899eb66844500ef14a371';
           // var phone = '0900123123';
           // console.log(phone)
@@ -887,10 +889,10 @@
             }
           }
 
-          if (time_session == 'noon') {
+          if (time_session == 'noon' && entire_time == 'TRUE') {
             document.getElementById('noon_num').innerHTML = ('已額滿');
             $("button[name='startTime']").attr("disabled", true);
-          } else if (time_session == 'night') {
+          } else if (time_session == 'night' && entire_time == 'TRUE') {
             document.getElementById('night_num').innerHTML = ('已額滿');
             $("button[name='startTime']").attr("disabled", true);
           }
