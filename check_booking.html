@@ -149,7 +149,7 @@
             response.result.forEach(element => {
 
                 var [userid, name, gender, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
-                    price, status, index
+                    price, status, index, entire_time
                 ] = element;
 
                 if (t_session == 'noon') {
@@ -158,7 +158,7 @@
                     var session = '晚餐'
                 }
 
-                if (t_session != 'noon' && t_session != 'night') {
+                if (entire_time == 'TRUE') {
                     var entire = '(包場)'
                 }else {
                     var entire = ''
