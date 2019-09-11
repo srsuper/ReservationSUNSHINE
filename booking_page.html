@@ -38,9 +38,10 @@
 
 
 <style type="text/css">
-  .dtp-picker-days{
-    font-size:10px
+  table.dtp-picker-days {
+    font-size: 17.5px;
   }
+
   .dtp-buttons>button.btn {
     border: none;
     border-radius: 15px;
@@ -186,7 +187,7 @@
             onClick="timeClick(this)" value="13.5" disabled>13:30</button>
           <br>
           <button type="button" id="entire1" name="entireTime" style="width:55%;"
-            class="w3-btn w3-border w3-round-large w3-xlarge" onClick="entire_timeClick(this)" value="🔺"
+            class="w3-btn w3-border w3-round-large w3-xlarge" onClick="entire_timeClick(this)" value="true"
             disabled>包場</button>
         </div>
       </div>
@@ -211,7 +212,7 @@
             onClick="timeClick(this)" value="19.5" disabled>19:30</button>
           <br>
           <button type="button" id="entire2" name="entireTime" style="width:55%;"
-            class="w3-btn w3-border w3-round-large w3-xlarge" onClick="entire_timeClick(this)" value="🔺"
+            class="w3-btn w3-border w3-round-large w3-xlarge" onClick="entire_timeClick(this)" value="true"
             disabled>包場</button>
         </div>
       </div>
@@ -485,6 +486,7 @@
   <script type="text/javascript">
     $(function () {
       $('#date').bootstrapMaterialDatePicker({
+        lang: 'zh-tw',
         time: false,
         nowButton: false,
         clearButton: false,
@@ -492,7 +494,7 @@
         cancelText: '取消',
         minDate: moment().add(3, 'day'),
         disabledDays: [1],
-        format: 'YYYY/MM/DD dddd'
+        format: 'YYYY/MM/DD (dd)'
       });
     });
   </script>
@@ -534,7 +536,7 @@
         }
         //entire_time
         if (entire != '') {
-          entire = '(包場)'
+          var entire_line = '(包場)'
         }
         //ps
         if ($('#ps').val() + $('#otherps').val() == "") {
@@ -626,7 +628,7 @@
                           {
                             "type": "text",
                             "text": $("#date").val() + "\n" + "⏱用餐時間： " + session + ' ' + start +
-                              entire,
+                              entire_line,
                             "flex": 5,
                             "size": "sm",
                             "color": "#666666",
@@ -770,6 +772,9 @@
         // 電話(除錯)
         var reg_phone = new RegExp(/^09\d{8}$/);
 
+        if (entire == '') {
+          entire = 'false';
+        }
         // if ($('#male').is(':checked')){
         //   var gender = $('#male').val();
         // }
@@ -829,12 +834,13 @@
             'phone': phone,
             'booking_date': booking_date,
             'booking_start_time': booking_start,
-            'time_session': time_session + entire,
+            'time_session': time_session,
             'store': store,
             'adult': adult,
             'children': children,
             'price': price,
             'ps': ps,
+            'entire_time': entire,
             'action': action,
           }
 
@@ -915,7 +921,7 @@
             document.getElementById('time').style.display = 'block';
             document.getElementById('spinner').style.display = 'none';
             $('#phone').val(phone);
-            $('#username').val(name + disname_json);
+            $('#username').val(name);
           } else {
             document.getElementById('memberform').style.display = 'block';
             document.getElementById('spinner').style.display = 'none';
