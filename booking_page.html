@@ -777,55 +777,11 @@
         if (entire == '') {
           entire = 'false';
         }
-        // if ($('#male').is(':checked')){
-        //   var gender = $('#male').val();
-        // }
-        // else {
-        //   var gender = $('#female').val();
-        // }
 
-        // if (adult == '') {
-        //   $('#adult').css('border', '1px solid #ff0000');
-        //   alert('請選擇成人訂位的人數喔');
-        //   status = false;
-        // } 
-        // else if (children == '') {
-        //   $('#children').css('border', '1px solid #ff0000');
-        //   alert('請選擇小孩訂位的人數喔');
-        //   status = false;
-        // } 
-        // else if (phone == '') {
-        //   $('#phone').css('border', '1px solid #ff0000');
-        //   alert('請輸入電話號碼');
-        //   status = false;
-        // } else if (reg_phone.test(phone) == false) {
-        //   $('#phone').css('border', '1px solid #ff0000');
-        //   alert('手機號碼格式不正確!!');
-        //   status = false;
-        // }
-        // if (store == '') {
-        //   $('#store_name').css('border', '1px solid #ff0000');
-        //   alert('請選擇訂位的店家喔');
-        //   status = false;
-        // }
-        // else if (booking_date == '') {
-        //   $('#date').css('border', '1px solid #ff0000');
-        //   status = false;
-        //   alert('請選擇訂位的日期');
-        // }
-        // else if (name == '') {
-        //   alert('請輸入姓名');
-        //   $('#name').css('border', '1px solid #ff0000');
-        //   status = false;
-        // }
-        // else if ((parseInt(adult) + parseInt(children)) == 0) {
-        //   alert('請選擇人數');
-        //   status = false;
-        // }
-        // else if (booking_start == '') {
-        //   status = false;
-        //   alert('請選擇用餐開始時間')
-        // }
+        if (price == '') {
+          alert('請選擇價位！');
+          status = false;
+        } 
 
         if (status) {
 
