@@ -151,19 +151,19 @@
                 var [userid, name, gender, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
                     price, status, index, entire_time
                 ] = element;
-
+                
                 if (t_session == 'noon') {
                     var session = '午餐'
                 }else{
                     var session = '晚餐'
                 }
 
-                if (entire_time == 'TRUE') {
+                if (entire_time == true) {
                     var entire = '(包場)'
                 }else {
                     var entire = ''
                 }
-
+                
                 if (bk_st % 60 != 0) {
                     bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
                 } else {
