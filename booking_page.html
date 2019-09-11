@@ -38,6 +38,9 @@
 
 
 <style type="text/css">
+  .dtp-picker-days{
+    font-size:10px
+  }
   .dtp-buttons>button.btn {
     border: none;
     border-radius: 15px;
@@ -235,7 +238,8 @@
         <div class="left-half" style="width:100%;">
           <font size="4">
             <label><i class="fa fa-male"></i> 成人</label>
-            <select class="select form-control" style='font-size:18px; height:40px;' type="number" value="" id="adult" required>
+            <select class="select form-control" style='font-size:18px; height:40px;' type="number" value="" id="adult"
+              required>
               <!-- <option value="" selected disabled hidden>請選擇人數</option> -->
               <option value="1">1 大</option>
               <option value="2" selected>2 大</option>
@@ -262,7 +266,8 @@
         <div class="right-half" style="width:100%;">
           <font size="4">
             <label><i class="fa fa-child"></i> 兒童</label>
-            <select class="select form-control" style='font-size:18px; height:40px;' type="number" value="" id="children" required>
+            <select class="select form-control" style='font-size:18px; height:40px;' type="number" value=""
+              id="children" required>
               <!-- <option value="0" selected disabled hidden>請選擇人數</option> -->
               <option value="0" selected>0 小</option>
               <option value="1">1 小</option>
@@ -335,17 +340,7 @@
       }
 
       query_member(data)
-    }, 300)
-    // function checkmember() {
-
-    //   alert('fuck')
-    //   var userid = $('#userid').val();
-    //   data ={
-    //     'userid':userid,
-    //     'action':'checkmember'
-    //   }
-    //   query_member(data)
-    // }
+    }, 1000)
 
     function priceClick(x) {
       var k = document.getElementsByName("price")
@@ -496,7 +491,6 @@
         okText: '確認',
         cancelText: '取消',
         minDate: moment().add(3, 'day'),
-
         disabledDays: [1],
         format: 'YYYY/MM/DD dddd'
       });
@@ -530,26 +524,29 @@
         var start = parseFloat($("#start").val());
         var entire = $('#entiretime').val();
         var username = $('#username').val();
-
+        var time_session = $('#session').val();
+        //time
         if (start - parseInt($("#start").val()) === 0) {
           start = $("#start").val() + ":00";
         } else {
           start = parseInt($("#start").val()).toString() + ':' + ((start - parseInt($("#start").val())) * 60)
             .toString();
         }
-
+        //entire_time
         if (entire != '') {
           entire = '(包場)'
         }
-        if ($('#male').is(':checked')) {
-          var gender = '先生';
-        } else {
-          var gender = '小姐';
-        }
+        //ps
         if ($('#ps').val() + $('#otherps').val() == "") {
           var ps = "無";
         } else {
           var ps = $('#ps').val() + $('#otherps').val()
+        }
+        //time_session
+        if (time_session == 'noon') {
+          var session = '中餐'
+        } else {
+          var session = '晚餐'
         }
 
         liff.sendMessages([{
@@ -584,7 +581,7 @@
                           },
                           {
                             "type": "text",
-                            "text": username + '(' + disname_json + ')' + " " + $('#adult').val() +
+                            "text": username + '(' + disname_json + ') ' + $('#adult').val() +
                               "大" + $('#children')
                               .val() + "小",
                             "flex": 5,
@@ -628,7 +625,8 @@
                           },
                           {
                             "type": "text",
-                            "text": $("#date").val() + "\n" + "⏱用餐時間： " + start + entire,
+                            "text": $("#date").val() + "\n" + "⏱用餐時間： " + session + ' ' + start +
+                              entire,
                             "flex": 5,
                             "size": "sm",
                             "color": "#666666",
@@ -744,29 +742,33 @@
       $('#sendbook').click(function (e) {
         var status = true;
         var action = 'booking';
+        //userid
+        var userid = $('#userid').val();
         // 姓名
-        var name = $('#username').val() + ' (' + disname_json + ')';
+        var name = $('#username').val();
+        //linename
+        var linename = disname_json;
         // 電話
         var phone = $('#phone').val();
-        // 店家
-        var store = $('#store_name').val();
-        // 人數
-        var adult = $('#adult').val();
-        var children = $('#children').val();
-        //gender
-        var gender = 'M';
         // 訂位日期
         var booking_date = $('#date').val();
         // 訂位開始
         var booking_start = $('#start').val();
-        // 電話(除錯)
-        var reg_phone = new RegExp(/^09\d{8}$/);
-        var userid = $('#userid').val();
+        //時段
         var time_session = $('#session').val();
-        var price = $('#price').val();
+        // 人數
+        var adult = $('#adult').val();
+        var children = $('#children').val();
+        // 店家
+        var store = $('#store_name').val();
+        //飲食習慣
         var ps = $('#ps').val() + $('#otherps').val();
+        //價位
+        var price = $('#price').val();
         //包場
         var entire = $('#entiretime').val();
+        // 電話(除錯)
+        var reg_phone = new RegExp(/^09\d{8}$/);
 
         // if ($('#male').is(':checked')){
         //   var gender = $('#male').val();
@@ -775,23 +777,25 @@
         //   var gender = $('#female').val();
         // }
 
-        if (adult == '') {
-          $('#adult').css('border', '1px solid #ff0000');
-          alert('請選擇成人訂位的人數喔');
-          status = false;
-        } else if (children == '') {
-          $('#children').css('border', '1px solid #ff0000');
-          alert('請選擇小孩訂位的人數喔');
-          status = false;
-        } else if (phone == '') {
-          $('#phone').css('border', '1px solid #ff0000');
-          alert('請輸入電話號碼');
-          status = false;
-        } else if (reg_phone.test(phone) == false) {
-          $('#phone').css('border', '1px solid #ff0000');
-          alert('手機號碼格式不正確!!');
-          status = false;
-        }
+        // if (adult == '') {
+        //   $('#adult').css('border', '1px solid #ff0000');
+        //   alert('請選擇成人訂位的人數喔');
+        //   status = false;
+        // } 
+        // else if (children == '') {
+        //   $('#children').css('border', '1px solid #ff0000');
+        //   alert('請選擇小孩訂位的人數喔');
+        //   status = false;
+        // } 
+        // else if (phone == '') {
+        //   $('#phone').css('border', '1px solid #ff0000');
+        //   alert('請輸入電話號碼');
+        //   status = false;
+        // } else if (reg_phone.test(phone) == false) {
+        //   $('#phone').css('border', '1px solid #ff0000');
+        //   alert('手機號碼格式不正確!!');
+        //   status = false;
+        // }
         // if (store == '') {
         //   $('#store_name').css('border', '1px solid #ff0000');
         //   alert('請選擇訂位的店家喔');
@@ -807,10 +811,10 @@
         //   $('#name').css('border', '1px solid #ff0000');
         //   status = false;
         // }
-        else if ((parseInt(adult) + parseInt(children)) == 0) {
-          alert('請選擇人數');
-          status = false;
-        }
+        // else if ((parseInt(adult) + parseInt(children)) == 0) {
+        //   alert('請選擇人數');
+        //   status = false;
+        // }
         // else if (booking_start == '') {
         //   status = false;
         //   alert('請選擇用餐開始時間')
@@ -821,7 +825,7 @@
           var data = {
             'userid': userid,
             'username': name,
-            'gender': gender,
+            'linename': linename,
             'phone': phone,
             'booking_date': booking_date,
             'booking_start_time': booking_start,
@@ -863,8 +867,10 @@
             if (time_session == 'noon') {
 
               document.getElementById('noon_num').innerHTML = ('已額滿');
+              $("button[name='startTime']").attr("disabled", true);
             } else {
               document.getElementById('night_num').innerHTML = ('已額滿');
+              $("button[name='startTime']").attr("disabled", true);
             }
           } else {
             if (time_session == 'noon') {
@@ -874,6 +880,14 @@
               document.getElementById('night_num').innerHTML = ('剩餘 ' + (20 - number) + ' 座位');
               $("button[name='startTime']").attr("disabled", false);
             }
+          }
+
+          if (time_session == 'noon🔺') {
+            document.getElementById('noon_num').innerHTML = ('已額滿');
+            $("button[name='startTime']").attr("disabled", true);
+          } else if (time_session == 'night🔺') {
+            document.getElementById('night_num').innerHTML = ('已額滿');
+            $("button[name='startTime']").attr("disabled", true);
           }
 
 
@@ -893,15 +907,18 @@
         success: function (response) {
           var userid = response.userid;
           var phone = response.phone;
+          var name = response.name;
 
 
           if (userid == $('#userid').val() && phone != '') {
             document.getElementById('memberform').style.display = 'none';
-            document.getElementById('time').style.display = 'block'
-            document.getElementById('spinner').style.display = 'none'
+            document.getElementById('time').style.display = 'block';
+            document.getElementById('spinner').style.display = 'none';
+            $('#phone').val(phone);
+            $('#username').val(name + disname_json);
           } else {
             document.getElementById('memberform').style.display = 'block';
-            document.getElementById('spinner').style.display = 'none'
+            document.getElementById('spinner').style.display = 'none';
           }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
