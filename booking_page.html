@@ -521,6 +521,7 @@
         initializeApp(data);
       });
       //ButtonSendMsg
+      
       $('#sendbook').click(function () {
         var start = parseFloat($("#start").val());
         var entire = $('#entiretime').val();
@@ -688,7 +689,10 @@
           .catch((err) => {
             // console.log('error', err);
           });
+        
       });
+
+    
 
     })
   </script>
@@ -783,7 +787,7 @@
         } 
 
         if (status) {
-
+          
           var data = {
             'userid': userid,
             'username': name,
