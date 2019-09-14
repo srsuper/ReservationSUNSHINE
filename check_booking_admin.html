@@ -106,8 +106,8 @@
                 content: attr(label);
                 font-weight: bold;
                 font-size: 110%;
-                width: 80px;
-                min-width: 80px;
+                width: 73px;
+                min-width: 73px;
             }
 
 
@@ -279,7 +279,7 @@
 
 
                 <!--Table of Day-->
-                <table id='table' class="table w3-bordered w3-striped" style="display: none;font-size:120%">
+                <table id='table' class="table w3-bordered w3-striped" style="display: none;font-size:118%">
                     <thead>
                         <tr>
                             <th>訂位人</th>
@@ -560,7 +560,6 @@
 
         //<--------Data of week  -------->
         function handleData_week(response) {
-            console.log(response)
             var content = '';
             response = sort_result(response)
 
@@ -622,7 +621,7 @@
                 <td label='訂位日期'>${bk_date_tmp}</td>
                 <td label=${session_noon}>${arr_1_noon}</td>
                 <td label=${session_night}>${arr_1_night}</td>
-                <td label='Total人數'>${adult_num} 大 ${children_num} 小</td>
+                <td label='Total'>${adult_num} 大 ${children_num} 小</td>
             </tr>`
 
                 }
@@ -644,18 +643,21 @@
         function handleData_month(response) {
             var content = '';
             response = sort_result(response)
-
+            console.log(response)
+            console.log(response.result.length)
             var noon_num = 20
             var night_num = 20
             var arr_1_noon = ''
             var arr_1_night = ''
 
             var bk_date_tmp = '';
+            var tmp = 0
             response.result.forEach(element => {
+                
                 var [userid, name, linename, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
                     price, status, index, entire_time
                 ] = element;
-
+                console.log(element);
                 if (t_session == 'noon') {
                     var session = '午餐'
                 } else {
@@ -697,7 +699,7 @@
 
                 }
 
-                if (arr_1_night != '') {
+                if (bk_date != bk_date_tmp) {
                     if (arr_1_noon == '') {
                         arr_1_noon = '暫無訂位'
                     } else if (arr_1_night == '') {
@@ -710,7 +712,7 @@
                        ${arr_1_noon}${entire_noon}<br>--------------------------------------
                        ${arr_1_night}${entire_night}
                 </td>
-                <td label='Total'>(中餐)剩餘: ${noon_num} 座位<br>(晚餐)剩餘: ${night_num} 座位
+                
             </tr>`
                     //Clean  temp data
                     bk_date_tmp = ''
@@ -735,7 +737,7 @@
 
                     }
                 }
-
+                tmp ++
             });
 
 
@@ -767,17 +769,7 @@
                     } else if (data.action == 'querying_boss_month') {
                         handleData_month(response)
                     }
-                    // if(data.action == 'querying_boss_week') {
-                    //     handleData_week(response);
-                    // }
-
-                    // else if(data.action == 'querying_boss'){
-                    //     handleData_day(response);
-                    // } else if(data.action == 'querying_boss_week'){
-                    //     handleData_day(response);
-                    // } else if(data.action == 'querying_boss_month'){
-                    //     handleData_day(response);
-                    // }
+                    
 
                     $("#send_day").attr("disabled", false);
                     $("#send_week").attr("disabled", false);
