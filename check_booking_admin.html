@@ -8,8 +8,8 @@
     <meta name="author" content="">
     <title> Softway 舒微生活管理員</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
     <!-- Bootstrap core JavaScript and jquery-->
@@ -35,7 +35,28 @@
     <!-- Line LIFF ------------------>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 
+    <!-- picker.js
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <link href="css/picker.css" rel="stylesheet">
+    <script src="js/picker.js"></script> -->
+
     <style>
+        table.dtp-picker-days {
+            font-size: 120%;
+        }
+
+        div.dtp-actual-num {
+            display: none
+        }
+
+        div.dtp-actual-month.p80 {
+            font-size: 200%
+        }
+
+        i.material-icons {
+            font-size: 300%
+        }
+
         .dtp-buttons>button.btn {
             border: none;
             border-radius: 15px;
@@ -84,9 +105,12 @@
             .w3-bordered td::before {
                 content: attr(label);
                 font-weight: bold;
-                width: 120px;
-                min-width: 120px;
+                font-size: 110%;
+                width: 80px;
+                min-width: 80px;
             }
+
+
 
         }
     </style>
@@ -101,28 +125,152 @@
                 <!-- profile -->
                 <div class="w3-center w3-animate-top w3-padding-small">
                     <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle"
-                        style="width:115px">
-                    <p style="font-size:135%;"><b>管理員:</b><b id="displayname"></b></p>
+                        style="width:115px" onclick="document.getElementById('disabled_date').style.display='block'">
+                    <p style="font-size:135%;"><b>管理員: </b><b id="displayname"></b></p>
                     <hr>
                 </div>
 
-                <div>
+                <!-- bar -->
+                <div class="w3-bar w3-round-xlarge w3-teal w3-center " style="font-size:21px">
+                    <button name='bar' class="w3-bar-item w3-hover-green w3-button " style="width:33%; height:50px;"
+                        onclick="open_search(this)" value="day_search">日</button>
+                    <button name='bar' class="w3-bar-item w3-hover-green w3-button w3-border w3-border-white"
+                        style="width:34%; height:50px;" onclick="open_search(this)" value="week_search">週</button>
+                    <button name='bar' class="w3-bar-item w3-hover-green w3-button" style="width:33%; height:50px;"
+                        onclick="open_search(this)" value="month_search">月</button>
+                </div>
+                <br>
+
+                <!-- ** disabledDate ** -->
+                <div id='disabled_date' class='w3-container' style="display: none">
                     <font size="4">
                         <label><span class="glyphicon glyphicon-cutlery"></i> <b>店家</b></label>
                         <select id="store_name" class="w3-input w3-border w3-round-large" value="" required>
                             <option style="display:none" value="">請選擇店家</option>
-                            <option value="總店">總店</option>
+                            <option value="總店" selected>總店</option>
                         </select>
                     </font>
                     <br>
                     <font size="4">
-                        <label><span class="glyphicon glyphicon-calendar"></i> <b>日期</b></label>
-                        <input class="w3-input w3-border w3-round-large" id="date" type="text" value=""
+                        <label><span class="glyphicon glyphicon-calendar"></i> <b>公休日(尚未開放)</b></label>
+
+                        <div class="col-lg-6">
+                        <div class="input-group input-group-lg">
+                            <input class="form-control" name="disabled_date" type="text" value="" placeholder="請選擇日期"
+                                required>
+                            <span class="input-group-btn"><button class="btn btn-default" type="button"
+                                    onclick="disabled_add()"><span
+                                        class="glyphicon glyphicon-plus-sign"></button></span>
+                        </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                                <div class="input-group input-group-lg"  name="disabled_date" style="display: none">
+                                    <input class="form-control"  type="text" value="" placeholder="請選擇日期"
+                                        required>
+                                    <span class="input-group-btn"><button class="btn btn-default" type="button"
+                                            onclick=""><span
+                                                class="glyphicon glyphicon-plus-sign"></button></span>
+                                </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                        <div class="input-group input-group-lg" name="disabled_date" style="display: none">
+                                            <input class="form-control"  type="text" value="" placeholder="請選擇日期"
+                                                required>
+                                            <span class="input-group-btn"><button class="btn btn-default" type="button"
+                                                    onclick=""><span
+                                                        class="glyphicon glyphicon-plus-sign"></button></span>
+                                        </div>
+                                        </div>
+
+                        
+
+                       
+                            
+                        
+                            
+                    </font>
+
+                    <font size='4'>
+                        <button id='send_disabledDate'
+                            class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
+                                class="glyphicon glyphicon-search"></span> </button>
+                    </font>
+                </div>
+
+                <!-- search of day -->
+                <div id='day_search' class='w3-container search' style="display: none">
+                    <font size="4">
+                        <label><span class="glyphicon glyphicon-cutlery"></i> <b>店家</b></label>
+                        <select id="store_name" class="w3-input w3-border w3-round-large" value="" required>
+                            <option style="display:none" value="">請選擇店家</option>
+                            <option value="總店" selected>總店</option>
+                        </select>
+                    </font>
+                    <br>
+                    <font size="4">
+                        <label><span class="glyphicon glyphicon-calendar"></i> <b>日期 (查詢當天)</b></label>
+                        <input class="w3-input w3-border w3-round-large" name="day" type="text" value=""
                             placeholder="請選擇日期" required>
                     </font>
 
                     <font size='4'>
-                        <button id='send'
+                        <button id='send_day'
+                            class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
+                                class="glyphicon glyphicon-search"></span> </button>
+                    </font>
+                </div>
+
+                <!-- search of week -->
+                <div id='week_search' class='w3-container search' style="display: none">
+                    <font size="4">
+                        <label><span class="glyphicon glyphicon-cutlery"></i> <b>店家</b></label>
+                        <select id="store_name" class="w3-input w3-border w3-round-large" value="" required>
+                            <option style="display:none" value="">請選擇店家</option>
+                            <option value="總店" selected>總店</option>
+                        </select>
+                    </font>
+                    <br>
+                    <font size="4">
+                        <label><span class="glyphicon glyphicon-calendar"></i> <b>日期 (查詢當週)</b></label>
+                        <input class="w3-input w3-border w3-round-large" name="week_start" type="text" value=""
+                            placeholder="請選擇日期" required>
+
+                        <div class="w3-center">
+                            <label><span class="glyphicon glyphicon-option-vertical"
+                                    style="font-size:20px;"></i></label>
+                        </div>
+
+                        <input class="w3-input w3-border w3-round-large" name="week_end" type="text" value=""
+                            placeholder="請選擇日期" required>
+                    </font>
+
+                    <font size='4'>
+                        <button id='send_week'
+                            class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
+                                class="glyphicon glyphicon-search"></span> </button>
+                    </font>
+                </div>
+
+                <!-- search of month -->
+                <div id='month_search' class='w3-container search' style="display: none">
+                    <font size="4">
+                        <label><span class="glyphicon glyphicon-cutlery"></i> <b>店家</b></label>
+                        <select id="store_name" class="w3-input w3-border w3-round-large" value="" required>
+                            <option style="display:none" value="">請選擇店家</option>
+                            <option value="總店" selected>總店</option>
+                        </select>
+                    </font>
+                    <br>
+                    <font size="4">
+                        <label><span class="glyphicon glyphicon-calendar"></i> <b>日期 (查詢當月)</b></label>
+                        <input class="month w3-input w3-border w3-round-large" name="month" type="text" value=""
+                            placeholder="請選擇日期" required>
+                    </font>
+
+                    <font size='4'>
+                        <button id='send_month'
                             class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
                                 class="glyphicon glyphicon-search"></span> </button>
                     </font>
@@ -130,16 +278,13 @@
 
 
 
-
-                <table class="table w3-bordered" style="display: none;">
+                <!--Table of Day-->
+                <table id='table' class="table w3-bordered w3-striped" style="display: none;font-size:120%">
                     <thead>
                         <tr>
-                            <th>姓名</th>
-                            <th>電話</th>
-                            <th>訂位日期</th>
+                            <th>訂位人</th>
                             <th>時段</th>
-                            <th>成人</th>
-                            <th>小孩</th>
+                            <th>人數</th>
                             <th>價位</th>
                             <th>店名</th>
                             <th>備註</th>
@@ -149,67 +294,40 @@
                     <tbody id="dataView">
                     </tbody>
                 </table>
+
+
             </div>
         </div>
     </div>
 
-    <!-- Page Content
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h1 class="mt-5">管理員訂位查詢</h1>
-
-                <div class="form-group col-xs-12">
-                    <label for="pwd">店家:</label>
-                    <select name="store_name" id="store_name" class="select form-control" data-price="50" data-name="店家">
-                        <option style="display:none" value="">請選擇店家</option>
-                        <option value="總店">總店</option>
-                    </select>
-
-                </div>
-                <div class="form-group col-xs-12">
-                    <label for="pwd">日期:</label>
-                    <form>
-                        <div class="form-group">
-                            <div class='input-group date' id='datepicker'>
-                                <input type='text' class="form-control" readonly />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="form-group col-xs-12">
-                    <button type="button" id="send" class="btn btn-primary col-xs-12">送出查詢</button>
-                </div>
-                <div class="form-group col-xs-12">
-                    <table class="table table-striped" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>姓名</th>
-                                <th>稱呼</th>
-                                <th>電話</th>
-                                <th>訂位日期</th>
-                                <th>開始時間</th>
-                                <th>結束時間</th>
-                                <th>成人人數</th>
-                                <th>小孩人數</th>
-                                <th>店名</th>
-                                <th>備註</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dataView">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-xs-12 text-center"><a href=""></a></div>
-            </div>
-        </div>
-    </div> -->
 
 
+    <script>
+        //function of bar switch
+        function open_search(k) {
+            var i;
+            var x = document.getElementsByClassName("search");
+            var y = document.getElementsByName('bar');
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                y[i].classList.remove('w3-green');
+            }
+            document.getElementById(k.value).style.display = "block";
+            k.classList.add('w3-green')
+            document.getElementById('table').style.display = "none";
+            document.getElementById('disabled_date').style.display = "none";
+        }
 
+        function disabled_add() {
+            var date_add = $("div[name='disabled_date']")
+            var i = 0
+            $(date_add[i]).show()
+            i +=1
+            console.log(i)
+            
+
+        }
+    </script>
 
     <script>
         function initializeApp(data) {
@@ -232,81 +350,150 @@
     <!--datetimepicker of parameter--->
     <script type="text/javascript">
         $(function () {
-            $('#date').bootstrapMaterialDatePicker({
+            $("input[name='day']").bootstrapMaterialDatePicker({
+                lang: 'zh-tw',
                 time: false,
                 nowButton: false,
                 clearButton: false,
                 okText: '確認',
                 cancelText: '取消',
-                format: 'YYYY/MM/DD dddd'
+                minDate: moment(),
+                disabledDates: ['2019-09-20'],
+                currentDate: moment().format('YYYY-MM-DD'),
+                format: 'YYYY-MM-DD (dd)'
             });
+            $("input[name='week_start']").bootstrapMaterialDatePicker({
+                lang: 'zh-tw',
+                time: false,
+                nowButton: false,
+                clearButton: false,
+                okText: '確認',
+                cancelText: '取消',
+                minDate: moment(),
+                currentDate: moment().format('YYYY-MM-DD'),
+                format: 'YYYY-MM-DD (dd)'
+            });
+            $("input[name='week_end']").bootstrapMaterialDatePicker({
+                lang: 'zh-tw',
+                time: false,
+                nowButton: false,
+                clearButton: false,
+                okText: '確認',
+                cancelText: '取消',
+                minDate: moment().add(1, 'day'),
+                currentDate: moment().add(7, 'day').format('YYYY-MM-DD'),
+                format: 'YYYY-MM-DD (dd)'
+            });
+            $("input[name='month']").bootstrapMaterialDatePicker({
+                lang: 'zh-tw',
+                time: false,
+                nowButton: false,
+                clearButton: false,
+                okText: '確認',
+                cancelText: '取消',
+                monthPicker: true,
+                currentDate: moment().format('YYYY-MM'),
+                format: 'YYYY-MM'
+            });
+
         });
     </script>
 
     <script>
-        // $(function () {
-        //     $('#datepicker').datepicker({
-        //         format: "YYYY/MM/DD dddd",
-        //         autoclose: true,
-        //         todayHighlight: true,
-        //         showOtherMonths: true,
-        //         selectOtherMonths: true,
-        //         autoclose: true,
-        //         changeMonth: true,
-        //         changeYear: true,
-        //         orientation: "button",
-        //     });
-        // });
         $(function () {
-            $('#send').click(function (e) {
+            $('#send_day').click(function (e) {
                 var status = true;
-                var date = $('#date').val();
+                var date = $("input[name='day']").val();
                 var store = $('#store_name').val();
-                // var d = $("#datepicker").datepicker("getDate");
-                // $('input').focus(function () {
-                //     $(this).css('border', '');
-                // });
+                console.log(typeof (date))
                 if (store == '') {
                     $('#store_name').css('border', '1px solid #ff0000');
-                    alert('請選擇訂位的店家喔');
+                    alert('請選擇店家');
                     status = false;
                 } else if (date == '') {
                     $('#datepicker').css('border', '1px solid #ff0000');
                     status = false;
-                    alert('請選擇訂位的日期');
+                    alert('請選擇日期');
                 }
                 if (status) {
-                    // var booking_date = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)
                     var data = {
                         'store': store,
                         'booking_date': date,
-                        'action': 'querying_boss'
+                        'action': 'querying_boss_day'
                     }
-
-                    $("#send").attr("disabled", true);
+                    $("#send_day").attr("disabled", true);
                     sendQuery(data);
                 }
             });
+            $('#send_week').click(function (e) {
+                var status = true;
+                var store = $('#store_name').val();
+                var date_start = $("input[name='week_start']").val();
+                var date_end = $("input[name='week_end']").val();
+
+                if (store == '') {
+                    alert('請選擇店家');
+                    status = false;
+                } else if (date_start == '') {
+                    alert('請選擇開始日期');
+                    status = false;
+                } else if (date_end == '') {
+                    alert('請選擇結束日期');
+                    status = false;
+                }
+
+                if (status) {
+                    var data = {
+                        'store': store,
+                        'booking_date_start': date_start,
+                        'booking_date_end': date_end,
+                        'action': 'querying_boss_week'
+                    }
+                    console.log(data)
+                    $("#send_week").attr("disabled", true);
+                    sendQuery(data);
+                }
+            });
+            $('#send_month').click(function (e) {
+                var status = true;
+                var store = $('#store_name').val();
+                var date = $("input[name='month']").val();
+
+
+                if (store == '') {
+                    alert('請選擇店家');
+                    status = false;
+                } else if (date == '') {
+                    alert('請選擇月份');
+                    status = false;
+                }
+
+                if (status) {
+                    var data = {
+                        'store': store,
+                        'booking_date': date,
+                        'action': 'querying_boss_month'
+                    }
+                    $("#send_month").attr("disabled", true);
+                    sendQuery(data);
+                }
+            });
+
         });
 
-        function handleData(response) {
-            var content = '';
+        //<------ Sort response ---->
+        function sort_result(response) {
             response.result.sort(function (a, b) {
-                var adate = a[2];
-                var bdate = b[2];
-                var a_stime = a[3];
-                var b_stime = b[3];
-                var a_etime = a[4];
-                var b_etime = b[4];
-                var a_store = a[8];
-                var b_store = b[8];
+                var adate = a[4];
+                var bdate = b[4];
+                var a_stime = a[5];
+                var b_stime = b[5];
+                var a_store = a[10];
+                var b_store = b[10];
+
                 if (a_store === b_store) {
                     if (adate === bdate) {
-                        if (a_stime === b_stime) {
-                            return (a_etime < b_etime) ? -1 : (a_etime > b_etime) ? 1 : 0;
-                        } else {
-                            return (a_stime < b_stime) ? -1 : 1;
-                        }
+                        return (a_stime < b_stime) ? -1 : 1;
 
                     } else {
                         return (adate < bdate) ? -1 : 1;
@@ -315,36 +502,49 @@
                     return (a_store < b_store) ? -1 : 1;
                 }
             });
+            return response
+        }
+
+        //<--------Data of day  -------->
+        function handleData_day(response) {
+            var content = '';
+            response = sort_result(response)
             response.result.forEach(element => {
 
-                var [userid, name, gender, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
-                    price, status, index
+                var [userid, name, linename, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
+                    price, status, index, entire_time
                 ] = element;
+
+                if (t_session == 'noon') {
+                    var session = '午餐'
+                } else {
+                    var session = '晚餐'
+                }
+
+                if (entire_time == 'true') {
+                    var entire = '(包場)'
+                } else {
+                    var entire = ''
+                }
 
                 if (bk_st % 60 != 0) {
                     bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
                 } else {
                     bk_st = (bk_st / 60).toString() + ':00'
                 }
-                // if(sex == 'M'){
-                //     var gender = '先生'
-                // }
-                // else{
-                //     var gender = '女士'
-                // }
+
                 content +=
                     `<tr>
-                <td label='Line用戶'>${name}</td>    
-                <td label='電話'>${phone}</td>
-                <td label='訂位日期'>${bk_date}</td>
-                <td label='時段'>${bk_st}</td>
-                <td label='成人'>${adult}</td>
-                <td label='小孩'>${children}</td>
+                
+                <td label='訂位人'>${name} - <a href='tel:${phone}'> ${phone}</a></td>    
+                <td label='時段'>${session} ⏱ ${bk_st}</td>
+                <td label='人數'> ${adult} 大  ${children} 小 ${entire}</td>
                 <td label='價格'>${price}</td>
                 <td label='店家'>${store}</td>
                 <td label=' 備註'>${ps}</td>
                 <td>
-                  <button type="button" onclick="updateStatus('${name}', '${phone}', '${index}','${store}' ,this)" class="btn btn-primary">取消訂單</button>
+                    <button type="button" onclick="updateStatus('${name}', '${phone}', '${index}','${store}' ,this)" class="w3-btn w3-teal w3-border w3-round-large">
+                        <span class="glyphicon glyphicon-trash"></span> 刪除訂單</button>
                 </td>
               </tr>`
             });
@@ -357,6 +557,201 @@
             dataView.innerHTML = content;
         }
 
+
+        //<--------Data of week  -------->
+        function handleData_week(response) {
+            console.log(response)
+            var content = '';
+            response = sort_result(response)
+
+            var adult_num = 0
+            var children_num = 0
+            var arr_1_noon = ''
+            var arr_1_night = ''
+
+            var bk_date_tmp = '';
+            response.result.forEach(element => {
+                var [userid, name, linename, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
+                    price, status, index, entire_time
+                ] = element;
+
+                if (t_session == 'noon') {
+                    var session = '午餐'
+                } else {
+                    var session = '晚餐'
+                }
+
+                if (entire_time == 'true') {
+                    var entire = '(包場)'
+                } else {
+                    var entire = ''
+                }
+
+                if (bk_st % 60 != 0) {
+                    bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
+                } else {
+                    bk_st = (bk_st / 60).toString() + ':00'
+                }
+
+
+                var arr_data_1 = name + '(' + bk_st + ')' + adult + '大' + children + '小' + '<br>' + ps + ' ' +
+                    price + '<br><br>'
+
+
+
+                if ((bk_date == bk_date_tmp) || (bk_date_tmp == '')) {
+                    bk_date_tmp = bk_date
+
+                    adult_num += adult
+                    children_num += children
+                    if (t_session == 'noon') {
+                        session_noon = session + entire
+                        arr_1_noon += arr_data_1
+
+
+                    } else {
+                        session_night = session + entire
+                        arr_1_night += arr_data_1
+
+                    }
+
+                }
+                if (arr_1_night != '') {
+                    content +=
+                        `<tr>
+                <td label='訂位日期'>${bk_date_tmp}</td>
+                <td label=${session_noon}>${arr_1_noon}</td>
+                <td label=${session_night}>${arr_1_night}</td>
+                <td label='Total人數'>${adult_num} 大 ${children_num} 小</td>
+            </tr>`
+
+                }
+
+            });
+
+
+            if (content) {
+                document.getElementsByClassName('w3-bordered')[0].style.display = 'table';
+            } else {
+
+                alert('查無資料');
+            }
+            var dataView = document.getElementById('dataView');
+            dataView.innerHTML = content;
+        }
+
+        //<--------Data of month  -------->
+        function handleData_month(response) {
+            var content = '';
+            response = sort_result(response)
+
+            var noon_num = 20
+            var night_num = 20
+            var arr_1_noon = ''
+            var arr_1_night = ''
+
+            var bk_date_tmp = '';
+            response.result.forEach(element => {
+                var [userid, name, linename, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
+                    price, status, index, entire_time
+                ] = element;
+
+                if (t_session == 'noon') {
+                    var session = '午餐'
+                } else {
+                    var session = '晚餐'
+                }
+
+                if (entire_time == 'true') {
+                    var entire = '(包場)'
+                } else {
+                    var entire = ''
+                }
+
+                if (bk_st % 60 != 0) {
+                    bk_st = parseInt(bk_st / 60).toString() + ':' + (bk_st % 60).toString()
+                } else {
+                    bk_st = (bk_st / 60).toString() + ':00'
+                }
+
+
+                var arr_data_1 = '#' + name + '(' + adult + '大' + children + '小' + ') '
+                var date = bk_date.substr(5, 9)
+
+
+
+                if ((bk_date == bk_date_tmp) || (bk_date_tmp == '')) {
+                    bk_date_tmp = bk_date
+
+
+                    if (t_session == 'noon') {
+                        entire_noon = entire
+                        arr_1_noon += arr_data_1
+                        noon_num -= adult + children
+
+                    } else {
+                        entire_night = entire
+                        arr_1_night += arr_data_1
+                        night_num -= adult + children
+                    }
+
+                }
+
+                if (arr_1_night != '') {
+                    if (arr_1_noon == '') {
+                        arr_1_noon = '暫無訂位'
+                    } else if (arr_1_night == '') {
+                        arr_1_night = '暫無訂位'
+                    }
+                    content +=
+                        `<tr>
+                
+                <td label=${date}>
+                       ${arr_1_noon}${entire_noon}<br>--------------------------------------
+                       ${arr_1_night}${entire_night}
+                </td>
+                <td label='Total'>(中餐)剩餘: ${noon_num} 座位<br>(晚餐)剩餘: ${night_num} 座位
+            </tr>`
+                    //Clean  temp data
+                    bk_date_tmp = ''
+                    arr_1_noon = ''
+                    arr_1_night = ''
+                    noon_num = 20
+                    night_num = 20
+                    //put next day 
+                    if ((bk_date == bk_date_tmp) || (bk_date_tmp == '')) {
+                        bk_date_tmp = bk_date
+
+
+                        if (t_session == 'noon') {
+                            entire_noon = entire
+                            arr_1_noon += arr_data_1
+                            noon_num -= adult + children
+                        } else {
+                            entire_night = entire
+                            arr_1_night += arr_data_1
+                            night_num -= adult + children
+                        }
+
+                    }
+                }
+
+            });
+
+
+            if (content) {
+                document.getElementsByClassName('w3-bordered')[0].style.display = 'table';
+            } else {
+
+                alert('查無資料');
+            }
+
+            var dataView = document.getElementById('dataView');
+            dataView.innerHTML = content;
+
+        }
+
+
         function sendQuery(data) {
             $.ajax({
                 type: "post",
@@ -365,20 +760,39 @@
                 success: function (response) {
                     if (response.result == 'error') {
                         alert("資料不存在，請確認輸入資料是否正確")
-                    } else {
-                        handleData(response);
+                    } else if (data.action == 'querying_boss_day') {
+                        handleData_day(response)
+                    } else if (data.action == 'querying_boss_week') {
+                        handleData_week(response)
+                    } else if (data.action == 'querying_boss_month') {
+                        handleData_month(response)
                     }
-                    $("#send").attr("disabled", false);
+                    // if(data.action == 'querying_boss_week') {
+                    //     handleData_week(response);
+                    // }
+
+                    // else if(data.action == 'querying_boss'){
+                    //     handleData_day(response);
+                    // } else if(data.action == 'querying_boss_week'){
+                    //     handleData_day(response);
+                    // } else if(data.action == 'querying_boss_month'){
+                    //     handleData_day(response);
+                    // }
+
+                    $("#send_day").attr("disabled", false);
+                    $("#send_week").attr("disabled", false);
+                    $("#send_month").attr("disabled", false);
                     $('#name').val('');
                     $('#phone').val('');
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    $("#send").attr("disabled", false);
+                    $("#send_day").attr("disabled", false);
+                    $("#send_week").attr("disabled", false);
+                    $("#send_month").attr("disabled", false);
                     $('#name').val('');
                     $('#phone').val('');
                     alert('很抱歉，查詢失敗!!')
                 }
-
             });
         }
 
@@ -399,16 +813,20 @@
                         var i = that.parentNode.parentNode.rowIndex;
                         document.getElementById("dataView").deleteRow(parseInt(i) - 1);
 
-                        alert('更新成功! ')
+                        alert('更新成功!（已取消此訂位） ')
 
                     } else {
                         alert('更新失敗！');
                     }
-                    $("#send").attr("disabled", false);
+                    $("#send_day").attr("disabled", false);
+                    $("#send_week").attr("disabled", false);
+                    $("#send_month").attr("disabled", false);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert('很抱歉，更新失敗!!')
-                    $("#send").attr("disabled", false);
+                    $("#send_day").attr("disabled", false);
+                    $("#send_week").attr("disabled", false);
+                    $("#send_month").attr("disabled", false);
                 }
             });
         }
