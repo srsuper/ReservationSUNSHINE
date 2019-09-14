@@ -18,7 +18,7 @@
       this.$element = $(element);
 
 
-      this.params = {date: true, time: true, format: 'YYYY-MM-DD', minDate: null, maxDate: null, currentDate: null, lang: 'en', weekStart: 0, disabledDays: [], shortTime: false, clearButton: false, nowButton: false, cancelText: 'Cancel', okText: 'OK', clearText: 'Clear', nowText: 'Now', switchOnClick: false, triggerEvent: 'focus', monthPicker: false, year:true};
+      this.params = {date: true, time: true, format: 'YYYY-MM-DD', minDate: null, maxDate: null, currentDate: null, lang: 'en', weekStart: 0, disabledDays: [],disabledDates: [], shortTime: false, clearButton: false, nowButton: false, cancelText: 'Cancel', okText: 'OK', clearText: 'Clear', nowText: 'Now', switchOnClick: false, triggerEvent: 'focus', monthPicker: false, year:true};
       this.params = $.fn.extend(this.params, options);
 
       this.name = "dtp_" + this.setName();
@@ -746,7 +746,8 @@
                     {
                         if (this.isBeforeMaxDate(moment(calendar.days[i]), false, false) === false
                             || this.isAfterMinDate(moment(calendar.days[i]), false, false) === false
-                            || this.params.disabledDays.indexOf(calendar.days[i].isoWeekday()) !== -1)
+                            || this.params.disabledDays.indexOf(calendar.days[i].isoWeekday()) !== -1
+                            || this.params.disabledDates.indexOf(moment(calendar.days[i]).locale(this.params.lang).format('YYYY-MM-DD')) !== -1)
                         {
                             _template += '<span class="dtp-select-day">' + moment(calendar.days[i]).locale(this.params.lang).format("DD") + '</span>';
                         } else
