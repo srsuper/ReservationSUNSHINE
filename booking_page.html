@@ -496,7 +496,7 @@
         x.classList.remove("w3-teal");
         document.getElementById('start').value = "";
       }
-
+      console.log(number)
       if (document.getElementById('noon_num').innerHTML == ('剩餘 ' + 16 + ' 座位')) {
         $("#entire1").attr("disabled", false);
       }
@@ -984,20 +984,24 @@
               document.getElementById('night_num').innerHTML = ('已額滿');
               $("button[name='startTime']").attr("disabled", true);
             }
-          } else if (parseInt($('#adult').val()) + parseInt($('#children').val()) > (16 - number)) {
+          } 
+          if (parseInt($('#adult').val()) + parseInt($('#children').val()) > (16 - number)) {
             if (time_session == 'noon') {
-              document.getElementById('noon_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
-              $("#nightTime").attr("disabled", false);
+              
+              $("#noonTime").attr("disabled", true);
             } else {
-              document.getElementById('night_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
-              $("#noonTime").attr("disabled", false);
+              
+              $("#nightTime").attr("disabled", true);
             }
-          } else {
+          } 
+          if (number < 16 && parseInt($('#adult').val()) + parseInt($('#children').val()) <= (16 - number)) {
             if (time_session == 'noon') {
               document.getElementById('noon_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
+              $("#noonTime").attr("disabled", false);
               $("button[name='startTime']").attr("disabled", false);
             } else {
               document.getElementById('night_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
+              $("#nightTime").attr("disabled", false);
               $("button[name='startTime']").attr("disabled", false);
             }
           }
