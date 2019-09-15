@@ -498,10 +498,10 @@
         document.getElementById('start').value = "";
       }
       
-      if (document.getElementById('noon_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
+      if (document.getElementById('noon_num').innerHTML == ('剩餘 ' + 16 + ' 座位')) {
         $("#entire1").attr("disabled", false);
       }
-      if (document.getElementById('night_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
+      if (document.getElementById('night_num').innerHTML == ('剩餘 ' + 16 + ' 座位')) {
         $("#entire2").attr("disabled", false);
       }
     }
@@ -985,8 +985,7 @@
               $("#nightTime").attr("disabled", false);
               $("button[name='startTime']").attr("disabled", false);
             }
-          }
-          if (number < 16 && parseInt($('#adult').val()) + parseInt($('#children').val()) <= (16 - number)) {
+          } else if (number < 16 && parseInt($('#adult').val()) + parseInt($('#children').val()) <= (16 - number)) {
             if (time_session == 'noon') {
               document.getElementById('noon_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
               $("#noonTime").attr("disabled", false);
@@ -997,6 +996,7 @@
               $("button[name='startTime']").attr("disabled", false);
             }
           }
+          
           if (number >= 16) {
             if (time_session == 'noon') {
               document.getElementById('noon_num').innerHTML = ('已額滿');
@@ -1042,15 +1042,15 @@
         success: function (response) {
           var userid = response.userid;
           var phone = response.phone;
-          var name = response.name;
-
+          var username = response.username;
+          console.log(name)
 
           if (userid == $('#userid').val() && phone != '') {
             document.getElementById('memberform').style.display = 'none';
             document.getElementById('time').style.display = 'block';
             document.getElementById('spinner').style.display = 'none';
             $('#phone').val(phone);
-            $('#username').val(name);
+            $('#username').val(username);
           } else {
             document.getElementById('memberform').style.display = 'block';
             document.getElementById('spinner').style.display = 'none';
