@@ -52,16 +52,16 @@
                 <div class="w3-center w3-animate-top w3-padding-small">
                     <img id="img" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" class="w3-circle"
                         style="width:115px">
-                    <p style="font-size:135%;"><b id="displayname"></b></p>
+                    <p style="font-size:135%;"><b id="displayname">James</b></p>
                     <hr>
-                    <input id="userid" style="display: none" value="">
+                    <input id="userid" style="display: none" value="U5ee811f1f2f899eb66844500ef14a371">
                     <font size='4'>
                         <button id='send'
                             class="w3-btn w3-round-large w3-block w3-teal w3-padding-16 w3-section w3-right"> 查詢 <span
                                 class="glyphicon glyphicon-search"></span> </button>
                     </font>
                 </div>
-
+                <p><b>「貼心提醒」<br>如需取消訂位，請點選 "Call Me(撥打專線)"<br>由專人為您取消。</b></p>
 
 
 
@@ -176,11 +176,12 @@
                 <td label='人數'>${adult} 大  ${children} 小 ${entire}</td>
                 <td label='價格'>${price}</td>
                 <td label='店家'>${store}</td>
-                <td label=' 備註'>${ps}</td>
+                <td label='備註'>${ps}</td>
+                
 
-                <td>
+                <td label='取消訂位'>
                   <a id="cancle" href='tel:0936336233'  class="w3-btn w3-teal w3-border w3-round-large"><span
-                                class="glyphicon glyphicon-earphone"></span> (按此)取消訂單</a>
+                                class="glyphicon glyphicon-earphone"></span> Call Me(撥打專線)</a>
                 </td>
               </tr>`
             });
