@@ -448,6 +448,7 @@
           'action': 'querying_num'
         }
         query_people(data);
+      
       }
 
     }
@@ -496,11 +497,11 @@
         x.classList.remove("w3-teal");
         document.getElementById('start').value = "";
       }
-      console.log(number)
-      if (document.getElementById('noon_num').innerHTML == ('剩餘 ' + 16 + ' 座位')) {
+      
+      if (document.getElementById('noon_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
         $("#entire1").attr("disabled", false);
       }
-      if (document.getElementById('night_num').innerHTML == ('剩餘 ' + 16 + ' 座位')) {
+      if (document.getElementById('night_num').innerHTML == ('剩餘 ' + 20 + ' 座位')) {
         $("#entire2").attr("disabled", false);
       }
     }
@@ -583,7 +584,7 @@
           'name': profile.displayName
         };
         disname_json = JSON.parse(JSON.stringify(disname.name))
-        $('#userid').val('userid'); //data.context.userId
+        $('#userid').val(data.context.userId); //data.context.userId
 
         $('#img').attr('src', profile.pictureUrl);
         $('#displayname').html(profile.displayName);
@@ -974,8 +975,28 @@
           //   document.getElementById('time').style.display = 'block'
           // }
 
-
-
+          if (number == 0) {
+            if (time_session == 'noon') {
+              document.getElementById('noon_num').innerHTML = ('剩餘 ' + (20) + ' 座位');
+              $("#noonTime").attr("disabled", false);
+              $("button[name='startTime']").attr("disabled", false);
+            } else {
+              document.getElementById('night_num').innerHTML = ('剩餘 ' + (20) + ' 座位');
+              $("#nightTime").attr("disabled", false);
+              $("button[name='startTime']").attr("disabled", false);
+            }
+          }
+          if (number < 16 && parseInt($('#adult').val()) + parseInt($('#children').val()) <= (16 - number)) {
+            if (time_session == 'noon') {
+              document.getElementById('noon_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
+              $("#noonTime").attr("disabled", false);
+              $("button[name='startTime']").attr("disabled", false);
+            } else {
+              document.getElementById('night_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
+              $("#nightTime").attr("disabled", false);
+              $("button[name='startTime']").attr("disabled", false);
+            }
+          }
           if (number >= 16) {
             if (time_session == 'noon') {
               document.getElementById('noon_num').innerHTML = ('已額滿');
@@ -994,17 +1015,7 @@
               $("#nightTime").attr("disabled", true);
             }
           } 
-          if (number < 16 && parseInt($('#adult').val()) + parseInt($('#children').val()) <= (16 - number)) {
-            if (time_session == 'noon') {
-              document.getElementById('noon_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
-              $("#noonTime").attr("disabled", false);
-              $("button[name='startTime']").attr("disabled", false);
-            } else {
-              document.getElementById('night_num').innerHTML = ('剩餘 ' + (16 - number) + ' 座位');
-              $("#nightTime").attr("disabled", false);
-              $("button[name='startTime']").attr("disabled", false);
-            }
-          }
+          
 
           if (time_session == 'noon' && entire_time == 'TRUE') {
             document.getElementById('noon_num').innerHTML = ('已額滿');
