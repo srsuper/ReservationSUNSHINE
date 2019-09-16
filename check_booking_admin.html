@@ -279,7 +279,7 @@
 
 
                 <!--Table of Day-->
-                <table id='table' class="table w3-bordered w3-striped" style="display: none;font-size:118%">
+                <table id='table_day' name='table' class="table w3-bordered" style="display: none;font-size:118%">
                     <thead>
                         <tr>
                             <th>訂位人</th>
@@ -291,9 +291,36 @@
                             <th>動作</th>
                         </tr>
                     </thead>
-                    <tbody id="dataView">
+
+                    <tbody id="dataView_day">
                     </tbody>
                 </table>
+
+                <!--Table of Week-->
+                <table id='table_week' name='table' class="w3-table w3-bordered w3-striped" style="display: none;font-size:118%">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>訂位人</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="dataView_week">
+                        </tbody>
+                    </table>
+
+                <!--Table of Month-->
+                <table id='table_month' name='table' class="w3-table w3-bordered w3-striped" style="display: none;font-size:118%">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>訂位人</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="dataView_month">
+                        </tbody>
+                    </table>
 
 
             </div>
@@ -308,13 +335,15 @@
             var i;
             var x = document.getElementsByClassName("search");
             var y = document.getElementsByName('bar');
+            var t = document.getElementsByName('table');
             for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
                 y[i].classList.remove('w3-green');
+                t[i].style.display = "none"
             }
             document.getElementById(k.value).style.display = "block";
             k.classList.add('w3-green')
-            document.getElementById('table').style.display = "none";
+            
             document.getElementById('disabled_date').style.display = "none";
         }
 
@@ -358,7 +387,7 @@
                 okText: '確認',
                 cancelText: '取消',
                 minDate: moment(),
-                disabledDates: ['2019-09-20'],
+                // disabledDates: ['2019-09-20'],
                 currentDate: moment().format('YYYY-MM-DD'),
                 format: 'YYYY-MM-DD (dd)'
             });
@@ -405,7 +434,7 @@
                 var status = true;
                 var date = $("input[name='day']").val();
                 var store = $('#store_name').val();
-                console.log(typeof (date))
+                
                 if (store == '') {
                     $('#store_name').css('border', '1px solid #ff0000');
                     alert('請選擇店家');
@@ -449,7 +478,7 @@
                         'booking_date_end': date_end,
                         'action': 'querying_boss_week'
                     }
-                    console.log(data)
+                    
                     $("#send_week").attr("disabled", true);
                     sendQuery(data);
                 }
@@ -458,7 +487,6 @@
                 var status = true;
                 var store = $('#store_name').val();
                 var date = $("input[name='month']").val();
-
 
                 if (store == '') {
                     alert('請選擇店家');
@@ -535,14 +563,13 @@
 
                 content +=
                     `<tr>
-                
                 <td label='訂位人'>${name} - <a href='tel:${phone}'> ${phone}</a></td>    
                 <td label='時段'>${session} ⏱ ${bk_st}</td>
                 <td label='人數'> ${adult} 大  ${children} 小 ${entire}</td>
                 <td label='價格'>${price}</td>
                 <td label='店家'>${store}</td>
-                <td label=' 備註'>${ps}</td>
-                <td>
+                <td label='備註'>${ps}</td>
+                <td label='刪除'>
                     <button type="button" onclick="updateStatus('${name}', '${phone}', '${index}','${store}' ,this)" class="w3-btn w3-teal w3-border w3-round-large">
                         <span class="glyphicon glyphicon-trash"></span> 刪除訂單</button>
                 </td>
@@ -553,7 +580,7 @@
             } else {
                 alert('查無資料');
             }
-            var dataView = document.getElementById('dataView');
+            var dataView = document.getElementById('dataView_day');
             dataView.innerHTML = content;
         }
 
@@ -565,19 +592,24 @@
 
             var adult_num = 0
             var children_num = 0
-            var arr_1_noon = ''
-            var arr_1_night = ''
+            
+            var noon_data = '';
+            var night_data = '';
 
             var bk_date_tmp = '';
+            var counter = 1;
             response.result.forEach(element => {
+
                 var [userid, name, linename, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
                     price, status, index, entire_time
                 ] = element;
+                
+                var bk_date = bk_date.substr(5, 9)
 
                 if (t_session == 'noon') {
-                    var session = '午餐'
+                    t_session = '午餐'
                 } else {
-                    var session = '晚餐'
+                    t_session = '晚餐'
                 }
 
                 if (entire_time == 'true') {
@@ -591,51 +623,89 @@
                 } else {
                     bk_st = (bk_st / 60).toString() + ':00'
                 }
+                
+                if (children == 0) {
+                    children = ''                    
+                } else {
+                    children = children + '小'
+                }
+                if (adult == 0) {
+                    adult = ''                    
+                } else {
+                    adult = adult + '大'
+                }
 
-
-                var arr_data_1 = name + '(' + bk_st + ')' + adult + '大' + children + '小' + '<br>' + ps + ' ' +
-                    price + '<br><br>'
-
-
-
-                if ((bk_date == bk_date_tmp) || (bk_date_tmp == '')) {
-                    bk_date_tmp = bk_date
-
-                    adult_num += adult
-                    children_num += children
-                    if (t_session == 'noon') {
-                        session_noon = session + entire
-                        arr_1_noon += arr_data_1
-
-
-                    } else {
-                        session_night = session + entire
-                        arr_1_night += arr_data_1
-
+                
+                if(bk_date_tmp==bk_date){
+                    if(t_session == '午餐'){
+                        noon_data += '#' + name + '(' + adult + children + ')'
                     }
+                    else{
+                        night_data += '#' + name + '(' + adult + children + ')'
+                    }
+                }
+                else if (bk_date_tmp==''){
+                    if(t_session == '午餐'){
+                        noon_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    else{
+                        night_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    bk_date_tmp= bk_date;
 
                 }
-                if (arr_1_night != '') {
+                else if((bk_date_tmp!=bk_date)&&(bk_date_tmp!='')){
+                    if(noon_data ==''){
+                        noon_data = '暫無訂位';
+                    }
+                    if(night_data==''){
+                        night_data = '暫無訂位'
+                    }
                     content +=
-                        `<tr>
-                <td label='訂位日期'>${bk_date_tmp}</td>
-                <td label=${session_noon}>${arr_1_noon}</td>
-                <td label=${session_night}>${arr_1_night}</td>
-                <td label='Total'>${adult_num} 大 ${children_num} 小</td>
-            </tr>`
+                    `<tr>
+                        <td label=${bk_date_tmp} >
+                            ${noon_data}<br>----------------------------------<br>
+                            ${night_data}
+                        </td>
+                    </tr>`
 
+                    bk_date_tmp= bk_date;
+                    noon_data='';
+                    night_data='';
+                    if(t_session == '午餐'){
+                        noon_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    else{
+                        night_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    
+                    
                 }
+                if(counter == response.result.length){
+                    if(noon_data ==''){
+                        noon_data = '暫無訂位'
+                    }
+                    if(night_data==''){
+                        night_data = '暫無訂位'
+                    }
+                    content +=
+                    `<tr>
+                        <td label=${bk_date_tmp}>
+                            ${noon_data}<br>----------------------------------<br>
+                            ${night_data}
+                    </tr>`
+                }
+                counter++;
 
             });
-
+            
 
             if (content) {
-                document.getElementsByClassName('w3-bordered')[0].style.display = 'table';
+                document.getElementById('table_week').style.display = 'table';
             } else {
-
                 alert('查無資料');
             }
-            var dataView = document.getElementById('dataView');
+            var dataView = document.getElementById('dataView_week');
             dataView.innerHTML = content;
         }
 
@@ -643,25 +713,30 @@
         function handleData_month(response) {
             var content = '';
             response = sort_result(response)
-            console.log(response)
-            console.log(response.result.length)
+            
             var noon_num = 20
             var night_num = 20
-            var arr_1_noon = ''
-            var arr_1_night = ''
+
+            var adult_num = 0
+            var children_num = 0
+
+            var noon_data = '';
+            var night_data = '';
 
             var bk_date_tmp = '';
-            var tmp = 0
+            var counter = 1;
             response.result.forEach(element => {
-                
+
                 var [userid, name, linename, phone, bk_date, bk_st, t_session, when, adult, children, store, ps,
                     price, status, index, entire_time
                 ] = element;
-                console.log(element);
+                
+                var bk_date = bk_date.substr(5, 9)
+
                 if (t_session == 'noon') {
-                    var session = '午餐'
+                    t_session = '午餐'
                 } else {
-                    var session = '晚餐'
+                    t_session = '晚餐'
                 }
 
                 if (entire_time == 'true') {
@@ -676,79 +751,98 @@
                     bk_st = (bk_st / 60).toString() + ':00'
                 }
 
-
-                var arr_data_1 = '#' + name + '(' + adult + '大' + children + '小' + ') '
-                var date = bk_date.substr(5, 9)
-
-
-
-                if ((bk_date == bk_date_tmp) || (bk_date_tmp == '')) {
-                    bk_date_tmp = bk_date
-
-
-                    if (t_session == 'noon') {
-                        entire_noon = entire
-                        arr_1_noon += arr_data_1
-                        noon_num -= adult + children
-
-                    } else {
-                        entire_night = entire
-                        arr_1_night += arr_data_1
-                        night_num -= adult + children
-                    }
-
+                if (children == 0) {
+                    children = ''                    
+                } else {
+                    children = children + '小'
+                }
+                if (adult == 0) {
+                    adult = ''                    
+                } else {
+                    adult = adult + '大'
                 }
 
-                if (bk_date != bk_date_tmp) {
-                    if (arr_1_noon == '') {
-                        arr_1_noon = '暫無訂位'
-                    } else if (arr_1_night == '') {
-                        arr_1_night = '暫無訂位'
+                
+                if(bk_date_tmp==bk_date){
+                    if(t_session == '午餐'){
+                        noon_data += '#' + name + '(' + adult + children + ')'
+                    }
+                    else{
+                        night_data += '#' + name + '(' + adult + children + ')'
+                    }
+                }
+                else if (bk_date_tmp==''){
+                    if(t_session == '午餐'){
+                        noon_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    else{
+                        night_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    bk_date_tmp= bk_date;
+
+                }
+                else if((bk_date_tmp!=bk_date)&&(bk_date_tmp!='')){
+                    if(noon_data ==''){
+                        noon_data = '暫無訂位'
+                    }
+                    if(night_data==''){
+                        night_data = '暫無訂位'
                     }
                     content +=
-                        `<tr>
-                
-                <td label=${date}>
-                       ${arr_1_noon}${entire_noon}<br>--------------------------------------
-                       ${arr_1_night}${entire_night}
-                </td>
-                
-            </tr>`
-                    //Clean  temp data
-                    bk_date_tmp = ''
-                    arr_1_noon = ''
-                    arr_1_night = ''
-                    noon_num = 20
-                    night_num = 20
-                    //put next day 
-                    if ((bk_date == bk_date_tmp) || (bk_date_tmp == '')) {
-                        bk_date_tmp = bk_date
+                    `<tr>
+                        <td label=${bk_date_tmp}>
+                            ${noon_data}
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>
+                            ${night_data}
+                        <td>
+                    </tr>`
 
-
-                        if (t_session == 'noon') {
-                            entire_noon = entire
-                            arr_1_noon += arr_data_1
-                            noon_num -= adult + children
-                        } else {
-                            entire_night = entire
-                            arr_1_night += arr_data_1
-                            night_num -= adult + children
-                        }
-
+                    bk_date_tmp= bk_date;
+                    noon_data='';
+                    night_data='';
+                    if(t_session == '午餐'){
+                        noon_data = '#' + name + '(' + adult + children + ')'
                     }
+                    else{
+                        night_data = '#' + name + '(' + adult + children + ')'
+                    }
+                    
+                    
                 }
-                tmp ++
+                if(counter == response.result.length){
+                    if(noon_data ==''){
+                        noon_data = '暫無訂位'
+                    }
+                    if(night_data==''){
+                        night_data = '暫無訂位'
+                    }
+                    content +=
+                    `<tr>
+                        <td label=${bk_date_tmp}>
+                            ${noon_data}
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>
+                            ${night_data}
+                        <td>
+                    </tr>`
+                }
+                counter++;
+
             });
 
 
             if (content) {
-                document.getElementsByClassName('w3-bordered')[0].style.display = 'table';
+                document.getElementById('table_month').style.display = 'table';
             } else {
-
                 alert('查無資料');
             }
 
-            var dataView = document.getElementById('dataView');
+            var dataView = document.getElementById('dataView_month');
             dataView.innerHTML = content;
 
         }
