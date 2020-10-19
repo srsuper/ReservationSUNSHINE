@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Softway 舒微生活</title>
+<title>SR SUNSHINE HOTEL</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -56,7 +56,7 @@
 <header class="w3-container w3-pale-blue" id="myHeader">
   <div class="w3-center w3-pale-blue">
     <!--h1 class="w3-xxlarge ">歡迎來到 </h1-->
-      <h2 class="w3-myfont">Softway 線上訂位</h2>
+      <h2 class="w3-myfont">SR SUNSHINE HOTEL</h2>
   </div>
 </header>
 
@@ -73,11 +73,11 @@
 <div class="w3-container">
     <div class="w3-center">
     <font size='6'>
-        <label ><i class="fa fa-map-marker"></i> 北投吉利店</label>
+        <label ><i class="fa fa-map-marker"></i>Booking SR SUNSHINE HOTEL</label>
     </font>
         </div>
 <form class="w3-panel w3-border">
-    <input id="store_name" value="總店" style="display: none">
+    <input id="store_name" value="สำนักงานใหญ่" style="display: none">
     <!---
     <font size="4">
     <label ><i class="fa fa-home"></i> 店家位置</label>
@@ -93,9 +93,9 @@
 
  <br>
         <font size="4">
-        <label><i class="fa fa-male"></i> 成人</label>
+        <label><i class="fa fa-male"></i> ผู้ใหญ่</label>
             <select class="select form-control" type="number" value="" id="adult" name="adult" required>
-                <option value="" disabled selected>請選擇人數</option>
+                <option value="" disabled selected>กรุณาเลือกจำนวนคน</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -109,9 +109,9 @@
             </font>
 <br>
         <font size="4">
-        <label><i class="fa fa-child"></i> 兒童</label>
+        <label><i class="fa fa-child"></i> เด็ก</label>
           <select class="select form-control" type="number" value="" id="children" name="children" required>
-          <option value="" disabled selected>請選擇人數</option>
+          <option value="" disabled selected>กรุณาเลือกจำนวนคน</option>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -127,7 +127,7 @@
 
 <br>
         <font size="4">
-        <label><i class="fa fa-calendar"></i> 日期</label>
+        <label><i class="fa fa-calendar"></i> วันที่</label>
             <input class="w3-input" id="date" type="text" value="" placeholder="YYYY/MM/DD"  required>
         </font>
 <br>
@@ -273,8 +273,8 @@ function onClick_1(id_1,id_2,id_3,id_4) {
   if (x.classList.contains("w3-show") == false) {
     x.classList.add("w3-show");
     y.classList.remove("w3-show");
-    a.innerHTML = "✓中午時段"
-    b.innerHTML = "晚上時段"
+    a.innerHTML = "✓เวลาเที่ยง"
+    b.innerHTML = "เวลากลางคืน"
     a.classList.add("w3-red")
     b.classList.remove("w3-red");
 
@@ -290,8 +290,8 @@ function onClick_2(id_1,id_2,id_3,id_4) {
   if (y.classList.contains("w3-show") == false) {
     y.classList.add("w3-show");
     x.classList.remove("w3-show");
-    b.innerHTML = "✓晚上時段"
-    a.innerHTML = "中午時段"
+    b.innerHTML = "✓เวลากลางคืน"
+    a.innerHTML = "เวลาเที่ยง"
     b.classList.add("w3-red")
     a.classList.remove("w3-red");
 
@@ -323,19 +323,19 @@ function timeClick(x){
 
 <!-----------------------------Member Form------------------------------------------------------>
 <div class="w3-container">
-    <h3>會員資料</h3>
+    <h3>โปรไฟล์สมาชิก</h3>
 <form class="w3-panel w3-border">
 
 <div class="w3-section">
     <font size="4">
-        <label><i class="fa fa-user"></i> 姓名</label>
-    <input class="w3-input" type="text" id="name" placeholder="EX : 陳小明" required>
+        <label><i class="fa fa-user"></i> ชื่อ</label>
+    <input class="w3-input" type="text" id="name" placeholder="EX : ชื่อลูกค้า" required>
         <div class="w3-row">
         <div class="w3-half">
     <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
-    <label>先生</label>
+    <label>นาย</label>
     <input id="female" class="w3-radio" type="radio" name="gender" value="F">
-    <label>女士</label>
+    <label>นางสาว</label>
         </div>
         </div>
     </font>
@@ -344,29 +344,29 @@ function timeClick(x){
 
   <div class="w3-section">
     <font size="4">
-    <label><i class="fa fa-phone"></i> 手機</label>
-    <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
+    <label><i class="fa fa-phone"></i> โทรศัพท์มือถือ</label>
+    <input class="w3-input" type="tel" placeholder="EX : 0912369999"  id="phone" name="phone" autocomplete="off" pattern="[0-9]" required>
       </font>
   </div>
 
   <div class="w3-section">
       <font size="3.5">
-      <label><i class="fa fa-bell"></i> 飲食習慣</label>
+      <label><i class="fa fa-bell"></i> อาหารเช้า</label>
         <br>
           <input id="ps" style="display: none" value="">
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃牛" onclick="psClick(this)">不吃牛</button>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#不吃海鮮" onclick="psClick(this)">不吃海鮮</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#ไม่มีเนื้อ" onclick="psClick(this)">ไม่มีเนื้อ</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#ไม่มีอาหารทะเล" onclick="psClick(this)">ไม่มีอาหารทะเล</button>
         <br>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蛋奶素" onclick="psClick(this)">蛋奶素</button>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#蔬食(無肉)" onclick="psClick(this)">蔬食(無肉)</button>
-          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#全素(無辛料)" onclick="psClick(this)">全素</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#โอโวแลกติน" onclick="psClick(this)">โอโวแลกติน</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#อาหารผัก(ไม่มีเนื้อสัตว์)" onclick="psClick(this)">อาหารผัก(ไม่มีเนื้อสัตว์)</button>
+          <button type="button" class="w3-btn w3-border w3-round-large w3-normal" value="#มังสวิรัติ" onclick="psClick(this)">มังสวิรัติ</button>
         <br><br>
-        其他<input id="otherps" type="text" class="w3-input" value="">
+        อื่น ๆ<input id="otherps" type="text" class="w3-input" value="">
       </font>
   </div>
 
     <font size="4">
-    <button type="submit" id="sendbook" class="w3-btn w3-bar w3-round-large w3-indigo"><i class="fa fa-check"></i> 確定送出</button>
+    <button type="submit" id="sendbook" class="w3-btn w3-bar w3-round-large w3-indigo"><i class="fa fa-check"></i> ยืนยันที่จะส่ง</button>
     </font>
 
 
@@ -411,7 +411,7 @@ function timeClick(x){
   $(function () {
     $('#date').bootstrapMaterialDatePicker(
         {
-            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: '確認', cancelText: '取消', minDate: moment() ,maxDate: moment().add(5,'day'), format: 'YYYY/MM/DD dddd'
+            time: false, nowButton:false, clearButton: false, lang: 'zh-tw', okText: 'การยืนยัน', cancelText: 'ยกเลิก', minDate: moment() ,maxDate: moment().add(5,'day'), format: 'YYYY/MM/DD dddd'
         });
     });
 </script>
