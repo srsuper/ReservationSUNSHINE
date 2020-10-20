@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Softway 舒微生活管理員</title>
+<title>ReservationSUNSHINE</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -53,8 +53,8 @@
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <div class="w3-center">
-    <h1 class="w3-xxlarge ">歡迎來到 </h1>
-      <h2>Softway 舒微生活管理員</h2>
+    <h1 class="w3-xxlarge ">ยินดีต้อนรับสู่ </h1>
+      <h2>ReservationSUNSHINE</h2>
   </div>
 </header>
 
@@ -62,7 +62,7 @@
 <!-- 標 題(預約人數/日期)  --->
 <div class="w3-container">
 <header class="w3-container w3-pale-blue">
-  <h2><i class="fa fa-calendar"></i> 預約人數/日期</h2>
+  <h2><i class="fa fa-calendar"></i> จำนวนการจอง / วันที่</h2>
  </header>
     </div>
 
@@ -72,18 +72,18 @@
 <div class="w3-container">
 <form class="w3-panel w3-border">
   <div class="w3-section">
-    <label><i class="fa fa-home"></i> 店家位置</label>
+    <label><i class="fa fa-home"></i> ที่ตั้งร้าน</label>
     <select class="w3-input w3-border"  value="" id="store_name" name="store_name" required>
-          <option style="display:none" value="">請選擇店家</option>
-            <option value="總店">北投吉利店  (總店)</option>
+          <option style="display:none" value="">กรุณาเลือกร้านค้า</option>
+            <option value="สำนักงานใหญ่">สำนักงานใหญ่</option>
     </select>
   </div>
 
       
  <div class="w3-section">  
-    <label><i class="fa fa-male"></i> 成人</label>
+    <label><i class="fa fa-male"></i> ผู้ใหญ่</label>
     <select class="w3-input w3-border" type="number" value="" id="adult" name="adult" required>
-            <option style="display:none" value="">選擇人數</option>
+            <option style="display:none" value="">เลือกจำนวนคน</option>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -108,9 +108,9 @@
             </select>
     </div>
 <div class="w3-section">    
-      <label><i class="fa fa-child"></i> 兒童</label>
+      <label><i class="fa fa-child"></i> เด็ก</label>
           <select class="w3-input w3-border" type="number" value="" id="children" name="children" required>
-          <option style="display:none" value="">選擇人數</option>
+          <option style="display:none" value="">เลือกจำนวนคน</option>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -136,15 +136,15 @@
   </div>
     
     <div class='w3-section' id='datepicker'>
-            <label><i class="fa fa-calendar"></i> 日期</label>
+            <label><i class="fa fa-calendar"></i> วันที่</label>
               <br>
             <input class="w3-input" id="date" type="text" placeholder="YYYY/MM/DD"  required >
     </div>
     <div class="w3-section">
       <input id="noforce" class="w3-radio" type="radio" name="force" value="no" checked>
-      <label>不強迫訂位</label>
+      <label>อย่าบังคับจอง</label>
       <input id="force" class="w3-radio" type="radio" name="force" value="force">
-      <label>強迫訂位</label>
+      <label>บังคับให้จอง</label>
       
     </div>
 </form>
@@ -156,10 +156,10 @@
 <div class="w3-container">
 <hr>
 <header class="w3-container w3-pale-blue">
-  <h2><i class="fa fa-clock-o"></i> 預約時段</h2>
-    <h7><i class="fa fa-bullhorn"></i> 因用餐沒有時間限制，請事先預約。
+  <h2><i class="fa fa-clock-o"></i> เวลานัดหมาย</h2>
+    <h7><i class="fa fa-bullhorn"></i>เนื่องจากไม่มีการ จำกัด เวลาในการรับประทานอาหารโปรดจองล่วงหน้า
     <br>
-    <i class="fa fa-bullhorn"></i> 若有需要" 更改訂位 "的日期、時間或人數等資訊，請務必來電告知(Kevin : 0936-336233 )</h7>
+    <i class="fa fa-bullhorn"></i> หากต้องการข้อมูลเช่นวันเวลาหรือจำนวนคนที่จะ "เปลี่ยนแปลงการจอง" กรุณาโทรแจ้ง(Kevin : 0936-336233 )</h7>
 </header>
 </div>
 
@@ -170,9 +170,9 @@
 <div class="w3-container">
 <form class="w3-panel w3-border">
   <div class="w3-section">
-    <label><i class="fa fa-clock-o"></i> 開始用餐時間</label>
-    <select name="start" id="start" class="select form-control" data-name="開始時間">
-              <option style="display:none" value="">請選擇用餐開始時間</option>
+    <label><i class="fa fa-clock-o"></i> เริ่มเวลาอาหาร</label>
+    <select name="start" id="start" class="select form-control" data-name="เวลาเริ่มต้น">
+              <option style="display:none" value="">โปรดเลือกเวลาเริ่มต้นของอาหาร</option>
               <option value="10">10:00</option>
               <option value="10.5">10:30</option>
               <option value="11">11:00</option>
@@ -201,9 +201,9 @@
         </div>
     
     <div class="w3-section">
-    <label><i class="fa fa-clock-o"></i> 結束用餐時間</label>
-    <select name="end" id="end" class="select form-control" data-name="結束時間">
-              <option style="display:none" value="">請選擇用餐結束時間</option>
+    <label><i class="fa fa-clock-o"></i> หมดเวลารับประทานอาหาร</label>
+    <select name="end" id="end" class="select form-control" data-name="เวลาสิ้นสุด">
+              <option style="display:none" value="">โปรดเลือกเวลาสิ้นสุดของอาหาร</option>
               <option value="10.5">10:30</option>
               <option value="11">11:00</option>
               <option value="11.5">11:30</option>
@@ -240,17 +240,17 @@
 <div class="w3-row-padding">
 
 <div class="w3-container">
-    <h3>會員資料</h3>
+    <h3>โปรไฟล์สมาชิก</h3>
 <form class="w3-panel w3-border">
   <div class="w3-section">
-    <label><i class="fa fa-user"></i> 姓氏</label>
-    <input class="w3-input" type="text" id="name" placeholder="EX : 陳"required>
+    <label><i class="fa fa-user"></i> นามสกุล</label>
+    <input class="w3-input" type="text" id="name" placeholder="EX : เฉิน"required>
     <div class="w3-row">
     <div class="w3-half">
             <input id="male" class="w3-radio" type="radio" name="gender" value="M" checked>
-            <label>先生</label>
+            <label>นาย</label>
             <input id="female" class="w3-radio" type="radio" name="gender" value="F">
-            <label>女士</label>
+            <label>นางสาว</label>
     </div>
     </div>
         </div>
@@ -258,14 +258,14 @@
       
   
   <div class="w3-section">  
-    <label><i class="fa fa-phone"></i> 手機</label>
-    <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" pattern="[0]{1}[9]{1}[0-9]{8}" required>
+    <label><i class="fa fa-phone"></i> โทรศัพท์มือถือ</label>
+    <input class="w3-input" type="tel" placeholder="EX : 0900123456"  id="phone" name="phone" autocomplete="off" required>
   </div>
     
     
   <div class="w3-section">  
-      <label><i class="fa fa-bell"></i> 備註</label>
-        <input class="w3-input" type="text"  placeholder="EX : 不吃牛/蛋奶素" id='ps'>
+      <label><i class="fa fa-bell"></i> หมายเหตุ</label>
+        <input class="w3-input" type="text"  placeholder="EX : ไม่มีวัว / โอโว - แลคโต - ผัก" id='ps'>
         <br>
   </div>
 </form>
